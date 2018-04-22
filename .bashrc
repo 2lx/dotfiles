@@ -116,7 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source ~/.bashrc_my
+# source ~/.bashrc_my
 
 # alias ls='ls -F1 --color=auto'
 # alias ll='ls -laFh'

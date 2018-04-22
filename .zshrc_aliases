@@ -4,7 +4,7 @@ alias .....="cd ../../../.."
 # alias shutdown="sudo shutdown now"
 # alias restart="sudo restart now"
 
-alias vim=/usr/local/bin/vim
+# alias vim=/usr/local/bin/vim
 
 alias i3conf="vim ~/.config/i3/config"
 alias vimrc="vim ~/.vimrc"
