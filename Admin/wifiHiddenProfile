@@ -1,0 +1,9 @@
+Description='Setting to home hidden 5GHz wi-fi network'
+Interface=wlp61s0
+Connection=wireless
+IP=dhcp
+Priority=10
+Security=wpa
+ESSID=
+Key=
+Hidden=yes
