@@ -167,6 +167,10 @@ bindsym XF86AudioStop exec cmus-remote -s
 bindsym XF86AudioNext exec cmus-remote -n
 bindsym XF86AudioPrev exec cmus-remote -r
 
+# Backlight conntrols
+bindsym XF86MonBrightnessDown exec xbacklight -dec 25
+bindsym XF86MonBrightnessUp exec xbacklight -inc 25
+
 # setup colors
 set $bg-color            #2f2f2f
 set $inactive-bg-color   #2f343f
