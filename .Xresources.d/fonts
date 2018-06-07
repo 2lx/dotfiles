@@ -1,0 +1,4 @@
+#define FSIZE 20
+
+URxvt*font: xft:DejaVu\ Sans\ Mono\ for\ Powerline:pixelsize=FSIZE:antialias=true:hinting=true:hintstyle=hintnone:dpi=96
+URxvt*boldFont: xft:DejaVu\ Sans\ Mono\ for\ Powerline:bold:pixelsize=FSIZE:antialias=true:hinting=true:hintstyle=hintnone:dpi=96
