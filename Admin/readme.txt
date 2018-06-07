@@ -25,3 +25,5 @@ battery support lenovo: sudo pacman -S tlp
 SSD support and optimization:
 > pacman -S hdparm
 > vim /etc/fstab add "discard" for ext4 and SWAP fs
+
+packages sysstat for mpstat

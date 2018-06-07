@@ -1,4 +1,5 @@
-#define FSIZE 20
+#define FONTSIZE 20
+#define FONTNAME DejaVu\ Sans\ Mono\ for\ Powerline
 
-URxvt*font: xft:DejaVu\ Sans\ Mono\ for\ Powerline:pixelsize=FSIZE:antialias=true:hinting=true:hintstyle=hintnone:dpi=96
-URxvt*boldFont: xft:DejaVu\ Sans\ Mono\ for\ Powerline:bold:pixelsize=FSIZE:antialias=true:hinting=true:hintstyle=hintnone:dpi=96
+URxvt*font: xft:FONTNAME:pixelsize=FONTSIZE:antialias=true:hinting=true:hintstyle=hintnone:dpi=96
+URxvt*boldFont: xft:FONTNAME:bold:pixelsize=FONTSIZE:antialias=true:hinting=true:hintstyle=hintnone:dpi=96
