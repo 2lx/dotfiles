@@ -2,7 +2,7 @@
 
 cd ~
 
-mv .bashrc .bashrc_bkp
+mv .zshrc .zshrc_bkp
 
 git init .
 

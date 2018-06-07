@@ -4,7 +4,7 @@ URxvt*scrollBar: false
 urxvt*cursorBlink: true
 
 URxvt*transparent: true
-URxvt*shading: 15
+URxvt*shading: 35
 
 URxvt*background: #2F2F2F
 URxvt*foreground: #F7F7F7
