@@ -10,7 +10,7 @@ TEMP=$(( $TEMP1 > $TEMP2 ? $TEMP1 : $TEMP2 ))
 FGCOLOR=#b2b2b2
 if (( $TEMP > 55 )); then
     FGCOLOR=#e74c3c
-elif (( $TEMP > 40 )); then
+elif (( $TEMP > 45 )); then
     FGCOLOR=#f1c40f
 fi
 
