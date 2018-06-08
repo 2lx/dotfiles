@@ -6,6 +6,7 @@ for reboot, shutdown without pass: sudo vim /etc/sudoers, add %admin ALL=NOPASSW
 for add wifi profile - copy wifiHiddenProfile to /etc/netctl/ and exec sudo netctl start profilename
 for add backlight support - copy 10-backlight to /etc/X11/xorg.conf.d/     + pacman -S xf86-video-intel
 for install ftp server: pacman -S vsftpd && systemctl enable vsftpd && /etc/vsftpd.conf
+for minimize swap usage copy: cp 99-sysctl.conf /etc/sysctl.d/
 
 for find mediakeys > xmodmap -pke | grep -i backli
 
