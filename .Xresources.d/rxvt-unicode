@@ -6,25 +6,6 @@ urxvt*cursorBlink: true
 URxvt*transparent: true
 URxvt*shading: 35
 
-URxvt*background: #2F2F2F
-URxvt*foreground: #F7F7F7
-URxvt*color0: #2F2F2F
-URxvt*color1: #FF2000
-URxvt*color2: #01EE02
-URxvt*color3: #F6DC69
-URxvt*color4: #88CCE7
-URxvt*color5: #D000FF
-URxvt*color6: #2EB5C1
-URxvt*color7: #B0B0B0
-URxvt*color8: #5D5D5D
-URxvt*color9: #FAB1AB
-URxvt*color10: #F6DC69
-URxvt*color11: #F6DC69
-URxvt*color12: #2EB5C1
-URxvt*color13: #FF81FC
-URxvt*color14: #90AB4F
-URxvt*color15: #F7F7F7
-
 URxvt.letterSpace: -1
 
 URxvt*keysym.Home: \033[1~
