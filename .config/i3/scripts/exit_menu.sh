@@ -5,7 +5,7 @@ while [ "$select" != "NOTHING" -a "$select" != "LOGOUT" \
         -a "$select" != "LOCK" ]; do
     select=$(echo -e 'NOTHING\nLOCK\n\nLOGOUT\nSHUTDOWN\nREBOOT' | \
         dmenu -nb '#2f2f2f' -nf '#f3f4f5' -sb '#27ae60' -sf '#f3f4f5' -fn \
-        'System San Francisco Display:bold:pixelsize=21' -i \
+        'System San Francisco Display:bold:pixelsize=24' -i \
         -p "What do you want to do?")
     [ -z "$select" ] && exit 0
 done

@@ -1,39 +1,32 @@
+# set $screencast  ffmpeg -y -f x11grab -video_size 1280x800 -i :0.0 -f alsa -i default -c:v ffvhuff -r 30 -c:a flac output.mkv
+# set $audio ffmpeg -f alsa -i default -c:a flac -y output.flac
+#
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-#font pango:monospace 8
+# Font for window titles
 font pango:System San Francisco Display 16
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# set $screencast  ffmpeg -y -f x11grab -video_size 1280x800 -i :0.0 -f alsa -i default -c:v ffvhuff -r 30 -c:a flac output.mkv
-# set $audio ffmpeg -f alsa -i default -c:a flac -y output.flac
-
-# start a terminal and launch the tmux
+################################################################################
+# keybindings
 bindsym $mod+Return exec i3-sensible-terminal -e tmux -u
 bindsym $mod+Shift+Return exec i3-sensible-terminal
 
-# kill focused window
-bindsym $mod+Shift+q kill
 bindsym $mod+Shift+Tab workspace prev
 bindsym $mod+Tab workspace next
 
-# start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
+bindsym $mod+Shift+q kill
+
 bindsym $mod+d exec rofi -show run
 bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop \
         --dmenu="dmenu -i \
         -nb '#2f2f2f' -nf '#f3f4f5' -sb '#27ae60' -sf '#f3f4f5' \
         -fn 'System San Francisco Display:bold:pixelsize=21'"
 
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file.
-
-# scrot for taking screenshots
 bindsym Print exec scrot -e 'mkdir -p ~/Temp/Screenshots && mv $f ~/Temp/Screenshots/'
 bindsym $mod+Print exec scrot -e 'mkdir -p ~/Temp/Screenshots && mv $f ~/Temp/Screenshots/ && gimp ~/Temp/Screenshots/$f'
 
@@ -49,32 +42,71 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# split in horizontal orientation
+# split in Hor or Vert orientation
 bindsym $mod+Shift+v split h
-
-# split in vertical orientation
 bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# toggle tiling / floating
+bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 # i3lock
 #bindsym $mod+shift+x exec i3lock
 
+# scratchpad
+bindsym $mod+o scratchpad show
+
+# reload the configuration file
+bindsym $mod+Shift+r reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "$HOME/.config/i3/scripts/exit_menu.sh"
+
+################################################################################
+# resize window
+bindsym $mod+r mode "resize"
+
+mode "resize" {
+        bindsym h resize shrink width 4 px or 4 ppt
+        bindsym j resize grow height 4 px or 4 ppt
+        bindsym k resize shrink height 4 px or 4 ppt
+        bindsym l resize grow width 4 px or 4 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+################################################################################
+# media key bindings
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 2%-
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 2%+
+bindsym XF86AudioMute exec amixer -D pulse sset Master 0%
+
+bindsym XF86AudioPlay exec cmus-remote -p
+bindsym XF86AudioPause exec cmus-remote -u
+bindsym XF86AudioStop exec cmus-remote -s
+bindsym XF86AudioNext exec cmus-remote -n
+bindsym XF86AudioPrev exec cmus-remote -r
+
+bindsym XF86MonBrightnessDown exec xbacklight -dec 25
+bindsym XF86MonBrightnessUp exec xbacklight -inc 25
+
+################################################################################
+# workspaces
 set $ws1 " 1 "
 set $ws2 " 2 "
 set $ws3 " 3 "
@@ -99,23 +131,22 @@ bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 
-# workspace assignment (use "xprop")
+# use "xprop"
 assign [class="^Chromium$"] $ws1
-# assign [class="^Firefox$"] $ws2
-assign [class="TelegramDesktop"] $ws3
-# assign [class="^Simplenote$"] $ws3
-assign [class="^Gimp$"] $ws5
+assign [class="^Firefox$"] $ws1
+assign [class="TelegramDesktop"] $ws4
+# assign [class="^Gimp$"] $ws5
 assign [class="^Tor Browser$"] $ws6
 assign [class="^Transmission-gtk"] $ws7
 assign [title="^TeamViewer$"] $ws8
@@ -124,122 +155,80 @@ assign [class="^VirtualBox"] $ws9
 assign [class="^Audacious$"] $ws10
 # assign [class="^Deadbeef$"] $ws10
 
-# reload the configuration file
-bindsym $mod+Shift+r reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-# bindsym $mod+Shift+r restart
-
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "$HOME/.config/i3/scripts/exit_menu.sh"
-
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        bindsym h resize shrink width 4 px or 4 ppt
-        bindsym j resize grow height 4 px or 4 ppt
-        bindsym k resize shrink height 4 px or 4 ppt
-        bindsym l resize grow width 4 px or 4 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-bindsym $mod+r mode "resize"
-for_window [class="$"] border none
-
-# scratchpad
-# bindsym $mod+m move scratchpad
-bindsym $mod+o scratchpad show
 for_window [class="Keepassx2"] move to scratchpad
-# for_window [class="TeamViewer"] floating enable
 
-# Pulse Audio controls
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 2%-
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 2%+
-bindsym XF86AudioMute exec amixer -D pulse sset Master 0%
+for_window [class="^.*"] border none, title_format "<b> %class >> %title </b>"
+for_window [class="^URxvt$"] border pixel 2
 
-bindsym XF86AudioPlay exec cmus-remote -p
-bindsym XF86AudioPause exec cmus-remote -u
-bindsym XF86AudioStop exec cmus-remote -s
-bindsym XF86AudioNext exec cmus-remote -n
-bindsym XF86AudioPrev exec cmus-remote -r
+################################################################################
+# colors
+set_from_resource $default-bg      background  #2F2F2F
+set_from_resource $urgent-bg       color1      #FF2000
+set_from_resource $focused-bg      color3      #F6DC69
 
-# Backlight conntrols
-bindsym XF86MonBrightnessDown exec xbacklight -dec 25
-bindsym XF86MonBrightnessUp exec xbacklight -inc 25
+set_from_resource $default-fg      color7      #B0B0B0
+set_from_resource $focused-fg      color0      #2F2F2F
 
-# setup colors
-set $bg-color            #2f2f2f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
-set $separator-color     #A7B0B1
-set $focused-bar-color   #16a085
-set $urgent-bar-color    #e74c3c
+#                       border              background          text                indicator
+client.focused          $focused-bg         $focused-bg         $focused-fg         $urgent-fg
+client.unfocused        $default-bg         $default-bg         $default-fg         $urgent-fg
+client.focused_inactive $default-bg         $default-bg         $default-fg         $urgent-fg
+client.urgent           $urgent-bg          $urgent-bg          $focused-fg         $urgent-fg
 
-
-# window colors
-#                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
-client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
-
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+################################################################################
+# bar
 bar {
 #        status_command i3status
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
-       # status_command i3blocks
-        # position bottom
+
         position top
         tray_output none #primary
-        font pango: System San Francisco Display 14
         separator_symbol " "
         workspace_buttons yes
         strip_workspace_numbers no
 
+        font pango: System San Francisco Display 16
         colors {
-            background $bg-color
-            separator $separator-color
-            #                  border             bg                  text
-            focused_workspace  $focused-bar-color $focused-bar-color  #ffffff
-            inactive_workspace $bg-color          $bg-color           #999999
-            urgent_workspace   $urgent-bar-color  $bg-color           #ffffff
+            background $default-bg
+            separator $default-bg
+            #                  border           bg           text
+            focused_workspace  $focused-bg      $focused-bg  $focused-fg
+            inactive_workspace $default-bg      $default-bg  $default-fg
+            urgent_workspace   $urgent-bg       $urgent-bg   $urgent-fg
         }
 }
 
 ################################################################################
 # i3-gaps config
 
-bindsym $mod+t split toggle
+# bindsym $mod+t split toggle
 
 gaps inner 10
-gaps outer -10
+gaps outer 0
 
 # workspace $ws1 gaps outer 0
 # workspace $ws1 gaps inner 10
 
-# end i3 gaps config
-################################################################################
+new_window normal
+new_float normal
+hide_edge_borders both
+popup_during_fullscreen smart
 
-# before autostart
-# exec --no-startup-id pactl upload-sample ~/.i3/that_was_easy.wav that_was_easy
-exec_always --no-startup-id feh --bg-fill ~/Pictures/texture2.jpg
+bindsym $mod+shift+b border toggle
+
+################################################################################
+# autostart
+exec_always --no-startup-id feh --bg-fill ~/wall.jpg
 exec_always compton -f
 exec --no-startup-id xset dpms 600
 exec --no-startup-id dunst
 # exec --no-startup-id xautolock -time 6 -locker $HOME/.config/i3/lock.sh
 
-# autostart
 # exec chromium
 exec firefox
 # exec telegram-desktop
 exec keepassx2 #launch in scratchpad
 # exec /usr/share/simplenote/simplenote
-
 # exec --no-startup-id i3-msg 'workspace $ws2;  exec urxvt -e mutt;'
 exec --no-startup-id i3-msg 'workspace $ws2;  exec urxvt -e tmux -u;'
 # exec --no-startup-id i3-msg 'workspace $ws10; exec urxvt -e cmus;'
