@@ -196,7 +196,7 @@ bar {
         # position bottom
         position top
         tray_output none #primary
-        font pango: System San Francisco Display 14
+        font pango: System San Francisco Display 16
         separator_symbol " "
         workspace_buttons yes
         strip_workspace_numbers no

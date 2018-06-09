@@ -1,9 +1,9 @@
 rofi.color-enabled: true
 
-rofi.color-normal: #002f2f2f, #f7f7f7, #002f2f2f, #772ecc71, #f7f7f7
+rofi.color-normal: #002f2f2f, #f7f7f7, #002f2f2f, #aa2ecc71, #f7f7f7
 rofi.color-urgent: #002f2f2f, #e74c3c, #002f2f2f, #aa2ecc71, #e74c3c
 rofi.color-active: #002f2f2f, #f1c40f, #002f2f2f, #aa2ecc71, #f1c40f
-rofi.color-window: #66000000, #66000000, #66000000
+rofi.color-window: #88000000, #88000000, #88000000
 rofi.font: System San Francisco Display 20
 
 rofi.padding: 6
