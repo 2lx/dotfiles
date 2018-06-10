@@ -8,6 +8,8 @@ for add backlight support - copy 10-backlight to /etc/X11/xorg.conf.d/     + pac
 for install ftp server: pacman -S vsftpd && systemctl enable vsftpd && /etc/vsftpd.conf
 for minimize swap usage copy: cp 99-sysctl.conf /etc/sysctl.d/
 
+for disable interrupt on undock laptop: cp disable_inter... /etc/systemd/system/ && systemctl enable
+
 for find mediakeys > xmodmap -pke | grep -i backli
 
 for start docker daemon: add user to docker group; >> systemctl start docker
@@ -20,7 +22,7 @@ battery support lenovo: sudo pacman -S tlp
 > systemctl enable tlp.service
 > systemctl enable tlp-sleep.service
 > systemctl mask systemd-rfkill.service
-> pacman -S tp_smapi
+> pacman -S tpacpi-bat !!! not tp_smapi , after reboot check the systemctl failed (manual: arch wiki systedm)
 > rkfill list :: list all un\blocked wireless devices
 
 SSD support and optimization:
@@ -28,3 +30,5 @@ SSD support and optimization:
 > vim /etc/fstab add "discard" for ext4 and SWAP fs
 
 packages sysstat for mpstat
+
+
