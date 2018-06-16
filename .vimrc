@@ -182,6 +182,18 @@ nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS vim-plug plugin manager
 call plug#begin('~/.vim/plugged')
+Plug 'matze/vim-move'                       " !
+Plug 'scrooloose/nerdcommenter'             " !
+Plug 'scrooloose/nerdtree'                  " !
+Plug 'tpope/vim-surround'                   " !
+Plug 'alpertuna/vim-header'                 " !
+
+" ! maybe
+" Plug 'tpope/vim-unimpaired'                 " ~
+" Plug 'justmao945/vim-clang'
+" Plug 'Shougo/neocomplete.vim'
+
+" ! default disabled
 " Plug 'Valloric/YouCompleteMe'             " c++ recommended
 " Plug 'easymotion/vim-easymotion'
 " Plug 'sirver/ultisnips'                   " c++ recommended
@@ -192,19 +204,11 @@ call plug#begin('~/.vim/plugged')
 " Plug 'vim-syntastic/syntastic'
 " Plug 'xolox/vim-misc'
 " Plug 'xolox/vim-session'
-Plug 'Shougo/neocomplete.vim'
 " Plug 'Shougo/neosnippet-snippets'
 " Plug 'Shougo/neosnippet.vim'
-Plug 'matze/vim-move'                       " !
 " Plug 'mrtazz/simplenote.vim'              " ~
-Plug 'scrooloose/nerdcommenter'             " !
-Plug 'scrooloose/nerdtree'                  " !
 " Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-surround'                   " !
-Plug 'tpope/vim-unimpaired'                 " ~
 " Plug 'vim-scripts/DoxygenToolkit.vim'
-Plug 'justmao945/vim-clang'
-Plug 'alpertuna/vim-header'                 " !
 " Plug 'tmux-plugins/vim-tmux  '              " --
 call plug#end()
 

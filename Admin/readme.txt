@@ -7,6 +7,7 @@ for add wifi profile - copy wifiHiddenProfile to /etc/netctl/ and exec sudo netc
 for add backlight support - copy 10-backlight to /etc/X11/xorg.conf.d/     + pacman -S xf86-video-intel
 for install ftp server: pacman -S vsftpd && systemctl enable vsftpd && /etc/vsftpd.conf
 for minimize swap usage copy: cp 99-sysctl.conf /etc/sysctl.d/
+for add application in app list copy *.desktop file to .local/share/applications
 
 for disable interrupt on undock laptop: cp disable_inter... /etc/systemd/system/ && systemctl enable
 
@@ -31,4 +32,7 @@ SSD support and optimization:
 
 packages sysstat for mpstat
 
-
+power management Arch wiki:
+copy audio_powersave.conf to /etc/modprobe.d/
+copy webcamera_disable.conf to /etc/modprobe.d/
+copy 50-bluetooth.rules to /etc/udev/rules.d/

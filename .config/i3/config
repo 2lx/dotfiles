@@ -92,9 +92,9 @@ mode "resize" {
 
 ################################################################################
 # media key bindings
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 2%-
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 2%+
-bindsym XF86AudioMute exec amixer -D pulse sset Master 0%
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-; exec pkill -RTMIN+1 i3blocks
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+; exec pkill -RTMIN+1 i3blocks
+bindsym XF86AudioMute exec amixer -D pulse sset Master 0%; exec pkill -RTMIN+1 i3blocks
 
 bindsym XF86AudioPlay exec cmus-remote -p
 bindsym XF86AudioPause exec cmus-remote -u
@@ -104,6 +104,8 @@ bindsym XF86AudioPrev exec cmus-remote -r
 
 bindsym XF86MonBrightnessDown exec xbacklight -dec 25
 bindsym XF86MonBrightnessUp exec xbacklight -inc 25
+
+bindsym Caps_Lock exec pkill -RTMIN+2 i3blocks
 
 ################################################################################
 # workspaces
@@ -225,7 +227,7 @@ exec --no-startup-id dunst
 # exec --no-startup-id xautolock -time 6 -locker $HOME/.config/i3/lock.sh
 
 # exec chromium
-exec firefox
+# exec firefox
 # exec telegram-desktop
 exec keepassx2 #launch in scratchpad
 # exec /usr/share/simplenote/simplenote
