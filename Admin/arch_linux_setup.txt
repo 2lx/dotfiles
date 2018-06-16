@@ -1,0 +1,114 @@
+2018 install Arch Linux
+
+Глава 1. Запись флешки
+
+Глава 2. Разбивка диска
+
+Глава 3. Настройки BIOS
+Нужно отключить опцию Security -> Secure Boot
+
+Глава 4. Установка Arch linux
+> wifi-menu
+> ping ya.ru
+> pacman -Syy
+> pacman -S reflector
+> reflector -c "Russia" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
+> fdisk -l
+Разбивка диска с помощью cfdisk или gdiskе
+Нужно установить раздел UEFI - выделить минимум 550 мб в начале диска, тип диска должен быть EFI boot partition, отформатировать его  fat32.
+Создаем новые разделы /boot =500MB ext2,  / = 30GB ext4, /var = 8GB ext4, swap = RAM swap, /home = other
+> mkfs.ext2 /dev/partition -L boot
+> mkfs.ext4 /dev/partition -L root
+> mkswap /dev/partition -L swap
+> pacman -S dosfstools vim
+> mkfs.fat -F32 /dev/partition
+теперь монтируем диски (в т.ч. UEFI)
+> mount /dev/partition /mnt
+> mkdir /mnt/{boot,var,home}
+> mkdir /mnt/boot/efi
+> mount ...
+> lsblk
+Теперь когда все примонтировано куда надо:
+> pacstrap -i /mnt base base-devel
+> genfstab -U -p /mnt >> /mnt/etc/fstab
+> arch-chroot /mnt /bin/bash
+> vim /etc/locale.gen    # uncomment en_US && ru_RU
+> locale-gen
+> ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+> hwclock --systohc --utc
+> echo aimPC > /etc/hostname
+> vim /etc/hosts
+add lines:
+127.0.0.1    localhost.localdomain    localhost
+::1        localhost.localdomain    localhost
+127.0.0.1    localhost.localdomain    aimPC
+
+> systemctl enable dhcpcd
+> passwd     # set Root passwd
+> pacman -S grub # os-prober
+Если это старый комп:
+> grub-install --target=i386-pc --recheck /dev/partition
+Если же UEFI:
+> pacman -S efibootmgr
+> grub-install --targer=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+
+> grub-mkconfig -o /boot/grub/grub.cfg
+> exit
+> umount -R /mnt
+> shutdown now
+После перезагрузки (вынимаем флеш) вводим пароль root:
+> useradd -m -g users -G wheel -s /bin/bash aim
+> passwd aim
+> EDITOR=vim visudo
+разкомменчиваем %wheel ALL=...
+> exit
+login as aim
+> sudo pacman -S pulseaudio pulseaudio-alsa xorg xorg-xinit i3-gaps rxvt-unicode i3blocks dialog wpa_supplicant
+dialogs wpa_supplicant = для wifi
+перезагрузка. Если не работает wifi-menu, нужно сбросить параметры:
+> sudo netctl status wl...
+> sudo systemctl stop dhcpcd.service
+> sudo systemctl disable dhcpcd.service
+> sudo rm -rf /var/lib/dhcpcd/*.lease
+> sudo rm /etc/systemd/system/multi-user.target.wants/netctl*
+> sudo rm /etc/netctl/wl...
+> reboot
+> wifi-menu
+> sudo netctl start wl..
+> sudo netctl enable wl...
+в Admin находится конфиг файл для настройки скрытой wi-fi сети
+
+-- скопировать мой dotfiles
+> git init .
+> git remote add -t \* -f origin https://github.com/lexaaim/dotfiles.git
+> git checkout master
+
+Установка oh-my-zsh
+> mv .oh_my_zsh 1
+> sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+> mv 1/themes/... .oh-my-zsh/themes/
+> git checkout -- .zshrc
+
+Установка vim-plug:
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+> vim
+:PlugInstall
+
+Для того чтобы автоматически запускался startx (он прописан в .zprofile) нужно поставить шелл по умолчанию zsh :
+> chsh
+
+ШРИФТЫ:
+AUR > git clone https://aur.archlinux.org/ttf-dejavu-sans-mono-powerline-git.git
+
+темы иконки:
+> pacman -S arc-gtk-theme arc-icon-theme lxappearance
+
+Настройка времени
+
+монтирование tmpfs:
+проверить df -h
+tmpf 1000M на ~/.cache
+
+настройка яркости экрана: xorg-xbacklight + pacman -S xf86-video-intel
+
+скриншот - pacman -S scrot
