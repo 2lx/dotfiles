@@ -8,6 +8,9 @@ for add backlight support - copy 10-backlight to /etc/X11/xorg.conf.d/     + pac
 for install ftp server: pacman -S vsftpd && systemctl enable vsftpd && /etc/vsftpd.conf
 for minimize swap usage copy: cp 99-sysctl.conf /etc/sysctl.d/
 for add application in app list copy *.desktop file to .local/share/applications
+for setup ethernet: ip link show dev enp0s31f6
+sudo ip link set enp0s31f6 up
+
 
 for disable interrupt on undock laptop: cp disable_inter... /etc/systemd/system/ && systemctl enable
 
@@ -35,4 +38,4 @@ packages sysstat for mpstat
 power management Arch wiki:
 copy audio_powersave.conf to /etc/modprobe.d/
 copy webcamera_disable.conf to /etc/modprobe.d/
-copy 50-bluetooth.rules to /etc/udev/rules.d/
+copy 50-bluetooth.rules 51-usb.rules 70-.rules to /etc/udev/rules.d/
