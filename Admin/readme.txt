@@ -11,6 +11,8 @@ for add application in app list copy *.desktop file to .local/share/applications
 for setup ethernet: ip link show dev enp0s31f6
 sudo ip link set enp0s31f6 up
 
+for setup lightdm - install lightdm lightdm-gtk-greeter
+copy lightdm.conf /etc/lighdm/
 
 for disable interrupt on undock laptop: cp disable_inter... /etc/systemd/system/ && systemctl enable
 

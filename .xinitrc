@@ -15,4 +15,5 @@ exec i3 -l
 # setup keyboard layouts
 setxkbmap -layout "us,ru" -option "grp:caps_toggle,grp_led:scroll,ctrl:nocaps"
 
+# if there is no display manager:
 systemctl --user import-environment DISPLAY
