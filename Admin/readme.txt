@@ -8,6 +8,11 @@ for add backlight support - copy 10-backlight to /etc/X11/xorg.conf.d/     + pac
 for install ftp server: pacman -S vsftpd && systemctl enable vsftpd && /etc/vsftpd.conf
 for minimize swap usage copy: cp 99-sysctl.conf /etc/sysctl.d/
 for add application in app list copy *.desktop file to .local/share/applications
+
+for make sudo vim load user cfg:
+> sudo ln -s /home/User/.vimrc /root/.vimrc
+> sudo ln -s /home/User/.vim/ /root/.vim
+
 for setup ethernet: ip link show dev enp0s31f6
 sudo ip link set enp0s31f6 up
 
