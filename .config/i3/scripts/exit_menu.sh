@@ -14,7 +14,7 @@ if [ "$select" = "NOTHING" ]; then
     exit 0;
 fi
 if [ "$select" = "LOCK" ]; then
-    $HOME/.config/i3/lock.sh scrot;
+    $HOME/.config/i3/scripts/lock.sh;
     exit 0;
 fi
 
