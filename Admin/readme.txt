@@ -46,3 +46,13 @@ power management Arch wiki:
 copy audio_powersave.conf to /etc/modprobe.d/
 copy webcamera_disable.conf to /etc/modprobe.d/
 copy 50-bluetooth.rules 51-usb.rules 70-.rules to /etc/udev/rules.d/
+
+for add Fn+F11 F12 active keys copy file to /etc/udev/hwdb.d/
+for test can use
+> sudo evtest /dev/input/event5
+> sudo udevadm hwdb --update
+> sudo udevadm trigger --sysname-match="event*"
+after that it remaps 374 and 364 codes to 148 and 149
+for get which XF86 key it use check:
+> xbindkeys -k
+
