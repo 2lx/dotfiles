@@ -4,6 +4,9 @@ xset -b                                 # disable bell
 xset s off                              # disable screensaver
 xset dpms 600                           # enable power save
 
+# export PATH=$PATH:
+# export MANPATH="/usr/loval/man:$MANPATH"
+export LANG=en_US.UTF-8
 export TERMINAL=/usr/bin/urxvt
 export EDITOR=/usr/local/bin/vim
 export PAGER=less

@@ -26,8 +26,9 @@ plugins=(tmux chucknorris encode64)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-export LANG=en_US.UTF-8
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+# export LANG=en_US.UTF-8
+# export PATH=$PATH:$HOME/.vim/plugged/vim-live-latex-preview/bin
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # Compilation flags

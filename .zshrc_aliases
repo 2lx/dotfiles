@@ -6,11 +6,11 @@ alias .....="cd ../../../.."
 
 # alias vim=/usr/local/bin/vim
 
-alias i3conf="vim ~/.config/i3/config"
+alias i3config="vim ~/.config/i3/config"
 alias vimrc="vim ~/.vimrc"
 alias zshrc="vim ~/.zshrc"
 alias vimcpprc="vim ~/.vim/after/ftplugin/cpp.vim"
-alias tmuxconf="vim ~/.tmux.conf"
+alias tmuxconfig="vim ~/.tmux.conf"
 
 alias top='top -o %CPU'
 # alias ls='ls -F1 --color=auto'

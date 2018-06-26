@@ -133,7 +133,7 @@ set undodir=$HOME/.vim/undo/    " make sure to create this directory
 
 " spell
 set spelllang=en
-set spellfile=$HOME/vim/spell/en.utf-8.add
+set spellfile=$HOME/.vim/spell/en.utf-8.add
 " for enabling spell checking use :set spell, for disabling :set spell!
 " to move cursor to the next misspelled word, enter ]s
 " to move cursor to the previous misspelled word, enter [s
@@ -187,6 +187,7 @@ Plug 'scrooloose/nerdcommenter'             " !
 Plug 'scrooloose/nerdtree'                  " !
 Plug 'tpope/vim-surround'                   " !
 Plug 'alpertuna/vim-header'                 " !
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 " ! maybe
 " Plug 'tpope/vim-unimpaired'                 " ~
@@ -211,6 +212,11 @@ Plug 'alpertuna/vim-header'                 " !
 " Plug 'vim-scripts/DoxygenToolkit.vim'
 " Plug 'tmux-plugins/vim-tmux  '              " --
 call plug#end()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN vim-latex-live-preview
+" use LLPStartPreview
+" let g:livepreview_previewer = 'mupdf'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-surround
