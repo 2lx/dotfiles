@@ -1,0 +1,29 @@
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel} % last in order lang becomes main
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+
+\usepackage{indentfirst} % indent first paragraph of letters
+\usepackage[obeyspaces]{url} % \url, \path
+
+% other packages:
+\usepackage{xspace} % smart spaces after macro
+
+% used for user-defined colors
+\usepackage{xcolor}
+\definecolor{fmtlightgray}{rgb}{0.95,0.95,0.95}
+
+% used for code-formatting
+\usepackage{listings}
+
+\lstset{
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{blue}\footnotesize\ttfamily,
+    commentstyle=\color{gray}\footnotesize\ttfamily,
+    backgroundcolor=\color{fmtlightgray},
+    breaklines=true, % sets automatic line breaking
+    language=bash,  % default language of the code
+    showstringspaces=false, % underline spaces in strings
+    morekeywords={git},
+    tabsize=4
+}
+

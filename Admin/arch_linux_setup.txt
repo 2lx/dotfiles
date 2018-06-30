@@ -113,3 +113,7 @@ tmpf 1000M на ~/.cache
 настройка яркости экрана: xorg-xbacklight + pacman -S xf86-video-intel
 
 скриншот - pacman -S scrot
+
+for disabling TrackPoint
+> xinput # show input devices
+> xinput --disable "Device Name"

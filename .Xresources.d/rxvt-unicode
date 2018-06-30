@@ -10,7 +10,7 @@ URxvt*transparent: true
 URxvt*shading: 35
 
 URxvt*letterSpace: -1
-URxvt*internalBorder: 10
+URxvt*internalBorder: 0
 URxvt*externalBorder: 0
 
 URxvt*perl-ext-common: default,clipboard,url-select,keyboard-select
