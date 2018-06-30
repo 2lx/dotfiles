@@ -8,6 +8,8 @@
 % other packages:
 \usepackage{xspace} % smart spaces after macro
 
+\usepackage{textcomp} % \textrightarror{} arrow in text mode
+
 % used for user-defined colors
 \usepackage{xcolor}
 \definecolor{fmtlightgray}{rgb}{0.95,0.95,0.95}
@@ -16,14 +18,15 @@
 \usepackage{listings}
 
 \lstset{
+    language=bash,  % default language of the code
     basicstyle=\footnotesize\ttfamily,
     keywordstyle=\color{blue}\footnotesize\ttfamily,
     commentstyle=\color{gray}\footnotesize\ttfamily,
     backgroundcolor=\color{fmtlightgray},
     breaklines=true, % sets automatic line breaking
-    language=bash,  % default language of the code
     showstringspaces=false, % underline spaces in strings
-    morekeywords={git},
+    alsoletter={-.}, % use hyphen, dot as letter in keywords
+    morekeywords={echo, git, fdisk, hwclock, ln, lsblk, mkdir, mount, pacman, pacstrap, passwd, ping, reflector, shutdown, swapon, systemctl, umount, useradd, vim, wifi-menu},
     tabsize=4
 }
 

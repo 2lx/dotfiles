@@ -1,5 +1,4 @@
 \documentclass[a4paper, 12pt]{article}
-% default packages
 \usepackage{textmpl_base}
 
 \lstset{
@@ -16,17 +15,16 @@
 % document
 \title{Конспект книги С.Чакон, Б.Штрауб "\git для профессионального программиста"}
 \author{Alexey Minchakov}
-% \date{\today}
+\date{\today}
 
 \begin{document}
-
 \maketitle
 
 \section{Before starting work}
 
 Config \git files priority:
-
 \begin{enumerate}
+\itemsep0em
 \item local repository settings: \path{.git/config}
 \item user settings: \path{$HOME/.gitconfig} or \path{$HOME/.config/git/config}
 \item system settings: \path{/etc/gitconfig}

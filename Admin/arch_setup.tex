@@ -1,0 +1,171 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{textmpl_base}
+
+\title{How-to install Arch Linux}
+\author{Alexey Minchakov}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Prepare flash drive}
+
+
+\section{Prepare BIOS}
+Security \textrightarrow{} Secure Boot \textrightarrow{} Disable
+Also were disabled WWAN, Thunderbolt 3, Card Reader.
+
+\section{Installation}
+
+Setup internet connection:
+\begin{lstlisting}
+$> ping google.com
+$> wifi-menu
+\end{lstlisting}
+
+Update \path{/etc/pacman.d/mirrorlist}, retrieve most up-to-date mirrors:
+\begin{lstlisting}
+$> pacman -Syy
+$> pacman -S reflector
+$> reflector -c "Russia" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
+\end{lstlisting}
+
+Разбивка диска с помощью \url{cfdisk} или \url{gdisk}.
+Нужно установить раздел \url{UEFI} - выделить минимум 550 Мб в начале диска, тип диска должен быть \url{EFI boot partition}, отформатировать его  в \url{Fat32}.
+Создаем новые разделы:
+\begin{itemize}
+\itemsep0em
+\item \path{/boot} 500MB, ext2
+\item \path{swap} размер RAM
+\item \path{/} не менее 30GB ext4
+\item \path{/var} 8GB ext4 - не обязательный раздел
+\item \path{/home} все остальное
+\end{itemize}
+
+Check and prepare disk drive.
+\begin{lstlisting}
+$> fdisk -l # list disk partitions
+$> mkfs.ext2 /dev/partition -L boot
+$> mkfs.ext4 /dev/partition -L root
+$> mkswap /dev/partition -L swap
+$> pacman -S dosfstools vim
+$> mkfs.fat -F32 /dev/partition
+\end{lstlisting}
+
+Mounting drives:
+\begin{lstlisting}
+$> lsblk # list block devices
+$> mkdir /mnt/{boot,var,home}
+$> mkdir /mnt/boot/efi
+$> mount /dev/sdb1 /mnt/...
+$> swapon /dev/sdb5
+\end{lstlisting}
+
+Begin installation:
+\begin{lstlisting}
+$> pacstrap -i /mnt base base-devel # install group of packages
+$> genfstab -U -p /mnt >> /mnt/etc/fstab # generate /etc/fstab file
+$> arch-chroot /mnt /bin/bash # change root dir
+$> vim /etc/locale.gen    # uncomment lines en_US.UTF-8, ru_RU.UTF-8
+$> locale-gen # generate locale files
+# select timezone
+$> ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
+# set hardware clock from system clock and update /etc/adjtime
+$> hwclock --systohc [--utc]
+$> echo MyHostName > /etc/hostname
+$> vim /etc/hosts
+# add lines:
+# 127.0.0.1    localhost.localdomain    localhost
+# ::1          localhost.localdomain    localhost
+# 127.0.0.1    localhost.localdomain    MyHostName
+$> systemctl enable dhcpcd
+$> passwd     # setup root passwd
+$> pacman -S grub [os-prober]
+\end{lstlisting}
+
+Now for legacy BIOS:
+\begin{lstlisting}
+$> grub-install --target=i386-pc --recheck /dev/partition
+\end{lstlisting}
+
+For UEFI:
+\begin{lstlisting}
+$> pacman -S efibootmgr
+$> grub-install --targer=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+\end{lstlisting}
+
+Continue installation:
+\begin{lstlisting}
+> grub-mkconfig -o /boot/grub/grub.cfg
+$> exit
+$> umount -R /mnt
+$> shutdown now
+\end{lstlisting}
+
+After reboot remove USB flash drive, login as root, add and configure new user:
+\begin{lstlisting}
+$> useradd -m -g users -G wheel -s /bin/bash UserName
+$> passwd aim
+$> EDITOR=vim visudo
+# uncomment line %wheel=ALL (ALL) ALL
+$> exit
+\end{lstlisting}
+
+Login as UserName
+% login as aim
+% > sudo pacman -S pulseaudio pulseaudio-alsa xorg xorg-xinit i3-gaps rxvt-unicode i3blocks dialog wpa_supplicant
+% dialogs wpa_supplicant = для wifi
+% перезагрузка. Если не работает wifi-menu, нужно сбросить параметры:
+% > sudo netctl status wl...
+% > sudo systemctl stop dhcpcd.service
+% > sudo systemctl disable dhcpcd.service
+% > sudo rm -rf /var/lib/dhcpcd/*.lease
+% > sudo rm /etc/systemd/system/multi-user.target.wants/netctl*
+% > sudo rm /etc/netctl/wl...
+% > reboot
+% > wifi-menu
+% > sudo netctl start wl..
+% > sudo netctl enable wl...
+% в Admin находится конфиг файл для настройки скрытой wi-fi сети
+% > !! некоторые пакеты зависят от networkmanager пакета, после его установки сети отваливается!
+%
+% -- скопировать мой dotfiles
+% > git init .
+% > git remote add -t \* -f origin https://github.com/lexaaim/dotfiles.git
+% > git checkout master
+%
+% Установка oh-my-zsh
+% > mv .oh_my_zsh 1
+% > sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+% > mv 1/themes/... .oh-my-zsh/themes/
+% > git checkout -- .zshrc
+%
+% Установка vim-plug:
+% curl -fLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+% > vim
+% :PlugInstall
+%
+% Для того чтобы автоматически запускался startx (он прописан в .zprofile) нужно поставить шелл по умолчанию zsh :
+% > chsh
+%
+% ШРИФТЫ:
+% AUR > git clone https://aur.archlinux.org/ttf-dejavu-sans-mono-powerline-git.git
+%
+% темы иконки:
+% > pacman -S arc-gtk-theme arc-icon-theme lxappearance
+%
+% Настройка времени
+%
+% монтирование tmpfs:
+% проверить df -h
+% tmpf 1000M на ~/.cache
+%
+% настройка яркости экрана: xorg-xbacklight + pacman -S xf86-video-intel
+%
+% скриншот - pacman -S scrot
+%
+% for disabling TrackPoint
+% > xinput # show input devices
+% > xinput --disable "Device Name"
+
+\end{document}
