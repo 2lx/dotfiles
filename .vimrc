@@ -6,20 +6,21 @@ colorscheme my_theme
 set nocompatible
 set backspace=indent,eol,start  " bug if use compiled vim
 
+" filetype on
 filetype plugin indent on       " depend indent rules on file types
 runtime macros/matchit.vim      " enable if-else matching search by pressing %
 set fileformat=unix
 
-augroup filetypedetect
-" set mutt files filetype=mail
-    autocmd BufRead,BufNewFile *mutt-* setfiletype mail
-augroup END
+" detect filetype
+autocmd BufNewFile,BufRead *.xinitrc set filetype=sh
+autocmd BufRead,BufNewFile *mutt-* set filetype=mail
+autocmd BufNewFile,BufRead *.tex set filetype=tex
 
 " limit the width of text to 72 characters when it is a mail
-au BufRead /tmp/mutt-* set tw=72
+autocmd BufRead /tmp/mutt-* set textwidth=72
 
 " each time you save the file delete any trailing whitespace at the eol
-" if current file format not in blacklist
+" if current file extension not in blacklist
 let blacklist = ['rb', 'js', 'pl', 'make']
 autocmd BufWritePre * if index(blacklist, &ft) < 0 | %s/\s\+$//e
 
@@ -28,7 +29,11 @@ set softtabstop=4               " use the same value as tabstop
 set shiftwidth=4                " use with reindent operations >> and <<
 set expandtab                   " expand tab with spaces, use <C-v><Tab> instead of <Tab>
 set shiftround                  " round spaces multiple of four
+
 " set autoindent                  " auto-indent new lines, doesn't need if 'ft plugin on'
+" set smartindent
+
+autocmd FileType tex setlocal noautoindent nosmartindent indentexpr=
 
 set list                        " make whitespace characters visible
 set listchars=tab:>-            " show <Tab> like >---
@@ -193,6 +198,7 @@ Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 " Plug 'tpope/vim-unimpaired'                 " ~
 " Plug 'justmao945/vim-clang'
 " Plug 'Shougo/neocomplete.vim'
+" Plug 'SirVer/ultisnips'
 
 " ! default disabled
 " Plug 'Valloric/YouCompleteMe'             " c++ recommended
@@ -211,12 +217,14 @@ Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 " Plug 'tpope/vim-abolish'
 " Plug 'vim-scripts/DoxygenToolkit.vim'
 " Plug 'tmux-plugins/vim-tmux  '              " --
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-latex-live-preview
 " use LLPStartPreview
 " let g:livepreview_previewer = 'mupdf'
+set updatetime=5000
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-surround
