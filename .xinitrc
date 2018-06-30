@@ -6,6 +6,7 @@ xset dpms 600                           # enable power save
 
 # export PATH=$PATH:
 # export MANPATH="/usr/loval/man:$MANPATH"
+# export GNUPGHOME=$HOME/.gnupg
 export LANG=en_US.UTF-8
 export TERMINAL=/usr/bin/urxvt
 export EDITOR=/usr/local/bin/vim

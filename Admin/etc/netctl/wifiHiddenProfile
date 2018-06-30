@@ -1,4 +1,4 @@
-Description='Setting to home hidden 5GHz wi-fi network'
+Description='Hidden 2GHz WiFi network'
 Interface=wlp61s0
 Connection=wireless
 IP=dhcp

@@ -77,6 +77,7 @@ dialogs wpa_supplicant = для wifi
 > sudo netctl start wl..
 > sudo netctl enable wl...
 в Admin находится конфиг файл для настройки скрытой wi-fi сети
+> !! некоторые пакеты зависят от networkmanager пакета, после его установки сети отваливается!
 
 -- скопировать мой dotfiles
 > git init .

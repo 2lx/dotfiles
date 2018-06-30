@@ -5,6 +5,8 @@ custom key mappings:
 map <C-d> scrollPageDown
 map <C-u> scrollPageUp
 map ,g createTab https://www.google.com/
+map ,gh createTab https://www.github.com/
+map ,bb createTab https://www.bitbucket.org/
 
 + check "Don't let pages steal focus on load"
 
