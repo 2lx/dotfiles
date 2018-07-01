@@ -12,7 +12,7 @@
 
 % used for user-defined colors
 \usepackage{xcolor}
-\definecolor{fmtlightgray}{rgb}{0.95,0.95,0.95}
+\definecolor{fmtlightgray}{rgb}{0.97,0.97,0.97}
 
 % used for code-formatting
 \usepackage{listings}
@@ -26,7 +26,9 @@
     breaklines=true, % sets automatic line breaking
     showstringspaces=false, % underline spaces in strings
     alsoletter={-.}, % use hyphen, dot as letter in keywords
-    morekeywords={echo, git, fdisk, hwclock, ln, lsblk, mkdir, mount, pacman, pacstrap, passwd, ping, reflector, shutdown, swapon, systemctl, umount, useradd, vim, wifi-menu},
+    morekeywords={chsh, df, echo, git, fdisk, hwclock, ln, lsblk, mkdir, mount, netctl, pacman, pacstrap, passwd, ping, reflector, rm, shutdown, sudo, swapon, systemctl, umount, useradd, vim, wifi-menu, xinput},
     tabsize=4
 }
 
+\usepackage{enumitem}
+\setlist{noitemsep}

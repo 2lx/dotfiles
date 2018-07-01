@@ -34,7 +34,6 @@ $> reflector -c "Russia" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 Нужно установить раздел \url{UEFI} - выделить минимум 550 Мб в начале диска, тип диска должен быть \url{EFI boot partition}, отформатировать его  в \url{Fat32}.
 Создаем новые разделы:
 \begin{itemize}
-\itemsep0em
 \item \path{/boot} 500MB, ext2
 \item \path{swap} размер RAM
 \item \path{/} не менее 30GB ext4
@@ -96,7 +95,7 @@ $> grub-install --targer=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GR
 
 Continue installation:
 \begin{lstlisting}
-> grub-mkconfig -o /boot/grub/grub.cfg
+$> grub-mkconfig -o /boot/grub/grub.cfg
 $> exit
 $> umount -R /mnt
 $> shutdown now
@@ -111,61 +110,92 @@ $> EDITOR=vim visudo
 $> exit
 \end{lstlisting}
 
-Login as UserName
-% login as aim
-% > sudo pacman -S pulseaudio pulseaudio-alsa xorg xorg-xinit i3-gaps rxvt-unicode i3blocks dialog wpa_supplicant
-% dialogs wpa_supplicant = для wifi
-% перезагрузка. Если не работает wifi-menu, нужно сбросить параметры:
-% > sudo netctl status wl...
-% > sudo systemctl stop dhcpcd.service
-% > sudo systemctl disable dhcpcd.service
-% > sudo rm -rf /var/lib/dhcpcd/*.lease
-% > sudo rm /etc/systemd/system/multi-user.target.wants/netctl*
-% > sudo rm /etc/netctl/wl...
-% > reboot
-% > wifi-menu
-% > sudo netctl start wl..
-% > sudo netctl enable wl...
-% в Admin находится конфиг файл для настройки скрытой wi-fi сети
-% > !! некоторые пакеты зависят от networkmanager пакета, после его установки сети отваливается!
-%
-% -- скопировать мой dotfiles
-% > git init .
-% > git remote add -t \* -f origin https://github.com/lexaaim/dotfiles.git
-% > git checkout master
-%
-% Установка oh-my-zsh
-% > mv .oh_my_zsh 1
-% > sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-% > mv 1/themes/... .oh-my-zsh/themes/
-% > git checkout -- .zshrc
-%
-% Установка vim-plug:
-% curl -fLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-% > vim
-% :PlugInstall
-%
-% Для того чтобы автоматически запускался startx (он прописан в .zprofile) нужно поставить шелл по умолчанию zsh :
-% > chsh
-%
-% ШРИФТЫ:
-% AUR > git clone https://aur.archlinux.org/ttf-dejavu-sans-mono-powerline-git.git
-%
-% темы иконки:
-% > pacman -S arc-gtk-theme arc-icon-theme lxappearance
-%
-% Настройка времени
-%
-% монтирование tmpfs:
-% проверить df -h
-% tmpf 1000M на ~/.cache
-%
-% настройка яркости экрана: xorg-xbacklight + pacman -S xf86-video-intel
-%
-% скриншот - pacman -S scrot
-%
-% for disabling TrackPoint
-% > xinput # show input devices
-% > xinput --disable "Device Name"
+Login as UserName:
+\begin{lstlisting}
+$> sudo pacman -S pulseaudio pulseaudio-alsa xorg xorg-xinit i3-gaps rxvt-unicode i3blocks dialog wpa_supplicant
+\end{lstlisting}
+
+If WiFi doesn't work (\url{netctl} may conflict with \url{networkmanager}):
+\begin{lstlisting}
+$> ls /sys/class/net # all network interfaces
+$> sudo netctl status wl..
+# $> sudo systemctl stop dhcpcd.service
+# $> sudo systemctl disable dhcpcd.service
+$> sudo rm -rf /var/lib/dhcpcd/*.lease
+$> sudo rm /etc/systemd/system/multi-user.target.wants/netctl*
+$> sudo rm /etc/netctl/wl..
+$> reboot
+$> wifi-menu # or cp Admin/etc/netctl/wifi /etc/netctl/wl..
+$> sudo netctl start wl..
+$> sudo netctl enable wl..
+\end{lstlisting}
+
+\section{Установки по умолчанию}
+
+Накатить всё:
+\begin{lstlisting}
+$> git init .
+$> git remote add -t \* -f origin https://github.com/lexaaim/dotfiles.git
+$> git checkout master # get all branches and co master
+\end{lstlisting}
+
+Setup \url{Oh My ZSH!}:
+\begin{lstlisting}
+$> mv .oh_my_zsh bkp # backup
+$> sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+$> mv bkp/themes/... .oh-my-zsh/themes/
+$> rm -rf bkp
+$> git checkout -- .zshrc
+\end{lstlisting}
+
+Setup \url{Vim}:
+\begin{lstlisting}
+$> curl -fLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim> :PlugInstall
+\end{lstlisting}
+
+Change default shell (for \url{X} autostart from \path{$HOME/.zprofile} script):
+\begin{lstlisting}
+$> chsh
+\end{lstlisting}
+
+Setup fonts, icons:
+\begin{lstlisting}
+$> cd Temp/AUR
+# font: Dejavu Sans Mono Powerline
+$> git clone https://aur.archlinux.org/ttf-dejavu-sans-mono-powerline-git.git
+# icons: Arc
+$> pacman -S arc-gtk-theme arc-icon-theme lxappearance
+\end{lstlisting}
+
+Mount tmpfs:
+\begin{lstlisting}
+$> df -h
+# example /etc/fstab tmpfs 1000M ~/.cache:
+$> sudo vim /etc/fstab
+# tmpfs  /home/aim/.cache  tmpfs  defaults,nodev,nosuid,mode=1777,size=1G  0 0
+\end{lstlisting}
+
+Setup SSD Trim attributes in \path{/etc/fstab}:
+\begin{itemize}
+\item ''\url{discard}'' to \url{ext4}, \url{swap} fs
+\item ''\url{noatime}'' to \url{ext2}, \url{ext4} fs
+\end{itemize}
+
+Setup backlight:
+\begin{lstlisting}
+$> sudo pacman -S xorg-xbacklight xf86-video-intel
+\end{lstlisting}
+
+Other packages:
+\begin{lstlisting}
+$> sudo pacman -S scrot # take screenshots
+\end{lstlisting}
+
+Disabling TrackPoint:
+\begin{lstlisting}
+$> xinput # show input devices
+$> xinput --disable "Device Name"
+\end{lstlisting}
 
 \end{document}
