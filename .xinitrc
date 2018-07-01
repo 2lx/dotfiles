@@ -1,3 +1,8 @@
+#!/bin/sh
+# this script executed by startx and xinit
+# also /etc/X11/xinit/xinitrc
+# and  /etc/X11/xinit/xinitrc.d/*
+
 [[ -f ~/.Xresources ]] && xrdb -merge $HOME/.Xresources
 
 xset -b                                 # disable bell
@@ -13,8 +18,8 @@ export EDITOR=/usr/local/bin/vim
 export PAGER=less
 export LC_ALL=en_US.UTF-8
 
-exec i3 -l
-# exec i3 -V >> /tmp/i3log-$(date +'%F-%k-%M-%S') 2>&1
+# exec i3 -l # start i3 windows manager
+exec i3 -V >> /tmp/i3log-$(date +'%F-%k-%M-%S') 2>&1
 
 # setup keyboard layouts
 setxkbmap -layout "us,ru" -option "grp:caps_toggle,grp_led:scroll,ctrl:nocaps"

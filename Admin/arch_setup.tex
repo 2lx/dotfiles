@@ -1,7 +1,7 @@
 \documentclass[a4paper, 12pt]{article}
 \usepackage{textmpl_base}
 
-\title{How-to install Arch Linux}
+\title{How-to install \url{Arch Linux}}
 \author{Alexey Minchakov}
 \date{\today}
 
@@ -10,10 +10,17 @@
 
 \section{Prepare flash drive}
 
+Download linux.iso.
+\begin{lstlisting}
+$> lsblk
+$> sudo gparted # format flash Fat32
+$> sudo dd bs=16M if=linux.iso of=/dev/sdc status=progress oflag=sync
+\end{lstlisting}
 
-\section{Prepare BIOS}
+\section{BIOS}
+
 Security \textrightarrow{} Secure Boot \textrightarrow{} Disable
-Also were disabled WWAN, Thunderbolt 3, Card Reader.
+\\Also were disabled WWAN, Thunderbolt 3, Card Reader.
 
 \section{Installation}
 
@@ -30,20 +37,22 @@ $> pacman -S reflector
 $> reflector -c "Russia" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 \end{lstlisting}
 
-Разбивка диска с помощью \url{cfdisk} или \url{gdisk}.
-Нужно установить раздел \url{UEFI} - выделить минимум 550 Мб в начале диска, тип диска должен быть \url{EFI boot partition}, отформатировать его  в \url{Fat32}.
-Создаем новые разделы:
+Disk partition utils: \url{cfdisk}, \url{gdisk}.
+Add partition \url{UEFI} - minimum 550MB at the beginning of disk, file system type should be \url{EFI boot partition}. Format it \url{Fat32}.
+\\Partition table for Linux:
 \begin{itemize}
 \item \path{/boot} 500MB, ext2
-\item \path{swap} размер RAM
-\item \path{/} не менее 30GB ext4
-\item \path{/var} 8GB ext4 - не обязательный раздел
-\item \path{/home} все остальное
+\item \path{swap} RAM size
+\item \path{/} minimum 30GB ext4 (depend on existing \path{/var} partition)
+\item \path{/var} 8GB ext4
+\item \path{/home} ext4
 \end{itemize}
 
 Check and prepare disk drive.
 \begin{lstlisting}
 $> fdisk -l # list disk partitions
+$> cfdisk /dev/sdv # setup partitions
+$> gdisk # setup partitions
 $> mkfs.ext2 /dev/partition -L boot
 $> mkfs.ext4 /dev/partition -L root
 $> mkswap /dev/partition -L swap
@@ -53,7 +62,7 @@ $> mkfs.fat -F32 /dev/partition
 
 Mounting drives:
 \begin{lstlisting}
-$> lsblk # list block devices
+$> lsblk # list block devices and mount points
 $> mkdir /mnt/{boot,var,home}
 $> mkdir /mnt/boot/efi
 $> mount /dev/sdb1 /mnt/...
@@ -73,21 +82,26 @@ $> ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 $> hwclock --systohc [--utc]
 $> echo MyHostName > /etc/hostname
 $> vim /etc/hosts
-# add lines:
-# 127.0.0.1    localhost.localdomain    localhost
-# ::1          localhost.localdomain    localhost
-# 127.0.0.1    localhost.localdomain    MyHostName
+\end{lstlisting}
+
+\begin{lstlisting}[style=style_file,caption={\path{/etc/hosts} add lines:}]
+127.0.0.1    localhost.localdomain    localhost
+::1          localhost.localdomain    localhost
+127.0.0.1    localhost.localdomain    MyHostName
+\end{lstlisting}
+
+\begin{lstlisting}
 $> systemctl enable dhcpcd
 $> passwd     # setup root passwd
 $> pacman -S grub [os-prober]
 \end{lstlisting}
 
-Now for legacy BIOS:
+If legacy BIOS:
 \begin{lstlisting}
 $> grub-install --target=i386-pc --recheck /dev/partition
 \end{lstlisting}
 
-For UEFI:
+If UEFI:
 \begin{lstlisting}
 $> pacman -S efibootmgr
 $> grub-install --targer=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
@@ -104,15 +118,21 @@ $> shutdown now
 After reboot remove USB flash drive, login as root, add and configure new user:
 \begin{lstlisting}
 $> useradd -m -g users -G wheel -s /bin/bash UserName
-$> passwd aim
+$> passwd UserName
 $> EDITOR=vim visudo
-# uncomment line %wheel=ALL (ALL) ALL
+\end{lstlisting}
+
+\begin{lstlisting}[style=style_file,caption={\path{sudoers} uncomment:}]
+%wheel=ALL (ALL) ALL
+\end{lstlisting}
+
+\begin{lstlisting}
 $> exit
 \end{lstlisting}
 
 Login as UserName:
 \begin{lstlisting}
-$> sudo pacman -S pulseaudio pulseaudio-alsa xorg xorg-xinit i3-gaps rxvt-unicode i3blocks dialog wpa_supplicant
+$> sudo pacman -S pulseaudio pulseaudio-alsa xorg xorg-xinit i3-gaps rxvt-unicode i3blocks dialog wpa_supplicant lua feh rofi playerctl gvfs mpg123 ntfs-3g
 \end{lstlisting}
 
 If WiFi doesn't work (\url{netctl} may conflict with \url{networkmanager}):
@@ -130,9 +150,9 @@ $> sudo netctl start wl..
 $> sudo netctl enable wl..
 \end{lstlisting}
 
-\section{Установки по умолчанию}
+\section{dotfiles}
 
-Накатить всё:
+To get all stuff:
 \begin{lstlisting}
 $> git init .
 $> git remote add -t \* -f origin https://github.com/lexaaim/dotfiles.git
@@ -173,7 +193,10 @@ Mount tmpfs:
 $> df -h
 # example /etc/fstab tmpfs 1000M ~/.cache:
 $> sudo vim /etc/fstab
-# tmpfs  /home/aim/.cache  tmpfs  defaults,nodev,nosuid,mode=1777,size=1G  0 0
+\end{lstlisting}
+
+\begin{lstlisting}[style=style_file,caption={\path{/etc/fstab} add line:}]
+tmpfs  /home/user/.cache  tmpfs  defaults,nodev,nosuid,mode=1777,size=1G  0 0
 \end{lstlisting}
 
 Setup SSD Trim attributes in \path{/etc/fstab}:
