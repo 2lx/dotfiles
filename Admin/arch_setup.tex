@@ -1,5 +1,5 @@
 \documentclass[a4paper, 12pt]{article}
-\usepackage{textmpl_base}
+\usepackage{include/base}
 
 \title{How-to install \url{Arch Linux}}
 \author{Alexey Minchakov}
@@ -10,7 +10,7 @@
 
 \section{Prepare flash drive}
 
-Download linux.iso.
+Download \path{linux.iso}.
 \begin{lstlisting}
 $> lsblk
 $> sudo gparted # format flash Fat32
@@ -84,7 +84,7 @@ $> echo MyHostName > /etc/hostname
 $> vim /etc/hosts
 \end{lstlisting}
 
-\begin{lstlisting}[style=style_file,caption={\path{/etc/hosts} add lines:}]
+\begin{lstlisting}[style=style_file,caption={/etc/hosts add lines:}]
 127.0.0.1    localhost.localdomain    localhost
 ::1          localhost.localdomain    localhost
 127.0.0.1    localhost.localdomain    MyHostName
@@ -122,7 +122,7 @@ $> passwd UserName
 $> EDITOR=vim visudo
 \end{lstlisting}
 
-\begin{lstlisting}[style=style_file,caption={\path{sudoers} uncomment:}]
+\begin{lstlisting}[style=style_file,caption={sudoers uncomment:}]
 %wheel=ALL (ALL) ALL
 \end{lstlisting}
 
@@ -195,7 +195,7 @@ $> df -h
 $> sudo vim /etc/fstab
 \end{lstlisting}
 
-\begin{lstlisting}[style=style_file,caption={\path{/etc/fstab} add line:}]
+\begin{lstlisting}[style=style_file,caption={/etc/fstab add line:}]
 tmpfs  /home/user/.cache  tmpfs  defaults,nodev,nosuid,mode=1777,size=1G  0 0
 \end{lstlisting}
 

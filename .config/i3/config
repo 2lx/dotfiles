@@ -13,8 +13,8 @@ floating_modifier $mod
 
 ################################################################################
 # keybindings
-bindsym $mod+Return exec i3-sensible-terminal -e tmux -u
-bindsym $mod+Shift+Return exec i3-sensible-terminal
+bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Shift+Return exec i3-sensible-terminal -e tmux -u
 
 bindsym $mod+Shift+Tab workspace prev
 bindsym $mod+Tab workspace next
@@ -118,7 +118,6 @@ bindsym XF86Launch1 exec synclient TouchpadOff=0
 bindsym XF86Launch2 exec synclient TouchpadOff=1
 
 bindsym Caps_Lock exec pkill -RTMIN+2 i3blocks
-
 
 # bindsym 366 exec amixer -D pulse sset Master 5%-; exec pkill -RTMIN+1 i3blocks
 
