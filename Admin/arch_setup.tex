@@ -13,13 +13,13 @@
 Download \path{linux.iso}.
 \begin{lstlisting}
 $> lsblk
-$> sudo gparted # format flash Fat32
+$> sudo gparted                             # format flash Fat32
 $> sudo dd bs=16M if=linux.iso of=/dev/sdc status=progress oflag=sync
 \end{lstlisting}
 
 \section{BIOS}
 
-Security \textrightarrow{} Secure Boot \textrightarrow{} Disable
+\menu{Security > Secure Boot > Disable}
 \\Also were disabled WWAN, Thunderbolt 3, Card Reader.
 
 \section{Installation}
@@ -50,9 +50,9 @@ Add partition \url{UEFI} - minimum 550MB at the beginning of disk, file system t
 
 Check and prepare disk drive.
 \begin{lstlisting}
-$> fdisk -l # list disk partitions
-$> cfdisk /dev/sdv # setup partitions
-$> gdisk # setup partitions
+$> fdisk -l                                 # list disk partitions
+$> cfdisk /dev/sdv                          # setup partitions
+$> gdisk                                    # setup partitions
 $> mkfs.ext2 /dev/partition -L boot
 $> mkfs.ext4 /dev/partition -L root
 $> mkswap /dev/partition -L swap
@@ -62,7 +62,7 @@ $> mkfs.fat -F32 /dev/partition
 
 Mounting drives:
 \begin{lstlisting}
-$> lsblk # list block devices and mount points
+$> lsblk                                    # list mount points
 $> mkdir /mnt/{boot,var,home}
 $> mkdir /mnt/boot/efi
 $> mount /dev/sdb1 /mnt/...
@@ -71,11 +71,19 @@ $> swapon /dev/sdb5
 
 Begin installation:
 \begin{lstlisting}
-$> pacstrap -i /mnt base base-devel # install group of packages
-$> genfstab -U -p /mnt >> /mnt/etc/fstab # generate /etc/fstab file
-$> arch-chroot /mnt /bin/bash # change root dir
-$> vim /etc/locale.gen    # uncomment lines en_US.UTF-8, ru_RU.UTF-8
-$> locale-gen # generate locale files
+$> pacstrap -i /mnt base base-devel         # install group of packages
+$> genfstab -U -p /mnt >> /mnt/etc/fstab    # generate /etc/fstab file
+$> arch-chroot /mnt /bin/bash               # change root dir
+$> vim /etc/locale.gen
+\end{lstlisting}
+
+\begin{lstlisting}[style=style_file,caption={/etc/locale.gen uncomment:}]
+en_US.UTF-8
+ru_RU.UTF-8
+\end{lstlisting}
+
+\begin{lstlisting}
+$> locale-gen                               # generate locale files
 # select timezone
 $> ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 # set hardware clock from system clock and update /etc/adjtime
@@ -92,7 +100,7 @@ $> vim /etc/hosts
 
 \begin{lstlisting}
 $> systemctl enable dhcpcd
-$> passwd     # setup root passwd
+$> passwd                                   # setup root passwd
 $> pacman -S grub [os-prober]
 \end{lstlisting}
 
@@ -137,7 +145,7 @@ $> sudo pacman -S pulseaudio pulseaudio-alsa xorg xorg-xinit i3-gaps rxvt-unicod
 
 If WiFi doesn't work (\url{netctl} may conflict with \url{networkmanager}):
 \begin{lstlisting}
-$> ls /sys/class/net # all network interfaces
+$> ls /sys/class/net                        # all network interfaces
 $> sudo netctl status wl..
 # $> sudo systemctl stop dhcpcd.service
 # $> sudo systemctl disable dhcpcd.service
@@ -145,7 +153,8 @@ $> sudo rm -rf /var/lib/dhcpcd/*.lease
 $> sudo rm /etc/systemd/system/multi-user.target.wants/netctl*
 $> sudo rm /etc/netctl/wl..
 $> reboot
-$> wifi-menu # or cp Admin/etc/netctl/wifi /etc/netctl/wl..
+$> wifi-menu
+# $> cp Admin/etc/netctl/wifi /etc/netctl/wl..
 $> sudo netctl start wl..
 $> sudo netctl enable wl..
 \end{lstlisting}
@@ -156,12 +165,12 @@ To get all stuff:
 \begin{lstlisting}
 $> git init .
 $> git remote add -t \* -f origin https://github.com/lexaaim/dotfiles.git
-$> git checkout master # get all branches and co master
+$> git checkout master                      # get all branches and co master
 \end{lstlisting}
 
 Setup \url{Oh My ZSH!}:
 \begin{lstlisting}
-$> mv .oh_my_zsh bkp # backup
+$> mv .oh_my_zsh bkp                        # backup
 $> sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 $> mv bkp/themes/... .oh-my-zsh/themes/
 $> rm -rf bkp
@@ -182,10 +191,21 @@ $> chsh
 Setup fonts, icons:
 \begin{lstlisting}
 $> cd Temp/AUR
+$> sudo pacman -S lxappearance
+
 # font: Dejavu Sans Mono Powerline
 $> git clone https://aur.archlinux.org/ttf-dejavu-sans-mono-powerline-git.git
+$> cd ttf-dejavu-sans-mono-powerline-git
+$> ./ttf-dejavu-sans-mono-powerline-git.install
+
+# font: Yosemite San Francisco
+$> git clone https://github.com/supermarin/YosemiteSanFranciscoFont
+$> cp YosemiteSanFranciscoFont/*.ttf ~/.fonts
+$> ~/.fonts/update-fonts.sh
+
 # icons: Arc
-$> pacman -S arc-gtk-theme arc-icon-theme lxappearance
+$> pacman -S arc-gtk-theme arc-icon-theme
+$> lxappearance
 \end{lstlisting}
 
 Mount tmpfs:
@@ -208,16 +228,117 @@ Setup SSD Trim attributes in \path{/etc/fstab}:
 Setup backlight:
 \begin{lstlisting}
 $> sudo pacman -S xorg-xbacklight xf86-video-intel
+$> sudo cp ~/Admin/etc/X11/xorg.conf.d/10-backlight.conf /etc/X11/xorg.conf.d/
+\end{lstlisting}
+
+Setup \url{FTP} server:
+\begin{lstlisting}
+$> sudo pacman -S vsftpd
+$> sudo cp ~/Admin/etc/vsftpd.conf /etc/
+$> systemctl enable vsftpd
+\end{lstlisting}
+
+Manual setup \url{SWAP} usage:
+\begin{lstlisting}
+$> sudo cp ~/Admin/etc/sysctl.d/99-sysctl.conf /etc/sysctl.d/
+\end{lstlisting}
+
+Add \path{*.desktop} file to application list:
+\begin{lstlisting}
+$> cp *.desktop ~/.local/share/applications/
+\end{lstlisting}
+
+Use user's \url{.vimrc} settings as Root:
+\begin{lstlisting}
+$> sudo ln -s /home/UserName/.vimrc /root/.vimrc
+$> sudo ln -s /home/UserName/.vim/ /root/.vim
+\end{lstlisting}
+
+Manually setup ethernet:
+\begin{lstlisting}
+$> ls /sys/class/net
+$> ip link show dev emp0s3..
+$> sudo ip link set enp0s3.. up
+\end{lstlisting}
+
+If laptop undocking 100\% core:
+\begin{lstlisting}
+# for block interrupt (find it by test-disabling /sys/firmware/acpi/interrupts/)
+$> echo
+$> sudo cp ~/Admin/etc/systemd/system/disable_interrupt_gpe6F.service /etc/systemd/system/
+$> systemctl enable disable_interrupt_gpe6F.service
+\end{lstlisting}
+
+To find mediakey names:
+\begin{lstlisting}
+$> xmodmap -pke | grep -i backli
+\end{lstlisting}
+
+Docker setup:
+\begin{lstlisting}
+# delete all docker containers
+$> docker rm $(docker ps -a | grep -v "_data" | awk 'NR>1 {print $1}')
+\end{lstlisting}
+
+\url{Tlp} setup (Arch wiki "Power management"):
+\begin{lstlisting}
+$> sudo pacman -S tlp                       # don't setup tlp-rdw
+$> sudo tlp stat | less                     # read the recomendations
+$> systemctl enable tlp.service
+$> systemctl enable tlp-sleep.service
+$> systemctl mask systemd-rfkill.service
+$> pacman -S tpacpi-bat                     # not tp_smapi
+# after reboot check $> systemctl --failed
+$> rkfill list                              # list all wireless devices
+# profiles for devices
+$> sudo cp ~/Admin/etc/modprobe.d/audio_powersave.conf /etc/modprobe.d/
+$> sudo cp ~/Admin/etc/modprobe.d/webcamera_disable.conf /etc/modprobe.d/
+$> sudo cp ~/Admin/etc/udev/rules.d/*.rules /etc/udev/rules.d/
+\end{lstlisting}
+
+To enable Lenovo Thinkpad \keyss{Fn, F11} and \keyss{Fn, F12} combinations:
+\begin{lstlisting}
+# To test you can use:
+$> sudo evtest /dev/input/event5
+
+$> sudo cp ~/Admin/etc/udev/hwdb.d/thinkpad_keyboard.hwdb /etc/udev/hwdb.d/
+$> sudo udevadm hwdb --update
+# it remaps 374 and 364 codes to 148 and 149
+# for get which XF86 key it use check:
+$> xbindkeys -k
+\end{lstlisting}
+
+Change keyboard layout with \keyss{\capslock}:
+\begin{lstlisting}
+$> cp ~/Admin/etc/X11/xorg.conf.d/00-keyboard.conf /etc/X11/xorg.conf.d/
+$> reboot
+$> cd Temp/AUR
+$> git clone https://aur.archlinux.org/xkb-switch-git.git
+$> cd xkb-switch-git
+$> makepkg -si
+\end{lstlisting}
+
+Setup \url{lightdm}
+\begin{lstlisting}
+$> sudo pacman -S lightdm lightdm-gtk-greeter
+$> cp ~/Admin/etc/lightdm/lightdm.conf /etc/lightdm/
+$> systemctl enable lightdm.service
+# greeter autologin:
+$> groupadd -r autologin
+$> gpasswd -a UserName autologin
 \end{lstlisting}
 
 Other packages:
 \begin{lstlisting}
-$> sudo pacman -S scrot # take screenshots
+$> sudo pacman -S scrot \                   # take screenshots
+    vlc gstreamer \                         # codecs
+    texlive-most texlive-lang evince biber\ # latex
+    gvfs thunar mc ntfs-3g                  # automount, fs, filemanager
 \end{lstlisting}
 
 Disabling TrackPoint:
 \begin{lstlisting}
-$> xinput # show input devices
+$> xinput                                   # show input devices
 $> xinput --disable "Device Name"
 \end{lstlisting}
 
