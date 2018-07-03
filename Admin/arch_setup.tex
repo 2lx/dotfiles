@@ -7,8 +7,11 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
 
-\section{Prepare flash drive}
+%===========================================
+\section{Preparing to install}
+\subsection{USB}
 
 Download \path{linux.iso}.
 \begin{lstlisting}
@@ -17,12 +20,14 @@ $> sudo gparted                             # format flash Fat32
 $> sudo dd bs=16M if=linux.iso of=/dev/sdc status=progress oflag=sync
 \end{lstlisting}
 
-\section{BIOS}
+\subsection{BIOS}
 
 \menu{Security > Secure Boot > Disable}
 \\Also were disabled WWAN, Thunderbolt 3, Card Reader.
 
+%===========================================
 \section{Installation}
+\subsection{Internet settings}
 
 Setup internet connection:
 \begin{lstlisting}
@@ -36,6 +41,8 @@ $> pacman -Syy
 $> pacman -S reflector
 $> reflector -c "Russia" -f 12 -l 10 -n 12 --save /etc/pacman.d/mirrorlist
 \end{lstlisting}
+
+\subsection{Disk patitioning}
 
 Disk partition utils: \url{cfdisk}, \url{gdisk}.
 Add partition \url{UEFI} - minimum 550MB at the beginning of disk, file system type should be \url{EFI boot partition}. Format it \url{Fat32}.
@@ -68,6 +75,8 @@ $> mkdir /mnt/boot/efi
 $> mount /dev/sdb1 /mnt/...
 $> swapon /dev/sdb5
 \end{lstlisting}
+
+\subsection{Installation process}
 
 Begin installation:
 \begin{lstlisting}
@@ -143,6 +152,7 @@ Login as UserName:
 $> sudo pacman -S pulseaudio pulseaudio-alsa xorg xorg-xinit i3-gaps rxvt-unicode i3blocks dialog wpa_supplicant lua feh rofi playerctl gvfs mpg123 ntfs-3g
 \end{lstlisting}
 
+\subsection{WiFi setup}
 If WiFi doesn't work (\url{netctl} may conflict with \url{networkmanager}):
 \begin{lstlisting}
 $> ls /sys/class/net                        # all network interfaces
@@ -159,7 +169,14 @@ $> sudo netctl start wl..
 $> sudo netctl enable wl..
 \end{lstlisting}
 
-\section{dotfiles}
+\subsection{Autostart Xorg}
+Change default shell (for \url{X} autostart from \path{$HOME/.zprofile} script):
+\begin{lstlisting}
+$> chsh
+\end{lstlisting}
+
+%===========================================
+\section{Main settings(dotfiles, desktop)}
 
 To get all stuff:
 \begin{lstlisting}
@@ -168,6 +185,7 @@ $> git remote add -t \* -f origin https://github.com/lexaaim/dotfiles.git
 $> git checkout master                      # get all branches and co master
 \end{lstlisting}
 
+\subsection{Oh My ZSH}
 Setup \url{Oh My ZSH!}:
 \begin{lstlisting}
 $> mv .oh_my_zsh bkp                        # backup
@@ -177,18 +195,14 @@ $> rm -rf bkp
 $> git checkout -- .zshrc
 \end{lstlisting}
 
+\subsection{Vim}
 Setup \url{Vim}:
 \begin{lstlisting}
 $> curl -fLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim> :PlugInstall
 \end{lstlisting}
 
-Change default shell (for \url{X} autostart from \path{$HOME/.zprofile} script):
-\begin{lstlisting}
-$> chsh
-\end{lstlisting}
-
-Setup fonts, icons:
+\subsection{Fonts, icons}
 \begin{lstlisting}
 $> cd Temp/AUR
 $> sudo pacman -S lxappearance
@@ -203,11 +217,68 @@ $> git clone https://github.com/supermarin/YosemiteSanFranciscoFont
 $> cp YosemiteSanFranciscoFont/*.ttf ~/.fonts
 $> ~/.fonts/update-fonts.sh
 
-# icons: Arc
+# icons: Arc theme
 $> pacman -S arc-gtk-theme arc-icon-theme
 $> lxappearance
 \end{lstlisting}
 
+\subsection{Root's .vimrc}
+Use user's \url{.vimrc} settings as Root:
+\begin{lstlisting}
+$> sudo ln -s /home/UserName/.vimrc /root/.vimrc
+$> sudo ln -s /home/UserName/.vim/ /root/.vim
+\end{lstlisting}
+
+\subsection{Ethernet}
+Manually setup ethernet:
+\begin{lstlisting}
+$> systemctl enable dhcpcd
+$> ls /sys/class/net
+$> ip link show dev emp0s3..
+$> sudo ip link set enp0s3.. up
+\end{lstlisting}
+
+\subsection{Setup keyboard layouts switching}
+Change keyboard layout with \keyss{\capslock}:
+\begin{lstlisting}
+$> cp ~/Admin/etc/X11/xorg.conf.d/00-keyboard.conf /etc/X11/xorg.conf.d/
+$> reboot
+$> cd Temp/AUR
+$> git clone https://aur.archlinux.org/xkb-switch-git.git
+$> cd xkb-switch-git
+$> makepkg -si
+\end{lstlisting}
+
+\subsection{Setup LightDM and Greeter}
+Setup \url{lightdm}
+\begin{lstlisting}
+$> sudo pacman -S lightdm lightdm-gtk-greeter
+$> cp ~/Admin/etc/lightdm/lightdm.conf /etc/lightdm/
+$> systemctl enable lightdm.service
+# greeter autologin:
+$> groupadd -r autologin
+$> gpasswd -a UserName autologin
+\end{lstlisting}
+
+\subsection{List installed packages}
+\begin{lstlisting}
+$> sudo pacman -S scrot \                   # take screenshots
+    vlc gstreamer \                         # codecs
+    texlive-most texlive-lang evince biber\ # latex
+    gvfs thunar mc ntfs-3g                  # automount, fs, filemanager
+\end{lstlisting}
+
+%===========================================
+\section{Hardware and Power management}
+
+\subsection{SSD setup}
+Setup SSD Trim attributes in \path{/etc/fstab}:
+\begin{itemize}
+\item ''\url{discard}'' to \url{ext4}, \url{swap} fs
+\item ''\url{noatime}'' to \url{ext2}, \url{ext4} fs
+\end{itemize}
+
+\subsection{Mount directories in tmpfs}
 Mount tmpfs:
 \begin{lstlisting}
 $> df -h
@@ -219,71 +290,40 @@ $> sudo vim /etc/fstab
 tmpfs  /home/user/.cache  tmpfs  defaults,nodev,nosuid,mode=1777,size=1G  0 0
 \end{lstlisting}
 
-Setup SSD Trim attributes in \path{/etc/fstab}:
-\begin{itemize}
-\item ''\url{discard}'' to \url{ext4}, \url{swap} fs
-\item ''\url{noatime}'' to \url{ext2}, \url{ext4} fs
-\end{itemize}
-
-Setup backlight:
-\begin{lstlisting}
-$> sudo pacman -S xorg-xbacklight xf86-video-intel
-$> sudo cp ~/Admin/etc/X11/xorg.conf.d/10-backlight.conf /etc/X11/xorg.conf.d/
-\end{lstlisting}
-
-Setup \url{FTP} server:
-\begin{lstlisting}
-$> sudo pacman -S vsftpd
-$> sudo cp ~/Admin/etc/vsftpd.conf /etc/
-$> systemctl enable vsftpd
-\end{lstlisting}
-
-Manual setup \url{SWAP} usage:
+\subsection{Setup SWAPpiness}
 \begin{lstlisting}
 $> sudo cp ~/Admin/etc/sysctl.d/99-sysctl.conf /etc/sysctl.d/
+$> reboot
 \end{lstlisting}
 
-Add \path{*.desktop} file to application list:
+\subsection{Keyboard setup Fn+F11}
+To enable Lenovo Thinkpad \keyss{Fn, F11} and \keyss{Fn, F12} combinations:
 \begin{lstlisting}
-$> cp *.desktop ~/.local/share/applications/
-\end{lstlisting}
-
-Use user's \url{.vimrc} settings as Root:
-\begin{lstlisting}
-$> sudo ln -s /home/UserName/.vimrc /root/.vimrc
-$> sudo ln -s /home/UserName/.vim/ /root/.vim
-\end{lstlisting}
-
-Manually setup ethernet:
-\begin{lstlisting}
-$> ls /sys/class/net
-$> ip link show dev emp0s3..
-$> sudo ip link set enp0s3.. up
-\end{lstlisting}
-
-If laptop undocking 100\% core:
-\begin{lstlisting}
-# for block interrupt (find it by test-disabling /sys/firmware/acpi/interrupts/)
-$> echo
-$> sudo cp ~/Admin/etc/systemd/system/disable_interrupt_gpe6F.service /etc/systemd/system/
-$> systemctl enable disable_interrupt_gpe6F.service
-\end{lstlisting}
-
-To find mediakey names:
-\begin{lstlisting}
+# show all keynames for i3
 $> xmodmap -pke | grep -i backli
+# To test you can use:
+$> sudo evtest /dev/input/event5
+
+$> sudo cp ~/Admin/etc/udev/hwdb.d/thinkpad_keyboard.hwdb /etc/udev/hwdb.d/
+$> sudo udevadm hwdb --update
+# it remaps 374 and 364 codes to 148 and 149
+# for get which XF86 key it use check:
+$> xbindkeys -k
 \end{lstlisting}
 
-Docker setup:
+\subsection{Disabling Thinkpad trackpoint or other input devices}
+Disabling TrackPoint:
 \begin{lstlisting}
-# delete all docker containers
-$> docker rm $(docker ps -a | grep -v "_data" | awk 'NR>1 {print $1}')
+$> xinput                                   # show input devices
+$> xinput --disable "Device Name"
 \end{lstlisting}
 
+\subsection{Setup TLP power management}
 \url{Tlp} setup (Arch wiki "Power management"):
 \begin{lstlisting}
 $> sudo pacman -S tlp                       # don't setup tlp-rdw
 $> sudo tlp stat | less                     # read the recomendations
+$> sudo cp ~/Admin/etc/default/tlp /etc/default/tlp/
 $> systemctl enable tlp.service
 $> systemctl enable tlp-sleep.service
 $> systemctl mask systemd-rfkill.service
@@ -296,50 +336,62 @@ $> sudo cp ~/Admin/etc/modprobe.d/webcamera_disable.conf /etc/modprobe.d/
 $> sudo cp ~/Admin/etc/udev/rules.d/*.rules /etc/udev/rules.d/
 \end{lstlisting}
 
-To enable Lenovo Thinkpad \keyss{Fn, F11} and \keyss{Fn, F12} combinations:
+\subsection{LCD Backlight}
 \begin{lstlisting}
-# To test you can use:
-$> sudo evtest /dev/input/event5
-
-$> sudo cp ~/Admin/etc/udev/hwdb.d/thinkpad_keyboard.hwdb /etc/udev/hwdb.d/
-$> sudo udevadm hwdb --update
-# it remaps 374 and 364 codes to 148 and 149
-# for get which XF86 key it use check:
-$> xbindkeys -k
+$> sudo pacman -S xorg-xbacklight xf86-video-intel
+$> sudo cp ~/Admin/etc/X11/xorg.conf.d/10-backlight.conf /etc/X11/xorg.conf.d/
 \end{lstlisting}
 
-Change keyboard layout with \keyss{\capslock}:
+\subsection{Disable laptop interrupt}
+If laptop undocking 100\% core:
 \begin{lstlisting}
-$> cp ~/Admin/etc/X11/xorg.conf.d/00-keyboard.conf /etc/X11/xorg.conf.d/
-$> reboot
-$> cd Temp/AUR
-$> git clone https://aur.archlinux.org/xkb-switch-git.git
-$> cd xkb-switch-git
-$> makepkg -si
+# for block interrupt (find it by test-disabling /sys/firmware/acpi/interrupts/)
+$> echo
+$> sudo cp ~/Admin/etc/systemd/system/disable_interrupt_gpe6F.service /etc/systemd/system/
+$> systemctl enable disable_interrupt_gpe6F.service
 \end{lstlisting}
 
-Setup \url{lightdm}
+%===========================================
+\section{Additional software}
+
+\subsection{.desktop files}
+To add \path{*.desktop} file to application list:
 \begin{lstlisting}
-$> sudo pacman -S lightdm lightdm-gtk-greeter
-$> cp ~/Admin/etc/lightdm/lightdm.conf /etc/lightdm/
-$> systemctl enable lightdm.service
-# greeter autologin:
-$> groupadd -r autologin
-$> gpasswd -a UserName autologin
+$> cp *.desktop ~/.local/share/applications/
 \end{lstlisting}
 
-Other packages:
+\subsection{Setup FTP server}
 \begin{lstlisting}
-$> sudo pacman -S scrot \                   # take screenshots
-    vlc gstreamer \                         # codecs
-    texlive-most texlive-lang evince biber\ # latex
-    gvfs thunar mc ntfs-3g                  # automount, fs, filemanager
+$> sudo pacman -S vsftpd
+$> sudo cp ~/Admin/etc/vsftpd.conf /etc/
+$> systemctl enable vsftpd
 \end{lstlisting}
 
-Disabling TrackPoint:
+\subsection{VirtualBox installation}
 \begin{lstlisting}
-$> xinput                                   # show input devices
-$> xinput --disable "Device Name"
+$> sudo pacman -S virtualbox virtualbox-host-modules-arch
+# install Dynamic Kernel Module Support
+$> sudo pacman -S dkms linux-headers
+$> dkms status
+$> dkms autoinstall                         # rebuild all kernel modules
+$> sudo modprobe vboxdrv
+
+# install USB 2.0 driver
+$> cd ~/Temp/AUR
+$> git clone https://aur.archlinux.org/virtualbox-ext-oracle.git
+$> cd virtualbox-ext-oracle
+$> makepkg- si
+
+#install Guest Additions
+$> sudo pacman -S virtualbox-guest-iso
+$> cp /usr/lib/virtualbox/additions/VBoxGuestAdditions.iso ..
+\end{lstlisting}
+
+\subsection{Setup Docker}
+Docker setup:
+\begin{lstlisting}
+# delete all docker containers
+$> docker rm $(docker ps -a | grep -v "_data" | awk 'NR>1 {print $1}')
 \end{lstlisting}
 
 \end{document}

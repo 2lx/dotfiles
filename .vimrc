@@ -100,6 +100,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " mark 81st column
 " autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=81
+autocmd FileType tex autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=45
 
 " highlight extra whitespaces on file opening
 highlight ExtraWhitespace ctermbg=red guibg=red
