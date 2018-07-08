@@ -11,6 +11,7 @@ filetype plugin indent on       " depend indent rules on file types
 runtime macros/matchit.vim      " enable if-else matching search by pressing %
 set fileformat=unix
 
+set wildmenu                    " popup candidates in prompt
 " detect filetype
 autocmd BufNewFile,BufRead *.xinitrc set filetype=sh
 autocmd BufRead,BufNewFile *mutt-* set filetype=mail
@@ -34,6 +35,7 @@ set shiftround                  " round spaces multiple of four
 " set smartindent
 
 autocmd FileType tex setlocal noautoindent nosmartindent indentexpr=
+autocmd FileType tex setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 set list                        " make whitespace characters visible
 set listchars=tab:>-            " show <Tab> like >---
@@ -100,7 +102,8 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " mark 81st column
 " autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=81
-autocmd FileType tex autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=45
+highlight colorcolumn ctermbg=7
+" autocmd FileType tex autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=45
 
 " highlight extra whitespaces on file opening
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -160,7 +163,10 @@ noremap <Down>  <Nop>
 noremap <Left>  <Nop>
 noremap <Right> <Nop>
 
-map q: :q
+cnoremap <c-p> <Up>
+cnoremap <c-n> <Down>
+
+" map q: :q " q: uses to show command history
 map w: :w
 map :Q :q
 map :W :w
@@ -194,17 +200,17 @@ Plug 'scrooloose/nerdtree'                  " !
 Plug 'tpope/vim-surround'                   " !
 Plug 'alpertuna/vim-header'                 " !
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " ! maybe
 " Plug 'tpope/vim-unimpaired'                 " ~
 " Plug 'justmao945/vim-clang'
 " Plug 'Shougo/neocomplete.vim'
-" Plug 'SirVer/ultisnips'
 
 " ! default disabled
 " Plug 'Valloric/YouCompleteMe'             " c++ recommended
 " Plug 'easymotion/vim-easymotion'
-" Plug 'sirver/ultisnips'                   " c++ recommended
 " fswitch                                   " c++ recommended
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'tpope/vim-commentary'
@@ -222,10 +228,17 @@ Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-latex-live-preview
 " use LLPStartPreview
 " let g:livepreview_previewer = 'mupdf'
-set updatetime=5000
+set updatetime=100000000
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-surround
@@ -356,53 +369,53 @@ let g:clang_vim_exec = '/usr/local/bin/vim'
 " need vim (+lua) settings (how to compile with it see above)
 " use :h neocomplete for completely help
 
-let g:neocomplete#enable_at_startup = 1     " neocomplete gets started automatically
-" the number of the input completion at the time of key input automatically
-let g:neocomplete#auto_completion_start_length = 2
-" set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-" use smartcase for matching (does not ignore the capital keys)
-let g:neocomplete#enable_smart_case = 1
-
-" let g:neocomplete#disable_auto_complete = 1
-" select first candidate automatically
-let g:neocomplete#enable_auto_select = 0
-" insert delimiter automatically
-let g:neocomplete#enable_auto_delimiter = 0
-" refresh candidates automatically, but increase screen flicker
-let g:neocomplete#enable_refresh_always = 0
-
-" define dictionary for vim and other apps
-let g:neocomplete#sources#dictionary#dictionaries = {
-            \ 'default' : '',
-            \ 'vimshell' : $HOME.'/.vimshell_hist',
-            \ }
-
-" plugin key-mappings undo complete and autocomplete
-inoremap <expr><C-h>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" use <Tab> for select completion
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" enable for heavy omni completion for c and cpp
-if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
-endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" How to setup omni for cpp see: http://vim.wikia.com/wiki/VimTip1608
-" Enable omni completion for different file types. Its omni-completion
-" settings (it is not plugin):
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" autocmd FileType cpp setlocal omnifunc=syntaxcomplete#Complete
-" autocmd FileType c setlocal omnifunc=syntaxcomplete#Complete
+" let g:neocomplete#enable_at_startup = 1     " neocomplete gets started automatically
+" " the number of the input completion at the time of key input automatically
+" let g:neocomplete#auto_completion_start_length = 2
+" " set minimum syntax keyword length.
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+" " use smartcase for matching (does not ignore the capital keys)
+" let g:neocomplete#enable_smart_case = 1
+"
+" " let g:neocomplete#disable_auto_complete = 1
+" " select first candidate automatically
+" let g:neocomplete#enable_auto_select = 0
+" " insert delimiter automatically
+" let g:neocomplete#enable_auto_delimiter = 0
+" " refresh candidates automatically, but increase screen flicker
+" let g:neocomplete#enable_refresh_always = 0
+"
+" " define dictionary for vim and other apps
+" let g:neocomplete#sources#dictionary#dictionaries = {
+"             \ 'default' : '',
+"             \ 'vimshell' : $HOME.'/.vimshell_hist',
+"             \ }
+"
+" " plugin key-mappings undo complete and autocomplete
+" " inoremap <expr><C-h>     neocomplete#undo_completion()
+" " inoremap <expr><C-l>     neocomplete#complete_common_string()
+"
+" " use <Tab> for select completion
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"
+" " enable for heavy omni completion for c and cpp
+" if !exists('g:neocomplete#sources#omni#input_patterns')
+"     let g:neocomplete#sources#omni#input_patterns = {}
+" endif
+" "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+" let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+" let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+"
+" " How to setup omni for cpp see: http://vim.wikia.com/wiki/VimTip1608
+" " Enable omni completion for different file types. Its omni-completion
+" " settings (it is not plugin):
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" " autocmd FileType cpp setlocal omnifunc=syntaxcomplete#Complete
+" " autocmd FileType c setlocal omnifunc=syntaxcomplete#Complete
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
