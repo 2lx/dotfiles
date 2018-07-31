@@ -34,6 +34,8 @@ set shiftround                  " round spaces multiple of four
 " set autoindent                  " auto-indent new lines, doesn't need if 'ft plugin on'
 " set smartindent
 
+autocmd FileType python setlocal noautoindent nosmartindent indentexpr=
+
 autocmd FileType tex setlocal noautoindent nosmartindent indentexpr=
 autocmd FileType tex setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
@@ -104,6 +106,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=81
 highlight colorcolumn ctermbg=7
 " autocmd FileType tex autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=45
+autocmd FileType python autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101
 
 " highlight extra whitespaces on file opening
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -166,21 +169,11 @@ noremap <Right> <Nop>
 cnoremap <c-p> <Up>
 cnoremap <c-n> <Down>
 
-" map q: :q " q: uses to show command history
 map w: :w
 map :Q :q
 map :W :w
 
 inoremap jj <Esc>
-" nnoremap & :&&<CR>
-" xnoremap & :&&<CR>
-
-" buffers and tabs
-" map <Leader>t :tabnew<cr>
-" nmap <Leader>t :tabnew<cr>
-"
-" map <Leader>c :tabclose<cr>
-" nmap <Leader>c :tabclose<cr>
 
 " fast replace
 nmap \ :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
