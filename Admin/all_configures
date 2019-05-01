@@ -1,0 +1,9 @@
+vim +client-server:
+> ./configure --with-features=huge --enable-gui=auto --enable-luainterp=yes --enable-fontset --enable-python3interp --enable-tclinterp --enable-perlinterp
+
+llvm:
+> mkdir ../llvm-build
+> cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$HOME/Dev/extlibs/llvm-4.0 ../llvm/
+
+torchlight 2 steam:
+LD_PRELOAD=/usr/lib/libfreetype.so.6
