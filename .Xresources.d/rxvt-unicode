@@ -7,7 +7,7 @@ URxvt*scrollBar: false
 urxvt*cursorBlink: false
 
 URxvt*transparent: false
-URxvt*shading: 15
+URxvt*shading: 35
 
 URxvt*letterSpace: -1
 URxvt*internalBorder: 0

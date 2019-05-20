@@ -194,8 +194,9 @@ Plug 'scrooloose/nerdtree'                  " !
 Plug 'tpope/vim-surround'                   " !
 Plug 'alpertuna/vim-header'                 " !
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'junegunn/goyo.vim'                    " screen center
 
 Plug 'rust-lang/rust.vim'
 

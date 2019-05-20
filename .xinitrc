@@ -17,6 +17,7 @@ export TERMINAL=/usr/bin/urxvt
 export EDITOR=/usr/local/bin/vim
 export PAGER=less
 export LC_ALL=en_US.UTF-8
+export GDK_CORE_DEVICE_EVENTS=1
 
 # exec i3 -l # start i3 windows manager
 exec i3 -V >> /tmp/i3log-$(date +'%F-%k-%M-%S') 2>&1
