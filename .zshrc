@@ -1,5 +1,16 @@
 export ZSH=$HOME/.oh-my-zsh
 
+export TIMEFMT=$'\t%E real,\t%U user,\t%S sys'
+
+# extended format of time utility
+# TIMEFMT='%J   %U  user %S system %P cpu %*E total'$'\n'\
+# 'avg shared (code):         %X KB'$'\n'\
+# 'avg unshared (data/stack): %D KB'$'\n'\
+# 'total (sum):               %K KB'$'\n'\
+# 'max memory:                %M MB'$'\n'\
+# 'page faults from disk:     %F'$'\n'\
+# 'other page faults:         %R'
+
 ZSH_THEME="agnoster"
 # ZSH_THEME="my_theme"
 

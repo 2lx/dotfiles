@@ -6,8 +6,8 @@ URxvt*visualBell: false
 URxvt*scrollBar: false
 urxvt*cursorBlink: false
 
-URxvt*transparent: true
-URxvt*shading: 35
+URxvt*transparent: false
+URxvt*shading: 15
 
 URxvt*letterSpace: -1
 URxvt*internalBorder: 0

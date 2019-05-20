@@ -22,7 +22,7 @@ autocmd BufRead /tmp/mutt-* set textwidth=72
 
 " each time you save the file delete any trailing whitespace at the eol
 " if current file extension not in blacklist
-let blacklist = ['rb', 'js', 'pl', 'make']
+let blacklist = ['rb', 'js', 'pl', 'make', 'text']
 autocmd BufWritePre * if index(blacklist, &ft) < 0 | %s/\s\+$//e
 
 set tabstop=4                   " how many columns a tab counts for
@@ -107,6 +107,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 highlight colorcolumn ctermbg=7
 " autocmd FileType tex autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=45
 autocmd FileType python autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101
+autocmd FileType cpp autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101
 
 " highlight extra whitespaces on file opening
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -195,6 +196,8 @@ Plug 'alpertuna/vim-header'                 " !
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+Plug 'rust-lang/rust.vim'
 
 " ! maybe
 " Plug 'tpope/vim-unimpaired'                 " ~
@@ -348,7 +351,7 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:clang_auto = 0                        " disable to complete automatically
 
 let g:clang_c_options = '-std=c11'
-let g:clang_cpp_options = '-std=c++14 -stdlib=libstdc++'
+let g:clang_cpp_options = '-std=c++17 -stdlib=libstdc++'
 
 let g:clang_c_completeopt = 'longest,menuone'
 let g:clang_cpp_completeopt = 'longest,menuone'

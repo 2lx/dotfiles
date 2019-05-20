@@ -113,9 +113,10 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 25
 # F11: XF86Launch1
 # F12: XF86Launch2
 
-# bindsym XF86Tools exec synclient TouchpadOff=1
-bindsym XF86Launch1 exec synclient TouchpadOff=0
-bindsym XF86Launch2 exec synclient TouchpadOff=1
+# bindsym XF86Launch1 exec synclient TouchpadOff=0
+# bindsym XF86Launch2 exec synclient TouchpadOff=1
+bindsym XF86Launch1 exec xinput --disable 9
+bindsym XF86Launch2 exec xinput --enable 9
 
 bindsym Caps_Lock exec pkill -RTMIN+2 i3blocks
 
@@ -204,7 +205,7 @@ bar {
         workspace_buttons yes
         strip_workspace_numbers no
 
-        font pango: System San Francisco Display 16
+        font pango: System San Francisco Display 13
         colors {
             background $default-bg
             separator $default-bg
