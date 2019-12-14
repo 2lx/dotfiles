@@ -1,5 +1,5 @@
 syntax enable
-colorscheme my_theme
+colorscheme monokai
 " to reload vimrc use :so $MYVIMRC
 
 " disable compatibility with vi. It should be placed before other settings
@@ -199,6 +199,9 @@ Plug 'honza/vim-snippets'
 Plug 'junegunn/goyo.vim'                    " screen center
 
 Plug 'rust-lang/rust.vim'
+Plug 'xolox/vim-lua-ftplugin'
+Plug 'xolox/vim-misc'
+Plug 'godlygeek/tabular'
 
 " ! maybe
 " Plug 'tpope/vim-unimpaired'                 " ~
@@ -230,6 +233,10 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN tabular
+" use :Tab /=
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-latex-live-preview
