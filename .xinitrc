@@ -14,6 +14,7 @@ xset dpms 600                           # enable power save
 # export GNUPGHOME=$HOME/.gnupg
 export LANG=en_US.UTF-8
 export TERMINAL=/usr/bin/urxvt
+export VISUAL=/usr/local/bin/vim
 export EDITOR=/usr/local/bin/vim
 export PAGER=less
 export LC_ALL=en_US.UTF-8

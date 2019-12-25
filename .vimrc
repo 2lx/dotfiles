@@ -1,4 +1,5 @@
 syntax enable
+"colorscheme my_theme
 colorscheme monokai
 " to reload vimrc use :so $MYVIMRC
 
@@ -57,7 +58,7 @@ set hlsearch                    " search highlighting
 set incsearch                   " search while typing
 
 set number                      " show row numbers
-set numberwidth=5               " width of row numbers column
+set numberwidth=6               " width of row numbers column
 " set cpoptions+=n                " use the number column for the text
 " set relativenumber              " use relative row numbers
 " set ruler                       " show status line like ruler
@@ -106,8 +107,8 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=81
 highlight colorcolumn ctermbg=7
 " autocmd FileType tex autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=45
-autocmd FileType python autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101
-autocmd FileType cpp autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101
+" autocmd FileType python autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101
+" autocmd FileType cpp autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101
 
 " highlight extra whitespaces on file opening
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -170,7 +171,6 @@ noremap <Right> <Nop>
 cnoremap <c-p> <Up>
 cnoremap <c-n> <Down>
 
-map w: :w
 map :Q :q
 map :W :w
 
@@ -188,7 +188,7 @@ nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS vim-plug plugin manager
 call plug#begin('~/.vim/plugged')
-Plug 'matze/vim-move'                       " !
+" Plug 'matze/vim-move'                       " !
 Plug 'scrooloose/nerdcommenter'             " !
 Plug 'scrooloose/nerdtree'                  " !
 Plug 'tpope/vim-surround'                   " !
@@ -202,6 +202,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'xolox/vim-lua-ftplugin'
 Plug 'xolox/vim-misc'
 Plug 'godlygeek/tabular'
+Plug 'MTDL9/vim-log-highlighting'
 
 " ! maybe
 " Plug 'tpope/vim-unimpaired'                 " ~
@@ -228,15 +229,20 @@ Plug 'godlygeek/tabular'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN tabular
+" :Tab /=
+" :help tabular
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN vim-lua-ftplugin
+" let g:lua_complete_omni = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN tabular
-" use :Tab /=
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-latex-live-preview
@@ -251,6 +257,7 @@ set updatetime=100000000
 " use yss(  to change entire line state
 " use ds'   to remove the delimiters
 " use S' in visual mode to do so
+" use cs{{  to change {words w} to { words w }
 " you can use viw for current word selection
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
