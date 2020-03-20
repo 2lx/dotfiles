@@ -2,3 +2,5 @@
 ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR{power/control}="auto"
 # disable it for usb mouse
 ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="09da", ATTR{idProduct}=="9066", TEST=="power/control", ATTR{power/control}="on"
+# disable it for keyboard Logitech G610
+ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c338", TEST=="power/control", ATTR{power/control}="on"

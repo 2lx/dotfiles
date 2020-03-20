@@ -88,7 +88,7 @@ set statusline+=%4*0x%04B%*     " 0x%04B character under cursor
 " set scrolljump=1                " jumping lines count when the cursor within
 " set scrolloff=5                 " scrolloff lines of the edge of the screen
 
-set mouse=a                     " enable mouse
+set mouse=c                     " enable mouse
 set winminheight=0
 set winminwidth=0
 set wrap                        " disable auto line breaking after 80th column
@@ -178,6 +178,9 @@ inoremap jj <Esc>
 
 " fast replace
 nmap \ :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
+
+" toggle paste to add in pasting text unmodified from other aplications
+set pastetoggle=<F2>
 
 " bind <F3> to copy to X clipboard
 vmap <F3> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
