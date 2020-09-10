@@ -163,10 +163,10 @@ set noautochdir                 " doesn't change working directory to opened fil
 let mapleader = ","             " set prefix key
 
 " disable arrow keys
-noremap <Up>    <Nop>
-noremap <Down>  <Nop>
-noremap <Left>  <Nop>
-noremap <Right> <Nop>
+" noremap <Up>    <Nop>
+" noremap <Down>  <Nop>
+" noremap <Left>  <Nop>
+" noremap <Right> <Nop>
 
 cnoremap <c-p> <Up>
 cnoremap <c-n> <Down>
@@ -192,6 +192,8 @@ nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 " PLUGINS vim-plug plugin manager
 call plug#begin('~/.vim/plugged')
 " Plug 'matze/vim-move'                       " !
+Plug 'yegappan/mru'                         " !
+Plug 'yegappan/bufselect'                   " !
 Plug 'scrooloose/nerdcommenter'             " !
 Plug 'scrooloose/nerdtree'                  " !
 Plug 'tpope/vim-surround'                   " !
@@ -281,6 +283,7 @@ let g:move_key_modifier = 'C'               " set Control as move-modifier key
 " then use ? for help
 
 nnoremap <Leader>f :NERDTreeToggle<Enter>
+nnoremap <Leader>b :Bufselect<Enter>
 
 " open NERDTree automatically when vim starts up
 " autocmd vimenter * NERDTree

@@ -23,7 +23,8 @@ map <S-F7> :make clean all<CR><CR>
 
 " toggle .cpp / .h files
 " map <F12> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
-map <F12> :e %:p:s,.h$,.X123X,:s,.cc$,.h,:s,.X123X$,.cc,<CR>
+" map <F12> :e %:p:s,.h$,.X123X,:s,.cc$,.h,:s,.X123X$,.cc,<CR>
+map <F12> :e %:p:s,.hpp$,.X123X,:s,.cpp$,.hpp,:s,.X123X$,.cpp,<CR>
 
 " Open Quickfix window automatically after running :make
 " augroup OpenQuickfixWindowAfterMake
