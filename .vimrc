@@ -192,11 +192,12 @@ nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 " PLUGINS vim-plug plugin manager
 call plug#begin('~/.vim/plugged')
 " Plug 'matze/vim-move'                       " !
+" Plug 'Xuyuanp/nerdtree-git-plugin'          " !
 Plug 'ap/vim-css-color'                     " !
 Plug 'yegappan/mru'                         " !
 Plug 'yegappan/bufselect'                   " !
 Plug 'scrooloose/nerdcommenter'             " !
-Plug 'scrooloose/nerdtree'                  " !
+Plug 'preservim/nerdtree'                   " !
 Plug 'tpope/vim-surround'                   " !
 Plug 'alpertuna/vim-header'                 " !
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
@@ -285,6 +286,7 @@ let g:move_key_modifier = 'C'               " set Control as move-modifier key
 
 nnoremap <Leader>f :NERDTreeToggle<Enter>
 nnoremap <Leader>b :Bufselect<Enter>
+nnoremap <Leader>g :Goyo<Enter>
 
 " open NERDTree automatically when vim starts up
 " autocmd vimenter * NERDTree
@@ -312,12 +314,12 @@ let NERDTreeShowHidden=1                    " enable to show hidden files
 " use :AddMinHeader to insert minified version of author information
 " use :AddMitLicense, :AddApacheLicense, :AddGNULicense for add license
 
-let g:header_field_filename = 1             " enable to add filename in header
-let g:header_field_author = 'Alexey Minchakov'
-let g:header_field_author_email = 'lexaaim@gmail.com'
-let g:header_field_timestamp = 1            " enable to add creating date line
+let g:header_field_filename         = 1             " enable to add filename in header
+let g:header_field_author           = 'Alexey Minchakov'
+let g:header_field_author_email     = 'lexaaim@gmail.com'
+let g:header_field_timestamp        = 1            " enable to add creating date line
 let g:header_field_timestamp_format = '%d.%m.%Y'
-let g:header_auto_add_header = 0            " disable to add header automatically
+let g:header_auto_add_header        = 0            " disable to add header automatically
 
 
 let g:licenses_copyright_holders_name = 'Alexey Minchakov <lexaaim@gmail.com>'

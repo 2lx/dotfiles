@@ -28,12 +28,12 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = System San Francisco Display:style=Regular:pixelsize=17:antialias=true;2
-font-1 = System San Francisco Display:style=Regular:pixelsize=17:antialias=true;2
-font-2 = System San Francisco Display:style=Regular:pixelsize=17:antialias=true;2
+font-0 = Noto Mono:pixelsize=17:antialias=true;2
+font-1 = FontAwesome:style=Solid:pixelsize=17:antialias=true;2
+font-2 = FontAwesome:style=Solid:pixelsize=17:antialias=true;2
 
 modules-left = i3
-modules-right = cpu memory audio battery temperature wlan date
+modules-right = xkeyboard audio battery temperature filesystem wlan date
 modules-center = xwindow
 
 tray-position = right
@@ -43,35 +43,36 @@ tray-maxsize = 32
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+;
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:120:...%
 
+;
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
-
-label-layout = %layout%
+label-layout = " %layout% "
+label-layout-background = #ff7979
+label-layout-foreground = $000000
 label-layout-underline = ${colors.secondary}
 label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
 
-
+;
 [module/filesystem]
 type = internal/fs
 interval = 25111
-mount-0 = /
+mount-0 = /home
 
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted = %{F#5ad2e3}%mountpoint%: %percentage_used%%%{F-}
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
+;
 [module/i3]
 type = internal/i3
 pin-workspaces = true
@@ -83,17 +84,17 @@ wrapping-scroll = false
 reverse-scroll = false
 fuzzy-match = true
 
-; ws-icon-default = 
-ws-icon-0 = "1;1"
-ws-icon-1 = "2;2"
-ws-icon-2 = "3;3"
+ws-icon-default = 
+ws-icon-0 = "1;1 "
+ws-icon-1 = "2;2 "
+ws-icon-2 = "3;3 "
 ws-icon-3 = "4;4"
-ws-icon-4 = "5;5"
+ws-icon-4 = "5;5 "
 ws-icon-5 = "6;6"
 ws-icon-6 = "7;7"
 ws-icon-7 = "8;8"
 ws-icon-8 = "9;9"
-ws-icon-9 = "0;0"
+ws-icon-9 = "0;0 "
 
 format = <label-state> <label-mode>
 label-mode = %mode%
@@ -125,7 +126,7 @@ type = internal/backlight
 card = intel_backlight
 
 format = <label>
-label = BL %percentage%%
+label =  %percentage%%
 label-foreground = ${colors.tertiary}
 
 bar-width = 10
@@ -143,7 +144,8 @@ bar-empty-foreground = ${colors.foreground-alt}
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "CPU:"
+
+format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
 label = %percentage:2%%
@@ -152,7 +154,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "MEM:"
+format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 label = %percentage_used%%
@@ -165,7 +167,7 @@ interval = 3.0
 
 format-connected = <label-connected>
 format-connected-underline = #9f78e1
-label-connected = %essid%
+label-connected =  %essid%
 label-connected-foreground = ${colors.primary}
 
 format-disconnected = <label-disconnected>
@@ -191,7 +193,7 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-; format-prefix =
+format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
@@ -200,13 +202,17 @@ label = %date% %time%
 ;;
 [module/audio]
 type = internal/pulseaudio
-format-volume = VOL:<label-volume>
+format-volume = <ramp-volume> <label-volume>
 
-format-volume-foreground = ${colors.secondary}
-label-muted-foreground = ${colors.secondary}
+label-volume-foreground = ${colors.secondary}
+ramp-volume-foreground = ${colors.secondary}
 
-label-muted = MUTE
+label-muted =  0%
 label-volume = %percentage%%
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 
 ;;
 [module/battery]
@@ -221,13 +227,13 @@ format-charging-underline = #ffb52a
 format-discharging = <ramp-capacity><label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = BAT:
+format-full-prefix = 
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = BAT:
-ramp-capacity-1 = BAT:
-ramp-capacity-2 = BAT:
+ramp-capacity-0 = " "
+ramp-capacity-1 = " "
+ramp-capacity-2 = " "
 ramp-capacity-foreground = ${colors.fourth}
 
 label-discharging = "%percentage%%"
