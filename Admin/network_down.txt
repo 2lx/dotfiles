@@ -1,0 +1,4 @@
+systemctl --failed
+systemctl start ...
+sudo ip link set wlp61s0 down
+netctl start wlp61s0-Hidden2GHz

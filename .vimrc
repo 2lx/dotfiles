@@ -192,6 +192,7 @@ nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 " PLUGINS vim-plug plugin manager
 call plug#begin('~/.vim/plugged')
 " Plug 'matze/vim-move'                       " !
+Plug 'ap/vim-css-color'                     " !
 Plug 'yegappan/mru'                         " !
 Plug 'yegappan/bufselect'                   " !
 Plug 'scrooloose/nerdcommenter'             " !

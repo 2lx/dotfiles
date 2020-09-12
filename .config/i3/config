@@ -21,11 +21,11 @@ bindsym $mod+Tab workspace next
 
 bindsym $mod+Shift+q kill
 
-bindsym $mod+d exec rofi -show run
-bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop \
-        --dmenu="dmenu -i \
-        -nb '#2f2f2f' -nf '#f3f4f5' -sb '#27ae60' -sf '#f3f4f5' \
-        -fn 'System San Francisco Display:bold:pixelsize=21'"
+bindsym $mod+d exec rofi -show drun -theme clean
+# bindsym $mod+shift+d exec --no-startup-id i3-dmenu-desktop \
+#         --dmenu="dmenu -i \
+#         -nb '#2f2f2f' -nf '#f3f4f5' -sb '#27ae60' -sf '#f3f4f5' \
+#         -fn 'System San Francisco Display:bold:pixelsize=21'"
 
 bindsym Print exec scrot -e 'mkdir -p ~/Temp/Screenshots && mv $f ~/Temp/Screenshots/'
 bindsym $mod+Print exec scrot -e 'mkdir -p ~/Temp/Screenshots && mv $f ~/Temp/Screenshots/ && gimp ~/Temp/Screenshots/$f'
@@ -47,9 +47,9 @@ bindsym $mod+Shift+v split h
 bindsym $mod+v split v
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
 
 bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+space floating toggle
@@ -195,37 +195,40 @@ client.urgent           $urgent-bg          $urgent-bg          $focused-fg     
 
 ################################################################################
 # bar
-bar {
-#        status_command i3status
-        status_command i3blocks -c ~/.config/i3/i3blocks.conf
 
-        position top
-        tray_output none #primary
-        separator_symbol " "
-        workspace_buttons yes
-        strip_workspace_numbers no
-
-        font pango: System San Francisco Display 13
-        colors {
-            background $default-bg
-            separator $default-bg
-            #                  border           bg           text
-            focused_workspace  $focused-bg      $focused-bg  $focused-fg
-            inactive_workspace $default-bg      $default-bg  $default-fg
-            urgent_workspace   $urgent-bg       $urgent-bg   $urgent-fg
-        }
-}
+# bar {
+#         status_command i3status
+#         status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#
+#         position top
+#         tray_output none #primary
+#         separator_symbol " "
+#         workspace_buttons yes
+#         strip_workspace_numbers no
+#
+#         font pango: System San Francisco Display 13
+#         colors {
+#             background $default-bg
+#             separator $default-bg
+#             #                  border           bg           text
+#             focused_workspace  $focused-bg      $focused-bg  $focused-fg
+#             inactive_workspace $default-bg      $default-bg  $default-fg
+#             urgent_workspace   $urgent-bg       $urgent-bg   $urgent-fg
+#         }
+# }
 
 ################################################################################
 # i3-gaps config
 
 # bindsym $mod+t split toggle
 
-gaps inner 0
+gaps inner 10
 gaps outer 0
 
-# workspace $ws1 gaps outer 0
-# workspace $ws1 gaps inner 10
+workspace $ws1 gaps outer 0
+workspace $ws1 gaps inner 0
+workspace $ws10 gaps outer 0
+workspace $ws10 gaps inner 0
 
 new_window normal
 new_float normal
@@ -236,10 +239,12 @@ bindsym $mod+shift+b border toggle
 
 ################################################################################
 # autostart
-exec_always --no-startup-id feh --bg-fill ~/wall.jpg
-exec_always compton -f
+exec_always --no-startup-id feh --bg-fill ~/wall.png
 exec --no-startup-id xset dpms 600
 exec --no-startup-id dunst
+# exec_always compton -f
+exec_always --no-startup-id pkill picom; picom --no-use-damage
+exec_always --no-startup-id pkill polybar; polybar -r main
 # exec --no-startup-id xautolock -time 6 -locker $HOME/.config/i3/lock.sh
 
 # exec chromium
