@@ -37,10 +37,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left  48 px
+bindsym $mod+Shift+j move down  48 px
+bindsym $mod+Shift+k move up    48 px
+bindsym $mod+Shift+l move right 48 px
 
 # split in Hor or Vert orientation
 bindsym $mod+Shift+v split h
@@ -80,10 +80,10 @@ bindsym $mod+Shift+e exec "$HOME/.config/i3/scripts/exit_menu.sh"
 bindsym $mod+r mode "resize"
 
 mode "resize" {
-        bindsym h resize shrink width 4 px or 4 ppt
-        bindsym j resize grow height 4 px or 4 ppt
-        bindsym k resize shrink height 4 px or 4 ppt
-        bindsym l resize grow width 4 px or 4 ppt
+        bindsym h resize shrink width  48 px or 48 ppt
+        bindsym j resize grow   height 48 px or 48 ppt
+        bindsym k resize shrink height 48 px or 48 ppt
+        bindsym l resize grow   width  48 px or 48 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -164,9 +164,10 @@ assign [class="^Chromium$"] $ws3
 assign [class="^[Ff]irefox$"] $ws1
 assign [class="TelegramDesktop"] $ws4
 # assign [class="^Gimp$"] $ws5
+assign [class="^[Tt]hunar$"] $ws5
 assign [class="^Tor Browser$"] $ws6
 assign [class="^Transmission-gtk"] $ws7
-assign [title="^TeamViewer$"] $ws8
+# assign [title="^TeamViewer$"] $ws8
 assign [class="^Steam$"] $ws9
 assign [class="^VirtualBox"] $ws9
 assign [class="^Audacious$"] $ws10
@@ -175,7 +176,7 @@ assign [class="^Deadbeef$"] $ws10
 for_window [class="Keepassx2"] move to scratchpad
 
 for_window [class="^.*"] border none, title_format "<b> %class >> %title </b>"
-for_window [class="^URxvt$"] border pixel 2
+for_window [class="^URxvt$"] border pixel 2, floating enable
 for_window [class="^Evince$"] border pixel 2
 
 ################################################################################
@@ -227,6 +228,8 @@ gaps outer 0
 
 workspace $ws1 gaps outer 0
 workspace $ws1 gaps inner 0
+workspace $ws4 gaps outer 0
+workspace $ws4 gaps inner 0
 workspace $ws10 gaps outer 0
 workspace $ws10 gaps inner 0
 

@@ -1,4 +1,4 @@
-#define FONTSIZE 19
+#define FONTSIZE 20
 #define FONTNAME DejaVu\ Sans\ Mono\ for\ Powerline
 
 URxvt*font: xft:FONTNAME:pixelsize=FONTSIZE:antialias=true:hinting=true:hintstyle=hintnone:dpi=96

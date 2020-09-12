@@ -1,6 +1,7 @@
 syntax enable
-"colorscheme my_theme
-colorscheme monokai
+colorscheme my_theme
+" colorscheme cherryblossom
+" colorscheme monokai
 " to reload vimrc use :so $MYVIMRC
 
 " disable compatibility with vi. It should be placed before other settings
@@ -192,7 +193,7 @@ nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 " PLUGINS vim-plug plugin manager
 call plug#begin('~/.vim/plugged')
 " Plug 'matze/vim-move'                       " !
-" Plug 'Xuyuanp/nerdtree-git-plugin'          " !
+Plug 'Xuyuanp/nerdtree-git-plugin'          " !
 Plug 'ap/vim-css-color'                     " !
 Plug 'yegappan/mru'                         " !
 Plug 'yegappan/bufselect'                   " !
