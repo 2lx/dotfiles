@@ -1,6 +1,7 @@
+autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101
+
 " u-ctags  -U SCI_NAMESPACE --language-force=C++ -o - --kinds-C++=+p  --extras=+q  /tmp/foo.h
 map <F5> <esc>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --exclude=.git --extra=+q .<CR>
-
 " autocmd BufWritePost * call system("ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --exclude=.git --extra=+q .")
 
 " ctags

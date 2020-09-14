@@ -1,21 +1,21 @@
-" to reload vimrc use :so $MYVIMRC
+" to reload configure use :so $MYVIMRC
+" :h option - to show help
 
 syntax enable
 colorscheme my_theme
 " colorscheme cherryblossom
 " colorscheme monokai
 
-" disable compatibility with vi. It should be placed before other settings
-set nocompatible
-set backspace=indent,eol,start
+set nocompatible                " Vi defaults are not used for the Vim options. It should be placed before other settings
+set backspace=indent,eol,start  " to fix some devel-version bugs
 
 " filetype on
-filetype plugin indent on       " indent rules depend on file types
-runtime macros/matchit.vim      " enable if-else match search by pressing %
-set fileformat=unix
-set wildmenu                    " popup candidates when searching
+filetype plugin indent on       " Indent rules depend on file types
+runtime macros/matchit.vim      " Enable if-else matching with % (:h matchit)
+set fileformat=unix             " This gives the <EOL> of the current buffer: <NL>
+set wildmenu                    " Command-line completion operates in an enhanced mode
 
-" detecting filetype
+" autocmd
 autocmd BufNewFile,BufRead *.xinitrc set filetype=sh
 autocmd BufNewFile,BufRead *mutt-*   set filetype=mail
 autocmd BufNewFile,BufRead *.tex     set filetype=tex
@@ -28,19 +28,18 @@ autocmd BufNewFile,BufRead /tmp/mutt-* set textwidth=72
 let blacklist = ['rb', 'js', 'pl', 'make', 'text']
 autocmd BufWritePre * if index(blacklist, &ft) < 0 | %s/\s\+$//e
 
-set tabstop=4                   " how many columns a tab counts for
-set softtabstop=4               " use the same value as tabstop
-set shiftwidth=4                " use with reindent operations >> and <<
-set expandtab                   " expand tab with spaces, use <C-v><Tab> instead of <Tab>
-set shiftround                  " round spaces multiple of four
+" disable auto commenting when you insert blank line after a comment line
+set formatoptions-=c
+set formatoptions-=r
+set formatoptions-=o
 
-" set autoindent                  " auto-indent new lines, doesn't need if 'ft plugin on'
-" set smartindent
-
-autocmd FileType python setlocal noautoindent nosmartindent indentexpr=
-
-autocmd FileType tex setlocal noautoindent nosmartindent indentexpr=
-autocmd FileType tex setlocal tabstop=2 softtabstop=2 shiftwidth=2
+set tabstop=4                   " Number of spaces that a <Tab> in the file counts for
+set softtabstop=4               " Number of spaces that a <Tab> counts for while performing editing operations, like inserting a <Tab> or using <BS>
+set shiftwidth=4                " Used with indent commands like >> and <<
+set expandtab                   " In Insert mode: Use the appropriate number of spaces to insert a <Tab>
+set shiftround                  " Round indent to multiple of 'shiftwidth'.  Applies to > and < commands
+" set autoindent                  " Copy indent from current line when starting a new line
+" set smartindent                 " Do smart autoindenting when starting a new line. Normally 'autoindent' should also be on when using 'smartindent'
 
 set list                        " make whitespace characters visible
 set listchars=tab:>-            " show <Tab> like >---
@@ -49,23 +48,19 @@ set listchars=tab:>-            " show <Tab> like >---
 " use different other fillchars, see :h fillchars
 set fillchars+=stl:\ ,stlnc:\ ,vert:\ ,fold:\ ,diff:\     "
 
-" If you search for something containing uppercase characters,
-" it will do a case sensitive search; if you search for something
-" purely lowercase, it will do a case insensitive search.
-" You can use \c and \C to override this
-set ignorecase
-set smartcase
+set ignorecase                  " The case of normal letters is ignored
+set smartcase                   " Override the 'ignorecase' option if the search pattern contains upper case characters
 
-set hlsearch                    " search highlighting
-set incsearch                   " search while typing
+set hlsearch                    " When there is a previous search pattern, highlight all its matches
+set incsearch                   " While typing a search command, show where the pattern matches
 
-set number                      " show row numbers
-set numberwidth=6               " width of row numbers column
-" set cpoptions+=n                " use the number column for the text
-" set relativenumber              " use relative row numbers
-" set ruler                       " show status line like ruler
+set number                      " precede each line with its line number
+set numberwidth=6               " Minimal number of columns to use for the line number
+" set cpoptions+=n                " The column used for 'number' and 'relativenumber' will also be used for text of wrapped lines
+" set relativenumber              " Show the line number relative to the line with the cursor
+" set ruler                       " Show the line and column number of the cursor position
 
-" define user colors for status line customization.
+"  user colors
 hi User1 ctermfg=1              " red
 hi User2 ctermfg=2              " green
 hi User3 ctermfg=3              " yellow
@@ -75,6 +70,13 @@ hi User6 ctermfg=6              " blue
 hi User7 ctermfg=7              " light gray
 hi User8 ctermfg=8              " gray
 hi User9 ctermfg=9              " pink
+
+" highlight colorcolumn
+highlight colorcolumn ctermbg=7
+
+" highlight extra whitespaces on file opening
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 set statusline=                 " %f filename
 set statusline+=%7*\ %F\ %*     " %F full path
@@ -87,34 +89,19 @@ set statusline+=%L\ :\          " %L max line number
 set statusline+=%c%*\ \         " %c current column number
 set statusline+=%4*0x%04B%*     " 0x%04B character under cursor
 
-" set scrolljump=1                " jumping lines count when the cursor within
-set scrolloff=10                " scrolloff lines of the edge of the screen
+" set scrolljump=1                " Minimal number of lines to scroll when the cursor gets off the screen
+set scrolloff=10                " Minimal number of screen lines to keep above and below the cursor
 
-set mouse=c                     " enable mouse
-set winminheight=0
+set mouse=c                     " Enable the use of the mouse for Command-line mode
+set winminheight=0              " The minimal height of a window, when it's not the current window
 set winminwidth=0
-set wrap                        " disable auto line breaking after 80th column
-set textwidth=0                 " turn off physical file wrapping
-set wrapmargin=0                " turn off physical file wrapping
+set wrap                        " When on, lines longer than the width of the window will wrap and displaying continues on the next line
+set textwidth=0                 " Maximum width of text that is being inserted. A zero value disables this
+set wrapmargin=0                " Number of characters from the right window border where wrapping starts
 
-set laststatus=2                " always view status line
-set showcmd                     " view current commands
-" set cmdheight=2                 " command line height in lines
-" set comments=sl:/*,mb:\ *,elx:\ */
-
-" disable auto commenting when you insert blank line after a comment line
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" mark 81st column
-" autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=81
-highlight colorcolumn ctermbg=7
-" autocmd FileType tex autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=45
-" autocmd FileType python autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101
-" autocmd FileType cpp autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=101
-
-" highlight extra whitespaces on file opening
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$\| \+\ze\t/
+set laststatus=2                " When the last window will have a status line: always
+set showcmd                     " Show (partial) command in the last line of the screen
+" set cmdheight=2                 " Number of screen lines to use for the command-line
 
 " set shortmess=a                 " make vim messages shorter
 " You can replace all the tabs with spaces in the entire file with :%retab
@@ -147,28 +134,21 @@ set undolevels=512              " history size for undo command
 set undofile                    " save undo history to file
 set undodir=$HOME/.vim/undo/    " make sure to create this directory
 
-" spell
-set spelllang=en
-set spellfile=$HOME/.vim/spell/en.utf-8.add
 " for enabling spell checking use :set spell, for disabling :set spell!
 " to move cursor to the next misspelled word, enter ]s
 " to move cursor to the previous misspelled word, enter [s
 " to add word in spell file, enter zg
 " to show spelling suggestions, enter z=
+set spelllang=en
+set spellfile=$HOME/.vim/spell/en.utf-8.add
 
-set nobackup                    " disable backups for editing file
-set noswapfile                  " disable .swp files
-set hidden                      " keep invisible buffers loaded in memory
-set clipboard=unnamed           " for using anonymous register
-set noautochdir                 " doesn't change working directory to opened file
+set nobackup                    " Disable making a backup before overwriting a file
+set noswapfile                  " Commands that load new buffers do it without creating a swapfile
+set hidden                      " Keep invisible buffers loaded in memory
+set clipboard=unnamed           " using anonymous register
+set noautochdir                 " When on, Vim will change the current working directory whenever you open a file, switch buffers etc.
 
-let mapleader = ","             " set prefix key
-
-" disable arrow keys
-" noremap <Up>    <Nop>
-" noremap <Down>  <Nop>
-" noremap <Left>  <Nop>
-" noremap <Right> <Nop>
+let mapleader = ","             " Set prefix key
 
 cnoremap <c-p> <Up>
 cnoremap <c-n> <Down>
@@ -181,7 +161,7 @@ inoremap jj <Esc>
 " fast replace
 nmap \ :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
 
-" toggle paste to add in pasting text unmodified from other aplications
+" bind <F2> to paste text unmodified
 set pastetoggle=<F2>
 
 " bind <F3> to copy to X clipboard
@@ -193,20 +173,17 @@ nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS vim-plug plugin manager
 call plug#begin('~/.vim/plugged')
-" Plug 'matze/vim-move'                       " !
-Plug 'Xuyuanp/nerdtree-git-plugin'          " !
-Plug 'ap/vim-css-color'                     " !
-Plug 'yegappan/mru'                         " !
-Plug 'yegappan/bufselect'                   " !
-Plug 'scrooloose/nerdcommenter'             " !
-Plug 'preservim/nerdtree'                   " !
-Plug 'tpope/vim-surround'                   " !
-Plug 'alpertuna/vim-header'                 " !
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ap/vim-css-color'
+Plug 'yegappan/mru'
+Plug 'yegappan/bufselect'
+Plug 'scrooloose/nerdcommenter'
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-surround'
+Plug 'alpertuna/vim-header'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'junegunn/goyo.vim'                    " screen center
-
+Plug 'junegunn/goyo.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'xolox/vim-lua-ftplugin'
 Plug 'xolox/vim-misc'
@@ -214,11 +191,13 @@ Plug 'godlygeek/tabular'
 Plug 'MTDL9/vim-log-highlighting'
 
 " ! maybe
+" Plug 'matze/vim-move'                       " !
 " Plug 'tpope/vim-unimpaired'                 " ~
 " Plug 'justmao945/vim-clang'
 " Plug 'Shougo/neocomplete.vim'
 
 " ! default disabled
+" Plug 'SirVer/ultisnips'
 " Plug 'Valloric/YouCompleteMe'             " c++ recommended
 " Plug 'easymotion/vim-easymotion'
 " fswitch                                   " c++ recommended
@@ -439,6 +418,9 @@ let g:clang_vim_exec = '/usr/local/bin/vim'
 " " autocmd FileType cpp setlocal omnifunc=syntaxcomplete#Complete
 " " autocmd FileType c setlocal omnifunc=syntaxcomplete#Complete
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN goyo
+let g:goyo_width = 100
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN simplenote

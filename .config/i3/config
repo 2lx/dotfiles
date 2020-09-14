@@ -184,6 +184,7 @@ for_window [class="Keepassx2"] move to scratchpad
 
 for_window [class="^.*"] border none, title_format "<b> %class >> %title </b>"
 for_window [class="^URxvt$"] border pixel 2, floating enable
+for_window [class="^[Rr][Dd]esktop$"] border pixel 2, floating enable
 for_window [class="^Evince$"] border pixel 2
 
 ################################################################################
