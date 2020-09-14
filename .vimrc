@@ -1,26 +1,27 @@
+" to reload vimrc use :so $MYVIMRC
+
 syntax enable
 colorscheme my_theme
 " colorscheme cherryblossom
 " colorscheme monokai
-" to reload vimrc use :so $MYVIMRC
 
 " disable compatibility with vi. It should be placed before other settings
 set nocompatible
-set backspace=indent,eol,start  " bug if use compiled vim
+set backspace=indent,eol,start
 
 " filetype on
-filetype plugin indent on       " depend indent rules on file types
-runtime macros/matchit.vim      " enable if-else matching search by pressing %
+filetype plugin indent on       " indent rules depend on file types
+runtime macros/matchit.vim      " enable if-else match search by pressing %
 set fileformat=unix
+set wildmenu                    " popup candidates when searching
 
-set wildmenu                    " popup candidates in prompt
-" detect filetype
+" detecting filetype
 autocmd BufNewFile,BufRead *.xinitrc set filetype=sh
-autocmd BufRead,BufNewFile *mutt-* set filetype=mail
-autocmd BufNewFile,BufRead *.tex set filetype=tex
+autocmd BufNewFile,BufRead *mutt-*   set filetype=mail
+autocmd BufNewFile,BufRead *.tex     set filetype=tex
 
 " limit the width of text to 72 characters when it is a mail
-autocmd BufRead /tmp/mutt-* set textwidth=72
+autocmd BufNewFile,BufRead /tmp/mutt-* set textwidth=72
 
 " each time you save the file delete any trailing whitespace at the eol
 " if current file extension not in blacklist
@@ -87,7 +88,7 @@ set statusline+=%c%*\ \         " %c current column number
 set statusline+=%4*0x%04B%*     " 0x%04B character under cursor
 
 " set scrolljump=1                " jumping lines count when the cursor within
-" set scrolloff=5                 " scrolloff lines of the edge of the screen
+set scrolloff=10                " scrolloff lines of the edge of the screen
 
 set mouse=c                     " enable mouse
 set winminheight=0

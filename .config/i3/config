@@ -92,18 +92,25 @@ mode "resize" {
 
 ################################################################################
 # media key bindings
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-; exec pkill -RTMIN+1 i3blocks
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+; exec pkill -RTMIN+1 i3blocks
-bindsym XF86AudioMute exec amixer -D pulse sset Master 0%; exec pkill -RTMIN+1 i3blocks
+# bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-; exec pkill -RTMIN+1 i3blocks
+# bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+; exec pkill -RTMIN+1 i3blocks
+# bindsym XF86AudioMute exec amixer -D pulse sset Master 0%; exec pkill -RTMIN+1 i3blocks
 
-bindsym XF86AudioPlay exec cmus-remote -p
-bindsym XF86AudioPause exec cmus-remote -u
-bindsym XF86AudioStop exec cmus-remote -s
-bindsym XF86AudioNext exec cmus-remote -n
-bindsym XF86AudioPrev exec cmus-remote -r
+# simple setting may set different values on channels
+# bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
+# bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sget Master | sed -n 's/Front Left:.*\[\([0-9]*\)\%\].*/\1/p' | awk '{ system("amixer -D pulse sset Master " $1+5 "%") }'
+bindsym XF86AudioLowerVolume exec amixer -D pulse sget Master | sed -n 's/Front Left:.*\[\([0-9]*\)\%\].*/\1/p' | awk '{ system("amixer -D pulse sset Master " $1-5 "%") }'
+bindsym XF86AudioMute exec amixer -D pulse sset Master toggle
+
+bindsym XF86AudioPlay  exec deadbeef --play-pause
+bindsym XF86AudioPause exec deadbeef --pause
+bindsym XF86AudioStop  exec deadbeef --stop
+bindsym XF86AudioNext  exec deadbeef --next
+bindsym XF86AudioPrev  exec deadbeef --prev
 
 bindsym XF86MonBrightnessDown exec xbacklight -dec 25
-bindsym XF86MonBrightnessUp exec xbacklight -inc 25
+bindsym XF86MonBrightnessUp   exec xbacklight -inc 25
 
 # Thinkpad configuration
 # F4: XF86AudioMicMute
