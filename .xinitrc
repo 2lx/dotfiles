@@ -20,6 +20,13 @@ export PAGER=less
 export LC_ALL=en_US.UTF-8
 export GDK_CORE_DEVICE_EVENTS=1
 
+# set HWMON_PATH
+for i in /sys/class/hwmon/hwmon*/temp*_input; do
+    if [ "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*}))" = "coretemp: Core 0" ]; then
+        export HWMON_PATH="$i"
+    fi
+done
+
 # exec i3 -l # start i3 windows manager
 exec i3 -V >> /tmp/i3log-$(date +'%F-%k-%M-%S') 2>&1
 

@@ -37,7 +37,8 @@ module-margin-right = 1
 
 font-0 = Noto Mono:pixelsize=17:antialias=true;2
 font-1 = FontAwesome:style=Solid:pixelsize=17:antialias=true;2
-font-2 = FontAwesome:style=Solid:pixelsize=17:antialias=true;2
+font-2 = DejaVu Sans Mono for Powerline:style=Solid:pixelsize=17:antialias=true;2
+font-3 = DejaVu Sans Mono for Powerline:style=Bold:pixelsize=17:antialias=true;2
 
 modules-left = i3
 modules-right = xkeyboard audio battery temperature filesystem network date
@@ -50,38 +51,7 @@ tray-maxsize = 32
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-;
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:80:...%
-
-;
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 = num lock
-blacklist-1 = scroll lock
-format-spacing = 0
-
-label-layout  = "%icon%"
-layout-icon-0 = ru;%{B#8e44ad} RU %{B-}
-layout-icon-1 = us;%{B#1abc9c} US %{B-}
-
-label-layout-foreground    = ${colors.workspace_fg}
-label-layout-background    = ${colors.workspace_bg}
-label-indicator-background = ${colors.alert}
-label-indicator-foreground = ${colors.workspace_fg}
-label-indicator-padding    = 2
-label-indicator-margin     = 1
-
-;
-[module/filesystem]
-type = internal/fs
-interval = 1500
-mount-0 = /home
-
-label-mounted = %mountpoint% %percentage_used%%
-
-;
+;;
 [module/i3]
 type = internal/i3
 pin-workspaces = true
@@ -114,22 +84,65 @@ label-mode-background = ${colors.primary}
 label-focused = %icon%
 label-focused-foreground = ${colors.workspace_fg_alt}
 label-focused-background = ${colors.workspace_bg_alt}
-label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
 label-unfocused = %icon%
 label-unfocused-padding = 2
 
-label-visible = %index%
+label-visible = %icon%
 label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
-label-urgent = %index%
+label-urgent = %icon%
 label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+label-urgent-padding = ${self.label-focused-padding}
 
+;;
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:80:...%
 
+;;
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+format-font = 4
+format = <label-layout><label-indicator>
+format-spacing = 0
+
+label-layout = %icon%
+layout-icon-0 = ru;%{B#8e44ad} RU %{B-}
+layout-icon-1 = us;%{B#1abc9c} US %{B-}
+
+label-layout-foreground = ${colors.workspace_fg}
+label-layout-background = ${colors.workspace_bg}
+label-layout-padding = 0
+
+label-indicator-on-capslock = CAPS
+label-indicator-on-capslock-background = ${colors.alert}
+label-indicator-on-capslock-foreground = ${colors.workspace_fg}
+label-indicator-on-capslock-padding = 1
+
+;;
+[module/audio]
+type = internal/pulseaudio
+use-ui-max = false
+
+format-volume = <ramp-volume><label-volume>
+format-volume-font = 3
+
+format-muted = <label-muted>
+format-muted-font = 3
+
+label-muted =   0%
+label-volume = %percentage:3:3%%
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+;;
 [module/xbacklight]
 type = internal/backlight
 card = intel_backlight
@@ -137,85 +150,6 @@ card = intel_backlight
 format = <label>
 label =  %percentage%%
 label-foreground = ${colors.primary}
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = ${colors.workspace_fg}
-bar-indicator-font = 0
-bar-fill = ─
-bar-fill-font = 0
-bar-fill-foreground = ${colors.primary}
-bar-empty = ─
-bar-empty-font = 0
-bar-empty-foreground = ${colors.primary}
-
-
-[module/cpu]
-type = internal/cpu
-interval = 2
-
-format-prefix = ""
-format-prefix-foreground = ${colors.primary}
-format-underline = ${colors.primary}
-label = %percentage:2%%
-
-;
-[module/memory]
-type = internal/memory
-interval = 2
-format-prefix = ""
-format-prefix-foreground = ${colors.primary}
-format-underline = ${colors.primary}
-label = %percentage_used%%
-
-;
-[module/network]
-type = internal/network
-interface = wlp61s0
-interval = 3.0
-
-format-connected = <ramp-signal> <label-connected>
-format-disconnected = <label-disconnected>
-
-label-connected = " %signal%, %downspeed% %{B-}"
-label-disconnected = %ifname% disconnected
-label-disconnected-foreground = ${colors.alert}
-
-; a = worst
-ramp-signal-0 = %{B#e74c3c}😱
-ramp-signal-1 = %{B#e67e22}
-ramp-signal-2 = %{B#ecc46f}
-ramp-signal-3 = %{B#1abc9c}
-ramp-signal-4 = %{B#1abc9c}
-ramp-signal-5 = %{B#1abc9c}😈
-
-;
-[module/date]
-type = internal/date
-interval = 1
-
-date     =
-date-alt = "%Y-%m-%d "
-time     = "%H:%M"
-time-alt = "%H:%M:%S"
-
-format = <label>
-label = %date% %time%
-label-foreground = ${colors.workspace_fg}
-
-;;
-[module/audio]
-type = internal/pulseaudio
-format-volume = <ramp-volume> <label-volume>
-
-
-label-muted =  0%
-label-volume = %percentage%%
-click-right = alsamixer &
-
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
 
 ;;
 [module/battery]
@@ -225,15 +159,18 @@ adapter = ADP1
 full-at = 80
 poll-interval = 60
 
-format-charging           = <animation-charging> <label-charging>
-label-charging            = "%percentage%%"
+format-charging = <animation-charging><label-charging>
+format-charging-font = 3
+label-charging = "%percentage:3:3%%"
 label-charging-foreground = ${colors.green}
 
-format-discharging           = <ramp-capacity> <label-discharging>
-label-discharging            = "%percentage%%"
+format-discharging = <ramp-capacity><label-discharging>
+format-discharging-font = 3
+label-discharging = "%percentage:3:3%%"
 label-discharging-foreground = ${colors.yellow}
 
-format-full            = 
+format-full = 100%
+format-full-font = 3
 format-full-foreground = ${colors.workspace_fg}
 
 animation-charging-0 = 
@@ -250,62 +187,81 @@ ramp-capacity-3 = 
 ramp-capacity-4 = 
 ramp-capacity-foreground = ${colors.yellow}
 
-;
+;;
 [module/temperature]
 type = internal/temperature
 interval = 1
 thermal-zone = 0
-hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_input
+hwmon-path = ${env:HWMON_PATH}
 units = true
 
-base-temperature = 50
+base-temperature = 48
 warn-temperature = 60
 
-format = <label>
-label = %temperature-c%
+format = <ramp><label>
+format-font = 3
+label =  %temperature-c%%{F-}
 
 format-warn = <ramp><label-warn>
-label-warn = %temperature-c% %{F-}
+format-warn-font = 3
+label-warn =  %temperature-c%%{F-}
 
-ramp-0 = %{F#1abc9c}
+ramp-0 = %{F#eeeeee}
 ramp-1 = %{F#ecc46f}
 ramp-2 = %{F#e74c3c}
 
-[module/powermenu]
-type = custom/menu
-expand-right = true
-format-spacing = 1
+;;
+[module/filesystem]
+type = internal/fs
+interval = 1500
+mount-0 = /home
 
-label-open = O
-label-open-foreground = ${colors.alert}
-label-close = x
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.workspace_fg}
+format-mounted-font = 3
+label-mounted = %percentage_used:3:3%%
 
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
+;;
+[module/network]
+type = internal/network
+interface = wlp61s0
+interval = 3.0
 
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
+format-connected = <ramp-signal> <label-connected>
+format-disconnected = <label-disconnected>
+format-connected-font = 3
+format-disconnected-font = 3
 
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
+label-connected = %downspeed:8:8% %{B-}
+label-disconnected =  disconnected
+label-disconnected-foreground = ${colors.alert}
 
+ramp-signal-0 = %{B#e74c3c}😱
+ramp-signal-1 = %{B#e67e22}
+ramp-signal-2 = %{B#ecc46f}
+ramp-signal-3 = %{B#1abc9c}
+ramp-signal-4 = %{B#1abc9c}
+ramp-signal-5 = %{B#1abc9c}
+
+;;
+[module/date]
+type = internal/date
+interval = 1
+
+format = <label>
+format-font = 4
+label = %date%%time%
+label-alignment = center
+label-foreground = ${colors.workspace_fg}
+
+date =
+time = "%H:%M"
+date-alt = "%Y-%m-%d "
+time-alt = "%H:%M:%S"
+
+;;
 [settings]
 screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
-;pseudo-transparency =true
 
+;;
 [global/wm]
 margin-top = 5
 margin-bottom = 5
