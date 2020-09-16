@@ -136,7 +136,7 @@ hi Float            cterm=none ctermbg=none ctermfg=4
 " any variable name
 hi Identifier       cterm=none ctermbg=none ctermfg=15
 " function name
-hi Function         cterm=none ctermbg=none ctermfg=15
+hi Function         cterm=none ctermbg=none ctermfg=3
 
 " any statement
 hi Statement        cterm=none ctermbg=none ctermfg=3
