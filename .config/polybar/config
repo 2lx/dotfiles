@@ -41,7 +41,7 @@ font-2 = DejaVu Sans Mono for Powerline:style=Solid:pixelsize=17:antialias=true;
 font-3 = DejaVu Sans Mono for Powerline:style=Bold:pixelsize=17:antialias=true;2
 
 modules-left = i3
-modules-right = xkeyboard audio battery temperature filesystem network date
+modules-right = xkeyboard audio battery temperature filesystem network vpn date
 modules-center = xwindow
 
 tray-position = right
@@ -71,7 +71,7 @@ ws-icon-3 = "4;4 "
 ws-icon-4 = "5;5 "
 ws-icon-5 = "6;6 "
 ws-icon-6 = "7;7 "
-ws-icon-7 = "8;8 "
+ws-icon-7 = "8;8 "
 ws-icon-8 = "9;9 "
 ws-icon-9 = "0;0 "
 
@@ -234,12 +234,21 @@ label-connected = %downspeed:8:8% %{B-}
 label-disconnected =  disconnected
 label-disconnected-foreground = ${colors.alert}
 
-ramp-signal-0 = %{B#e74c3c}😱
+ramp-signal-0 = %{B#e74c3c}
 ramp-signal-1 = %{B#e67e22}
 ramp-signal-2 = %{B#ecc46f}
 ramp-signal-3 = %{B#1abc9c}
 ramp-signal-4 = %{B#1abc9c}
 ramp-signal-5 = %{B#1abc9c}
+
+;;
+[module/vpn]
+type = custom/script
+exec = echo text
+exec-if = pgrep -x openvpn
+interval = 5
+format = <label>
+label = 
 
 ;;
 [module/date]

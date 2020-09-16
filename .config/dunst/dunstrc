@@ -29,7 +29,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "600x6-4+150"
+    geometry = "600x6-0+150"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -41,7 +41,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 20
+    transparency = 10
 
     # The height of the entire notification.  If the height is smaller
     # than the font height and padding combined, it will be raised
@@ -157,11 +157,11 @@
 
     # Scale larger icons down to this size, set to 0 to disable
     min_icon_size = 0
-    max_icon_size = 40
+    max_icon_size = 48
 
     # Paths to default icons.
     # pacman -S gnome-icon-theme
-    # icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/actions/
+    icon_path = /usr/share/icons/gnome/48x48/status/:/usr/share/icons/gnome/48x48/actions/
 
     ### History ###
 
@@ -248,21 +248,21 @@
     background = "#22272cff"
     foreground = "#ffffffff"
     timeout = 8
-    icon =
+    icon = messagebox_info
     frame_color = "#eeeeee"
 
 [urgency_normal]
     background = "#22272cff"
     foreground = "#ffffffff"
     timeout = 10
-    icon =
+    icon = messagebox_warning
     frame_color = "#ecc46f"
 
 [urgency_critical]
     background = "#22272cff"
     foreground = "#ffffffff"
     timeout = 0
-    icon =
+    icon = messagebox_critical
     frame_color = "#ff6565"
 
 # vim: ft=cfg

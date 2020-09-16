@@ -20,6 +20,9 @@ autocmd BufNewFile,BufRead *.xinitrc set filetype=sh
 autocmd BufNewFile,BufRead *mutt-*   set filetype=mail
 autocmd BufNewFile,BufRead *.tex     set filetype=tex
 
+" reload .vimrc on save it
+autocmd bufwritepost .vimrc source $MYVIMRC
+
 " limit the width of text to 72 characters when it is a mail
 autocmd BufNewFile,BufRead /tmp/mutt-* set textwidth=72
 
@@ -266,6 +269,7 @@ let g:move_key_modifier = 'C'               " set Control as move-modifier key
 nnoremap <Leader>f :NERDTreeToggle<Enter>
 nnoremap <Leader>b :Bufselect<Enter>
 nnoremap <Leader>g :Goyo<Enter>
+nnoremap <Leader>v :tabe ~/.vimrc<Enter>
 
 " open NERDTree automatically when vim starts up
 " autocmd vimenter * NERDTree
