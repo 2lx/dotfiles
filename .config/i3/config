@@ -254,7 +254,7 @@ exec_always --no-startup-id feh --bg-fill ~/wall.png
 exec --no-startup-id xset dpms 600
 exec --no-startup-id dunst
 # exec_always compton -f
-exec_always --no-startup-id pkill picom; picom --no-use-damage
+exec_always --no-startup-id pkill picom; picom --no-use-damage --experimental-backends --config ~/.config/picom/config
 exec_always --no-startup-id pkill polybar; polybar -r main
 # exec --no-startup-id xautolock -time 6 -locker $HOME/.config/i3/lock.sh
 

@@ -29,7 +29,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "600x6-10+190"
+    geometry = "600x6-4+150"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -41,7 +41,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 1
+    transparency = 20
 
     # The height of the entire notification.  If the height is smaller
     # than the font height and padding combined, it will be raised
@@ -51,7 +51,7 @@
     # Draw a line of "separator_height" pixel height between two
     # notifications.
     # Set to 0 to disable.
-    separator_height = 3
+    separator_height = 0
 
     # Define a color for the separator.
     # possible values are:
@@ -59,7 +59,7 @@
     #  * foreground: use the same color as the foreground;
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
-    separator_color = "#ffffffaa"
+    separator_color = "#ffffffff"
 
     # Padding between text and separator.
     padding = 11
@@ -69,13 +69,13 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 0
+    frame_width = 5
 
     # Sort messages by urgency.
     sort = no
 
     # Defines color of the frame around the notification window.
-    frame_color = "#F6DC69"
+    frame_color = "#22272c"
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
@@ -160,7 +160,8 @@
     max_icon_size = 40
 
     # Paths to default icons.
-    icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    # pacman -S gnome-icon-theme
+    # icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/actions/
 
     ### History ###
 
@@ -194,7 +195,7 @@
     startup_notification = false
 
     verbosity = mesg
-    corner_radius = 7
+    corner_radius = 16
     ignore_dbusclose = false
 
     ### Legacy
@@ -213,8 +214,6 @@
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
 
-# Experimental features that may or may not work correctly. Do not expect them
-# to have a consistent behaviour across releases.
 [experimental]
     # Calculate the dpi to use on a per-monitor basis.
     # If this setting is enabled the Xft.dpi value will be ignored and instead
@@ -234,7 +233,7 @@
     close = ctrl+space
 
     # Close all notifications.
-    close_all = ctrl+shift+space
+    # close_all = ctrl+shift+space
 
     # Redisplay last message(s).
     # On the US keyboard layout "grave" is normally above TAB and left
@@ -246,83 +245,24 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#0c131faa"
+    background = "#22272cff"
     foreground = "#ffffffff"
-    timeout = 10
-    # Icon for notifications with low urgency, uncomment to enable
-    #icon = /path/to/icon
+    timeout = 8
+    icon =
+    frame_color = "#eeeeee"
 
 [urgency_normal]
-    background = "#0c131fbb"
+    background = "#22272cff"
     foreground = "#ffffffff"
     timeout = 10
-    # Icon for notifications with normal urgency, uncomment to enable
-    #icon = /path/to/icon
+    icon =
+    frame_color = "#ecc46f"
 
 [urgency_critical]
-    background = "#cc130ddd"
-    foreground = "#ffffff"
+    background = "#22272cff"
+    foreground = "#ffffffff"
     timeout = 0
-    # Icon for notifications with critical urgency, uncomment to enable
-    icon = abrt
+    icon =
+    frame_color = "#ff6565"
 
-# Every section that isn't one of the above is interpreted as a rule to
-# override settings for certain messages.
-# Messages can be matched by "appname", "summary", "body", "icon", "category",
-# "msg_urgency" and you can override the "timeout", "urgency", "foreground",
-# "background", "new_icon" and "format".
-# Shell-like globbing will get expanded.
-#
-# SCRIPTING
-# You can specify a script that gets run when the rule matches by
-# setting the "script" option.
-# The script will be called as follows:
-#   script appname summary body icon urgency
-# where urgency can be "LOW", "NORMAL" or "CRITICAL".
-#
-# NOTE: if you don't want a notification to be displayed, set the format
-# to "".
-# NOTE: It might be helpful to run dunst -print in a terminal in order
-# to find fitting options for rules.
-
-#[espeak]
-#    summary = "*"
-#    script = dunst_espeak.sh
-
-#[script-test]
-#    summary = "*script*"
-#    script = dunst_test.sh
-
-#[ignore]
-#    # This notification will not be displayed
-#    summary = "foobar"
-#    format = ""
-
-#[history-ignore]
-#    # This notification will not be saved in history
-#    summary = "foobar"
-#    history_ignore = yes
-
-#[signed_on]
-#    appname = Pidgin
-#    summary = "*signed on*"
-#    urgency = low
-#
-#[signed_off]
-#    appname = Pidgin
-#    summary = *signed off*
-#    urgency = low
-#
-#[says]
-#    appname = Pidgin
-#    summary = *says*
-#    urgency = critical
-#
-#[twitter]
-#    appname = Pidgin
-#    summary = *twitter.com*
-#    urgency = normal
-#
 # vim: ft=cfg

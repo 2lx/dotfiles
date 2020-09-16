@@ -29,9 +29,7 @@ let blacklist = ['rb', 'js', 'pl', 'make', 'text']
 autocmd BufWritePre * if index(blacklist, &ft) < 0 | %s/\s\+$//e
 
 " disable auto commenting when you insert blank line after a comment line
-set formatoptions-=c
-set formatoptions-=r
-set formatoptions-=o
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 set tabstop=4                   " Number of spaces that a <Tab> in the file counts for
 set softtabstop=4               " Number of spaces that a <Tab> counts for while performing editing operations, like inserting a <Tab> or using <BS>
