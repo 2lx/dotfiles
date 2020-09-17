@@ -4,7 +4,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export TIMEFMT=$'\t%E real,\t%U user,\t%S sys'
-export GPG_TTY=$(tty)
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -78,20 +77,9 @@ ZSH_TMUX_AUTOQUIT="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux chucknorris encode64)
+plugins=(git tmux encode64)
 
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-# export PATH=$PATH:$HOME/.vim/plugged/vim-live-latex-preview/bin
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 # disable ^s ^q
 stty -ixon
@@ -103,34 +91,11 @@ set -o ignoreeof
 # if $USER == $DEFAULT_USER then hide user:host names in prompt
 export DEFAULT_USER=$(whoami)
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# Completion for kitty
+autoload -Uz compinit
+compinit
+kitty + complete setup zsh | source /dev/stdin
 
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-source ~/.zshrc_aliases
-source ~/.zshrc_fg_shortcut
-
-# greetings
-# fortune -s | cowsay -f default
-# curl wttr.in/Mycity
-chuck_cow
-
+# source common files
+for f in ~/.shrc.d/*; do [ -f "$f" ] && source $f; done
+for f in ~/.shrc.d/zsh/*; do [ -f "$f" ] && source $f; done

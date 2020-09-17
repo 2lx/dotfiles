@@ -1,0 +1,42 @@
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+alias top='top -o %CPU'
+alias ll='ls -laFh --group-directories-first'
+alias zip='zip -9'
+alias gzip='gzip -9'
+alias bzip2='bzip2 -9'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias ra='ranger'
+
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+tmuxsession() {
+    local sessname="main"
+    [ ! -z $1 ] && sessname=$1
+    tmux -u new-session -A -s $sessname
+}
+
+alias cl++14="clang++ --std=c++14 -pthread -Wall -Wextra -O2"
+alias cl++17="clang++ --std=c++17 -pthread -Wall -Wextra -O2"
+alias g++14="g++ --std=c++14 -pthread -Wall -Wextra -O2"
+alias g++17="g++ --std=c++17 -pthread -Wall -Wextra -O2"
+alias c11="gcc --std=c11 -Wall -Wextra -O2"
+alias make='make -j$(nproc)'
+
+# alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias alert='notify-send --urgency=critical -i "$1"'
+
+# vim: ft=zsh

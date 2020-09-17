@@ -12,13 +12,15 @@ xset dpms 600                           # enable power save
 # export PATH=$PATH:
 # export MANPATH="/usr/loval/man:$MANPATH"
 # export GNUPGHOME=$HOME/.gnupg
+# export ARCHFLAGS="-arch x86_64"
 export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 export TERMINAL=/usr/bin/urxvt
 export VISUAL=/usr/local/bin/vim
 export EDITOR=/usr/local/bin/vim
 export PAGER=less
-export LC_ALL=en_US.UTF-8
 export GDK_CORE_DEVICE_EVENTS=1
+export SHELL=/usr/bin/zsh
 
 # set HWMON_PATH
 for i in /sys/class/hwmon/hwmon*/temp*_input; do
