@@ -29,7 +29,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "600x6-0+150"
+    geometry = "600x6-6+150"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -195,7 +195,7 @@
     startup_notification = false
 
     verbosity = mesg
-    corner_radius = 16
+    corner_radius = 0
     ignore_dbusclose = false
 
     ### Legacy

@@ -1,5 +1,9 @@
-*
 !Admin/xrandr_external_monitor.sh
 !Admin/xrandr_external_laptop.sh
 !.vimrc
 !Admin/etc
+!.config/alacritty
+!.config/dunst
+!.config/i3
+!.zshrc_aliases
+*
