@@ -140,6 +140,10 @@ blur-background-exclude = [
 opacity-rule = [
     "100:class_g = 'Dunst'",
     "100:name = 'Notification'",
+    "100:class_g = 'discord'",
+    "100:class_g = 'TelegramDesktop'",
+    "100:class_g = 'firefox'",
+    "100:class_g = 'Zulip'",
 ];
 
 #################################
