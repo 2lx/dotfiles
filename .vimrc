@@ -19,6 +19,7 @@ set wildmenu                    " Command-line completion operates in an enhance
 autocmd BufNewFile,BufRead *.xinitrc set filetype=sh
 autocmd BufNewFile,BufRead *mutt-*   set filetype=mail
 autocmd BufNewFile,BufRead *.tex     set filetype=tex
+autocmd BufNewFile,BufRead *.lalrpop set filetype=rust
 
 " reload .vimrc on save it
 autocmd bufwritepost .vimrc source $MYVIMRC
@@ -174,6 +175,7 @@ nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS vim-plug plugin manager
 call plug#begin('~/.vim/plugged')
+Plug 'andrejlevkovitch/vim-lua-format'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ap/vim-css-color'
 Plug 'yegappan/mru'
@@ -423,6 +425,11 @@ let g:clang_vim_exec = '/usr/local/bin/vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN goyo
 let g:goyo_width = 100
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN vim-lua-format
+autocmd FileType lua nnoremap <buffer> <Leader>] :call LuaFormat()<cr>
+" autocmd BufWrite *.lua call LuaFormat()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN simplenote
