@@ -1,6 +1,7 @@
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
-    BUFFER="fg"
+    # starts with space to disable saving in history
+    BUFFER=" fg"
     zle accept-line
   else
     zle push-input

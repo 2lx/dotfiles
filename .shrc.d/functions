@@ -1,0 +1,16 @@
+tmuxsession() {
+    local sessname="main"
+    [ ! -z $1 ] && sessname=$1
+    tmux -u new-session -A -s $sessname
+}
+
+swapfiles() {
+    tmp_name1=$(mktemp $(dirname -- $(realpath "$1"))/temp1.XXXXX) &&
+    tmp_name2=$(mktemp $(dirname -- $(realpath "$2"))/temp2.XXXXX) &&
+    mv -f -- "$1" "$tmp_name1" &&
+    mv -f -- "$2" "$tmp_name2" &&
+    mv -f -- "$tmp_name1" "$2" &&
+    mv -f -- "$tmp_name2" "$1"
+}
+
+# vim: ft=zsh

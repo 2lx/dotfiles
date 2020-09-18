@@ -15,7 +15,8 @@ xset dpms 600                           # enable power save
 # export ARCHFLAGS="-arch x86_64"
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export TERMINAL=/usr/bin/urxvt
+# export TERMINAL=/usr/bin/urxvt
+export TERMINAL=/usr/bin/alacritty
 export VISUAL=/usr/local/bin/vim
 export EDITOR=/usr/local/bin/vim
 export PAGER=less

@@ -166,8 +166,8 @@ hi PreCondit        cterm=none ctermbg=none ctermfg=9
 hi Type             cterm=none ctermbg=none ctermfg=3
 " static, register, volatile, etc.
 hi StorageClass     cterm=none ctermbg=none ctermfg=3
-" struct, union, unim, etc.
-hi Structure        cterm=none ctermbg=none ctermfg=3
+" struct, union, lua {} etc.
+hi Structure        cterm=none ctermbg=none ctermfg=1
 " a typedef
 hi Typedef          cterm=none ctermbg=none ctermfg=3
 

@@ -2,16 +2,6 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-alias top='top -o %CPU'
-alias ll='ls -laFh --group-directories-first'
-alias zip='zip -9'
-alias gzip='gzip -9'
-alias bzip2='bzip2 -9'
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-alias ra='ranger'
-
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
@@ -23,11 +13,19 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-tmuxsession() {
-    local sessname="main"
-    [ ! -z $1 ] && sessname=$1
-    tmux -u new-session -A -s $sessname
-}
+alias top='top -o %CPU'
+alias ll='ls -laFh --group-directories-first'
+alias zip='zip -9'
+alias gzip='gzip -9'
+alias bzip2='bzip2 -9'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias ra='ranger'
+alias lt='du -sh * | sort -h'
+alias gh='history | grep'
+
+alias vimrc="vim ~/.vimrc"
 
 alias cl++14="clang++ --std=c++14 -pthread -Wall -Wextra -O2"
 alias cl++17="clang++ --std=c++17 -pthread -Wall -Wextra -O2"

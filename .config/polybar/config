@@ -41,7 +41,7 @@ font-2 = DejaVu Sans Mono for Powerline:style=Solid:pixelsize=17:antialias=true;
 font-3 = DejaVu Sans Mono for Powerline:style=Bold:pixelsize=17:antialias=true;2
 
 modules-left = i3
-modules-right = xkeyboard audio battery temperature filesystem network vpn date
+modules-right = xkeyboard audio xbacklight battery temperature filesystem network vpn date
 modules-center = xwindow
 
 tray-position = right
@@ -146,17 +146,24 @@ ramp-volume-2 = 
 [module/xbacklight]
 type = internal/backlight
 card = intel_backlight
+enable-scroll = false
 
-format = <label>
-label =  %percentage%%
-label-foreground = ${colors.primary}
+format = <ramp><label>
+label = %percentage:3:3%%
+
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
 
 ;;
 [module/battery]
 type = internal/battery
 battery = BAT0
 adapter = ADP1
-full-at = 80
+full-at = 90
+interval = 3
 poll-interval = 60
 
 format-charging = <animation-charging><label-charging>
@@ -169,7 +176,7 @@ format-discharging-font = 3
 label-discharging = "%percentage:3:3%%"
 label-discharging-foreground = ${colors.yellow}
 
-format-full = 100%
+format-full =  100%
 format-full-font = 3
 format-full-foreground = ${colors.workspace_fg}
 
@@ -179,6 +186,7 @@ animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
 animation-charging-framerate = 750
+animation-charging-foreground = ${colors.green}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -274,3 +282,5 @@ screenchange-reload = true
 [global/wm]
 margin-top = 5
 margin-bottom = 5
+
+; vim: ft=cfg

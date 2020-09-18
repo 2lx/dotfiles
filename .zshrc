@@ -69,6 +69,9 @@ HIST_STAMPS="dd.mm.yyyy"
 ZSH_TMUX_AUTOCONNECT="true"
 ZSH_TMUX_AUTOQUIT="false"
 
+# don't store commands prefixed with a space
+setopt histignorespace
+
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
