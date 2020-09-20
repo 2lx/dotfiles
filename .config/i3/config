@@ -171,7 +171,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 assign [class="^Chromium$"] $ws3
 assign [class="^[Ff]irefox$"] $ws1
 assign [class="TelegramDesktop"] $ws4
-# assign [class="^Gimp$"] $ws5
+assign [class="^Gimp$"] $ws5
 assign [class="^[Tt]hunar$"] $ws5
 assign [class="^Tor Browser$"] $ws6
 assign [class="^Transmission-gtk"] $ws7
@@ -185,6 +185,8 @@ for_window [class="Keepassx2"] move to scratchpad
 
 for_window [class="^.*"] border none, title_format "<b> %class >> %title </b>"
 for_window [class="^URxvt$"] border pixel 2, floating enable
+for_window [class="^[Kk]itty$"] floating enable
+for_window [class="^[Aa]lacritty$"] floating enable
 for_window [class="^[Rr][Dd]esktop$"] border pixel 2, floating enable
 for_window [class="^Evince$"] border pixel 2
 
@@ -265,7 +267,7 @@ exec_always --no-startup-id pkill polybar; polybar -r main
 exec keepassx2 #launch in scratchpad
 # exec /usr/share/simplenote/simplenote
 # exec --no-startup-id i3-msg 'workspace $ws2;  exec urxvt -e mutt;'
-exec --no-startup-id i3-msg 'workspace $ws2;  exec urxvt -e tmux -u new-session -A -s main;'
+exec --no-startup-id i3-msg 'workspace $ws2;  exec i3-sensible-terminal;'
 # exec --no-startup-id i3-msg 'workspace $ws10; exec urxvt -e cmus;'
 # exec --no-startup-id i3-msg 'workspace $ws10; exec audacious;'
 
