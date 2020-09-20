@@ -28,7 +28,7 @@ map <S-F7> :make clean all<CR><CR>
 map <F12> :e %:p:s,.hpp$,.X123X,:s,.cpp$,.hpp,:s,.X123X$,.cpp,<CR>
 
 " Open Quickfix window automatically after running :make
-" augroup OpenQuickfixWindowAfterMake
-" autocmd QuickFixCmdPost [^l]* nested cwindow
-" autocmd QuickFixCmdPost    l* nested lwindow
-"  augroup END
+augroup OpenQuickfixWindowAfterMake
+    autocmd QuickFixCmdPost [^l]* nested cwindow
+    autocmd QuickFixCmdPost    l* nested lwindow
+augroup END

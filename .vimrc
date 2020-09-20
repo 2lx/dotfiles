@@ -271,7 +271,11 @@ let g:move_key_modifier = 'C'               " set Control as move-modifier key
 nnoremap <Leader>f :NERDTreeToggle<Enter>
 nnoremap <Leader>b :Bufselect<Enter>
 nnoremap <Leader>g :Goyo<Enter>
-nnoremap <Leader>v :tabe ~/.vimrc<Enter>
+nnoremap <Leader>` :tabe ~/.vimrc<Enter>
+" Open quickfix window if there are errors, close it otherwise
+nnoremap <Leader>q :cw<Enter>
+nnoremap <Leader>n :cn<Enter>
+nnoremap <Leader>p :cp<Enter>
 
 " open NERDTree automatically when vim starts up
 " autocmd vimenter * NERDTree
@@ -430,6 +434,10 @@ let g:goyo_width = 100
 " PLUGIN vim-lua-format
 autocmd FileType lua nnoremap <buffer> <Leader>] :call LuaFormat()<cr>
 " autocmd BufWrite *.lua call LuaFormat()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN rust-lang/rust.vim
+" let g:rustfmt_autosave = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN simplenote
