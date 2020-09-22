@@ -253,8 +253,9 @@ ramp-signal-5 = %{B#1abc9c}
 [module/vpn]
 type = custom/script
 exec = echo text
-exec-if = pgrep -x openvpn
-interval = 5
+; exec-if = pgrep -x openvpn
+exec-if = ping -c 1 192.168.236.162 | grep "1 received"
+interval = 60
 format = <label>
 label = 
 
