@@ -243,8 +243,8 @@ label-disconnected =  disconnected
 label-disconnected-foreground = ${colors.alert}
 
 ramp-signal-0 = %{B#e74c3c}
-ramp-signal-1 = %{B#e67e22}
-ramp-signal-2 = %{B#ecc46f}
+ramp-signal-1 = %{B#ecc46f}
+ramp-signal-2 = %{B#1abc9c}
 ramp-signal-3 = %{B#1abc9c}
 ramp-signal-4 = %{B#1abc9c}
 ramp-signal-5 = %{B#1abc9c}
