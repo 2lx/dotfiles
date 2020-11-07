@@ -1,3 +1,3 @@
 " hightlight 33rd column
-autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=33
+" autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=33
 

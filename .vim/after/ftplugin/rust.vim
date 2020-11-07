@@ -1,3 +1,5 @@
+autocmd BufEnter,BufWritePost ?* setlocal colorcolumn=121
+
 "command -nargs=* Cargo cex system("cargo <args>")
 " compiler rustc
 " setlocal makeprg=cargo build

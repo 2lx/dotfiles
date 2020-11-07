@@ -192,6 +192,7 @@ Plug 'xolox/vim-lua-ftplugin'
 Plug 'xolox/vim-misc'
 Plug 'godlygeek/tabular'
 Plug 'MTDL9/vim-log-highlighting'
+Plug '2lx/vim-luafmt'
 
 " ! maybe
 " Plug 'matze/vim-move'                       " !
