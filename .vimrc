@@ -24,7 +24,7 @@ autocmd BufNewFile,BufRead *.tex     set filetype=tex
 autocmd BufNewFile,BufRead *.lalrpop set filetype=rust
 
 " reload .vimrc on save it
-autocmd bufwritepost .vimrc source $MYVIMRC
+" autocmd bufwritepost .vimrc source $MYVIMRC
 
 " limit the width of text to 72 characters when it is a mail
 autocmd BufNewFile,BufRead /tmp/mutt-* set textwidth=72
@@ -64,34 +64,24 @@ set numberwidth=6               " Minimal number of columns to use for the line 
 " set relativenumber              " Show the line number relative to the line with the cursor
 " set ruler                       " Show the line and column number of the cursor position
 
-"  user colors
-hi User1 ctermfg=1              " red
-hi User2 ctermfg=2              " green
-hi User3 ctermfg=3              " yellow
-hi User4 ctermfg=4              " light blue
-hi User5 ctermfg=5              " purple
-hi User6 ctermfg=6              " blue
-hi User7 ctermfg=7              " light gray
-hi User8 ctermfg=8              " gray
-hi User9 ctermfg=9              " pink
-
-" highlight colorcolumn
-highlight colorcolumn ctermbg=7
-
 " highlight extra whitespaces on file opening
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 
-set statusline=                 " %f filename
-set statusline+=%8*\ %F\ %*     " %F full path
-set statusline+=%2*%m%*         " %m modified flag
-set statusline+=%=              " %= switch to right side
-set statusline+=%2*%{&ff}\      " %{&ff} file format
-set statusline+=%y%*\ -         " %y file type
-set statusline+=\ %5*%l\/       " %l current line number
-set statusline+=%L\ :\          " %L max line number
-set statusline+=%c%*\ \         " %c current column number
-set statusline+=%4*0x%04B%*     " 0x%04B character under cursor
+" :help statusline
+set statusline=                     " %f filename
+set statusline+=%8*\ %F\            " %F full path
+set statusline+=%h%m%r%*            " %h help flag, %m modified flag, %r read-only flag
+set statusline+=%=                  " %= switch to right side
+set statusline+=%2*%y               " %y file type (:help filetype)
+set statusline+=(%{strlen(&fenc)?&fenc:'none'}, " file encoding
+set statusline+=%{&ff})%*\            " %{&ff} file format
+set statusline+=\ %8*L\=%l\/        " %l current line number
+set statusline+=%L\                 " %L max line number
+set statusline+=C\=%c%*\ \          " %c current column number
+let &statusline.="%4*%2.2(%{matchstr(getline('.'), '\\%' . col('.') . 'c.')}%)"
+set statusline+=\=0x%04B(%03b)%*\   " %B character under cursor
+" set statusline+=%n                  "%n buffer number
 
 " set scrolljump=1                " Minimal number of lines to scroll when the cursor gets off the screen
 set scrolloff=10                " Minimal number of screen lines to keep above and below the cursor
@@ -296,9 +286,9 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 
 " let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
-" let NERDTreeMinimalUI = 1                   " set minimal NERDTree interface
-" let NERDTreeDirArrows = 1
-let NERDTreeShowHidden=1                    " enable to show hidden files
+let NERDTreeMinimalUI = 0                   " set minimal NERDTree interface
+let NERDTreeDirArrows = 1
+let NERDTreeShowHidden=0                    " enable to show hidden files
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-header
