@@ -145,6 +145,7 @@ opacity-rule = [
     "100:class_g = 'TelegramDesktop'",
     "100:class_g = 'firefox'",
     "100:class_g = 'Zulip'",
+    "100:class_g = 'Steam'",
 ];
 
 #################################

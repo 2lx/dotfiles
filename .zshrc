@@ -10,8 +10,8 @@ export TIMEFMT=$'\t%E real,\t%U user,\t%S sys'
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
-# ZSH_THEME="fishy"
+# ZSH_THEME="agnoster"
+ZSH_THEME="fishy"
 
 DISABLE_UPDATE_PROMPT="true"
 DISABLE_AUTO_UPDATE="true"

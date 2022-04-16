@@ -132,18 +132,91 @@ font:
 
 # Colors (Tomorrow Night)
 colors:
-  # Default colors
+# Theme: Pencil Light
   primary:
-    background: '#22272c'
-    foreground: '#f2f2f4'
+    background: '0xf1f1f1'
+    foreground: '0x424242'
+  normal:
+    black:   '0x212121'
+    red:     '0xc30771'
+    green:   '0x10a778'
+    yellow:  '0xa89c14'
+    blue:    '0x008ec4'
+    magenta: '0x523c79'
+    cyan:    '0x20a5ba'
+    white:   '0xe0e0e0'
+  bright:
+    black:   '0x212121'
+    red:     '0xfb007a'
+    green:   '0x5fd7af'
+    yellow:  '0xf3e430'
+    blue:    '0x20bbfc'
+    magenta: '0x6855de'
+    cyan:    '0x4fb8cc'
+    white:   '0xf1f1f1'
+# Theme: Atom One Light
+  # primary:
+  #   background: '0xf8f8f8'
+  #   foreground: '0x2a2b33'
+  # normal:
+  #   black:   '0x000000'
+  #   red:     '0xde3d35'
+  #   green:   '0x3e953a'
+  #   yellow:  '0xd2b67b'
+  #   blue:    '0x2f5af3'
+  #   magenta: '0xa00095'
+  #   cyan:    '0x3e953a'
+  #   white:   '0xbbbbbb'
+  # bright:
+  #   black:   '0x000000'
+  #   red:     '0xde3d35'
+  #   green:   '0x3e953a'
+  #   yellow:  '0xd2b67b'
+  #   blue:    '0x2f5af3'
+  #   magenta: '0xa00095'
+  #   cyan:    '0x3e953a'
+  #   white:   '0xffffff'
+# Theme: night_owlish_light
+  # bright:
+  #   black: '#7a8181'
+  #   blue: '#5ca7e4'
+  #   cyan: '#00c990'
+  #   green: '#49d0c5'
+  #   magenta: '#697098'
+  #   red: '#f76e6e'
+  #   white: '#989fb1'
+  #   yellow: '#dac26b'
+  # cursor:
+  #   cursor: '#403f53'
+  #   text: '#fbfbfb'
+  # normal:
+  #   black: '#011627'
+  #   blue: '#4876d6'
+  #   cyan: '#08916a'
+  #   green: '#2aa298'
+  #   magenta: '#403f53'
+  #   red: '#d3423e'
+  #   white: '#7a8181'
+  #   yellow: '#daaa01'
+  # primary:
+  #   background: '#ffffff'
+  #   foreground: '#403f53'
+  # selection:
+  #   background: '#f2f2f2'
+  #   text: '#403f53'
+
+  # Default colors
+  # primary:
+  #   background: '#22272c'
+  #   foreground: '#f2f2f4'
 
     # Bright and dim foreground colors
     #
     # The dimmed foreground color is calculated automatically if it is not present.
     # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
     # is `false`, the normal foreground color will be used.
-    #dim_foreground: '#828482'
-    #bright_foreground: '#eaeaea'
+    #dim_foreground: '#eaeaea'
+    #bright_foreground: '#828482'
 
   # Cursor colors
   #
@@ -190,26 +263,26 @@ colors:
     #  foreground: '#1d1f21'
 
   # Normal colors
-  normal:
-    black:   '#445158'
-    red:     '#ff6565'
-    green:   '#2cc46e'
-    yellow:  '#ecc46f'
-    blue:    '#6f97ec'
-    magenta: '#fa5477'
-    cyan:    '#64b9f2'
-    white:   '#d2d2d4'
+  # normal:
+  #   black:   '#5e6b72'
+  #   red:     '#ff7272'
+  #   green:   '#46de88'
+  #   yellow:  '#ffde89'
+  #   blue:    '#89b1ff'
+  #   magenta: '#ff6e91'
+  #   cyan:    '#71c6ff'
+  #   white:   '#f1f1f3'
 
   # Bright colors
-  bright:
-    black:   '#5e6b72'
-    red:     '#ff7272'
-    green:   '#46de88'
-    yellow:  '#ffde89'
-    blue:    '#89b1ff'
-    magenta: '#ff6e91'
-    cyan:    '#71c6ff'
-    white:   '#f1f1f3'
+  # bright:
+  #   black:   '#445158'
+  #   red:     '#ff6565'
+  #   green:   '#2cc46e'
+  #   yellow:  '#ecc46f'
+  #   blue:    '#6f97ec'
+  #   magenta: '#fa5477'
+  #   cyan:    '#64b9f2'
+  #   white:   '#d2d2d4'
 
   # Dim colors
   #

@@ -2,7 +2,9 @@
 " :h option - to show help
 
 syntax enable
-colorscheme my_theme
+" colorscheme eclipse
+" colorscheme my_theme
+colorscheme my_theme_light
 " colorscheme cherryblossom
 " colorscheme monokai
 
@@ -81,12 +83,12 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 
 set statusline=                 " %f filename
-set statusline+=%7*\ %F\ %*     " %F full path
+set statusline+=%8*\ %F\ %*     " %F full path
 set statusline+=%2*%m%*         " %m modified flag
 set statusline+=%=              " %= switch to right side
-set statusline+=%9*%{&ff}\      " %{&ff} file format
+set statusline+=%2*%{&ff}\      " %{&ff} file format
 set statusline+=%y%*\ -         " %y file type
-set statusline+=\ %3*%l\/       " %l current line number
+set statusline+=\ %5*%l\/       " %l current line number
 set statusline+=%L\ :\          " %L max line number
 set statusline+=%c%*\ \         " %c current column number
 set statusline+=%4*0x%04B%*     " 0x%04B character under cursor
