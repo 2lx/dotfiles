@@ -13,8 +13,7 @@ floating_modifier $mod
 
 ################################################################################
 # keybindings
-# bindsym $mod+Shift+Return exec i3-sensible-terminal
-# bindsym $mod+Return exec i3-sensible-terminal -e tmux -u new-session -A -s main
+bindsym $mod+Shift+Return exec i3-sensible-terminal -e tmux -u new-session -A -s main
 bindsym $mod+Return exec i3-sensible-terminal
 
 bindsym $mod+Shift+Tab workspace prev
@@ -267,7 +266,8 @@ exec_always --no-startup-id pkill polybar; polybar -r main
 exec keepassx2 #launch in scratchpad
 # exec /usr/share/simplenote/simplenote
 # exec --no-startup-id i3-msg 'workspace $ws2;  exec urxvt -e mutt;'
-exec --no-startup-id i3-msg 'workspace $ws2;  exec i3-sensible-terminal;'
+# exec --no-startup-id i3-msg 'workspace $ws2; exec i3-sensible-terminal;'
+exec --no-startup-id i3-msg 'workspace $ws2; exec i3-sensible-terminal -e tmux -u new-session -A -s main;'
 # exec --no-startup-id i3-msg 'workspace $ws10; exec urxvt -e cmus;'
 # exec --no-startup-id i3-msg 'workspace $ws10; exec audacious;'
 

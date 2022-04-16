@@ -162,7 +162,7 @@ ramp-4 = 🌑
 type = internal/battery
 battery = BAT0
 adapter = ADP1
-full-at = 90
+full-at = 95
 interval = 3
 poll-interval = 60
 
