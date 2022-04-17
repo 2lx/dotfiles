@@ -149,6 +149,7 @@ let mapleader = ","             " Set prefix key
 
 cnoremap <c-p> <Up>
 cnoremap <c-n> <Down>
+nnoremap <leader><space> :nohlsearch<CR> " disable search results highlighting
 
 map :Q :q
 map :W :w
@@ -170,7 +171,6 @@ nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS vim-plug plugin manager
 call plug#begin('~/.vim/plugged')
-Plug 'andrejlevkovitch/vim-lua-format'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ap/vim-css-color'
 Plug 'yegappan/mru'
@@ -178,7 +178,6 @@ Plug 'yegappan/bufselect'
 Plug 'scrooloose/nerdcommenter'
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-surround'
-Plug 'alpertuna/vim-header'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'honza/vim-snippets'
 Plug 'junegunn/goyo.vim'
@@ -213,18 +212,18 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'mrtazz/simplenote.vim'              " ~
 " Plug 'tpope/vim-abolish'
-" Plug 'vim-scripts/DoxygenToolkit.vim'
 " Plug 'tmux-plugins/vim-tmux  '              " --
 
 call plug#end()
 
+" folding keys: (zo) - open, (zc) - close
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN jackguo380/vim-lsp-cxx-highlight
-
+" PLUGIN vim-lsp-cxx-highlight {{{
 let g:lsp_cxx_hl_light_bg=1
+" }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN coc.nvim
+" PLUGIN coc.nvim {{{
 " https://codevion.github.io/#!vim/coc.md
 " https://www.youtube.com/watch?v=ViHgyApE9zM
 
@@ -374,6 +373,7 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+" }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN tabular
@@ -381,21 +381,24 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " :help tabular
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN vim-lua-ftplugin
+" PLUGIN vim-lua-ftplugin {{{
 " let g:lua_complete_omni = 0
+" }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN ultisnips
+" PLUGIN ultisnips {{{
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN vim-latex-live-preview
+" PLUGIN vim-latex-live-preview {{{
 " use LLPStartPreview
 " let g:livepreview_previewer = 'mupdf'
 " set updatetime=100000000
+" }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-surround
@@ -411,22 +414,20 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " PLUGIN vim-move
 " use <C-k> to move current line/selection up
 " use <C-j> to move current line/selection up
-
+" {{{
 let g:move_key_modifier = 'C'               " set Control as move-modifier key
+" }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-unimpaired
 " use :help unimpaired to know hotkeys
-" use :q
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN nerdtree
-" use mapleader+f to open the tree buffer
+" use <leader>f to open the tree buffer
 " then use ? for help
-
+" {{{
 nnoremap <Leader>f :NERDTreeToggle<Enter>
-nnoremap <Leader>b :Bufselect<Enter>
-nnoremap <Leader>g :Goyo<Enter>
 nnoremap <Leader>` :tabe ~/.vimrc<Enter>
 " Open quickfix window if there are errors, close it otherwise
 nnoremap <Leader>q :cw<Enter>
@@ -452,23 +453,7 @@ let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 0                   " set minimal NERDTree interface
 let NERDTreeDirArrows = 1
 let NERDTreeShowHidden=0                    " enable to show hidden files
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN vim-header
-" use :AddHeader to insert default author information under cursor
-" use :AddMinHeader to insert minified version of author information
-" use :AddMitLicense, :AddApacheLicense, :AddGNULicense for add license
-
-let g:header_field_filename         = 1             " enable to add filename in header
-let g:header_field_author           = 'Alexey Minchakov'
-let g:header_field_author_email     = 'lexaaim@gmail.com'
-let g:header_field_timestamp        = 1            " enable to add creating date line
-let g:header_field_timestamp_format = '%d.%m.%Y'
-let g:header_auto_add_header        = 0            " disable to add header automatically
-
-
-let g:licenses_copyright_holders_name = 'Alexey Minchakov <lexaaim@gmail.com>'
-let g:licenses_default_commands = ['gpl', 'mit' ]
+" }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-nerdcommenter
@@ -486,6 +471,7 @@ let g:licenses_default_commands = ['gpl', 'mit' ]
 " use ,cA  to adds comment delimiters to the end of line and goes into insert mode between them.
 "!use ,ca  to switche to the alternative set of delimiters.
 " use ,cu  to uncomment the selected line(s).
+" {{{
 
 " add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -502,10 +488,13 @@ let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 let g:NERDCommentEmptyLines = 1
 " enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
+" }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-clang
 " require install ctags(?) clang python tcl perl lua
+" use :h clang.txt for help
+" {{{
 " download vim sources
 " ./configure --with-features=huge --enable-gui=auto --enable-luainterp=yes
 "     --enable-fontset --enable-python3interp
@@ -515,7 +504,6 @@ let g:NERDTrimTrailingWhitespace = 1
 "
 " make
 " sudo make install
-" use :h clang.txt for help
 
 let g:clang_auto = 0                        " disable to complete automatically
 
@@ -528,11 +516,13 @@ let g:clang_cpp_completeopt = 'longest,menuone'
 let g:clang_diagsopt = 'rightbelow:6'
 let g:clang_sh_exec = 'zsh'
 let g:clang_vim_exec = '/usr/local/bin/vim'
+" }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN neocomplete
 " need vim (+lua) settings (how to compile with it see above)
 " use :h neocomplete for completely help
+" {{{
 
 " let g:neocomplete#enable_at_startup = 1     " neocomplete gets started automatically
 " " the number of the input completion at the time of key input automatically
@@ -581,36 +571,29 @@ let g:clang_vim_exec = '/usr/local/bin/vim'
 " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " " autocmd FileType cpp setlocal omnifunc=syntaxcomplete#Complete
 " " autocmd FileType c setlocal omnifunc=syntaxcomplete#Complete
+" }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN goyo
+" PLUGIN goyo {{{
 let g:goyo_width = 100
+nnoremap <Leader>g :Goyo<Enter>
+" }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN vim-lua-format
-autocmd FileType lua nnoremap <buffer> <Leader>] :call LuaFormat()<cr>
-" autocmd BufWrite *.lua call LuaFormat()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN rust-lang/rust.vim
+" PLUGIN rust-lang/rust.vim {{{
 " let g:rustfmt_autosave = 1
+" }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN simplenote
+" PLUGIN simplenote {{{
 " source ~/.simplenoterc
 " let g:SimplenoteSortOrder = "title"
 " nnoremap <Leader>s :SimplenoteList<Enter>
+" }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN Doxygen
-" map <F1> :Dox<CR>
+" PLUGIN bufselect {{{
+nnoremap <Leader>b :Bufselect<Enter>
+" }}}
 
-" let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
-" let g:DoxygenToolkit_paramTag_pre="@Param "
-" let g:DoxygenToolkit_returnTag="@Returns   "
-" let g:DoxygenToolkit_blockHeader="-----------------------------------------------------------------------"
-" let g:DoxygenToolkit_blockFooter="-----------------------------------------------------------------------"
-" let g:DoxygenToolkit_authorName="Alexey Minchakov <lexaaim@gmail.com>"
-" let g:DoxygenToolkit_licenseTag="WTFPLv2 License"
-" let g:DoxygenToolkit_versionString="1.0"
-
+" vim: set fdm=marker fmr={{{,}}} fdl=0 :
