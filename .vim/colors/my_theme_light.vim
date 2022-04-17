@@ -280,7 +280,7 @@ hi Float            cterm=none      ctermbg=none ctermfg=1
 hi Identifier       cterm=none      ctermbg=none ctermfg=5
 
 " function name (also: methods for classes)
-hi Function         cterm=none      ctermbg=none ctermfg=3
+hi Function         cterm=none      ctermbg=none ctermfg=5
 
 " any statement
 hi Statement        cterm=none      ctermbg=none ctermfg=3
@@ -360,4 +360,17 @@ hi Error            cterm=none      ctermbg=9    ctermfg=15
 " anything that needs extra atterntion; mostly the
 " keywords TODO, FIXME and XXX
 hi Todo             cterm=bold      ctermbg=7    ctermfg=9
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin
+" :help vim-lsp-cxx-highlight
+
+" cpp enum constant
+hi LspCxxHlGroupEnumConstant cterm=none ctermbg=none ctermfg=1
+
+" cpp namespace
+hi LspCxxHlGroupNamespace cterm=bold ctermbg=none ctermfg=3
+
+" cpp class members
+hi LspCxxHlGroupMemberVariable cterm=none ctermbg=none ctermfg=8
 
