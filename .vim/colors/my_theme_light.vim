@@ -135,13 +135,13 @@ hi Normal           cterm=none      ctermbg=none ctermfg=0
 hi Pmenu            cterm=none      ctermbg=15   ctermfg=0
 
 " Popup menu: selected item
-hi PmenuSel         cterm=none      ctermbg=12   ctermfg=0
+hi PmenuSel         cterm=none      ctermbg=117  ctermfg=0
 
 " Popup menu: scrollbar
 hi PmenuSbar        cterm=none      ctermbg=15   ctermfg=0
 
 " Popup menu: thumb of the scrollbar
-hi PmenuThumb       cterm=none      ctermbg=12   ctermfg=0
+hi PmenuThumb       cterm=none      ctermbg=117  ctermfg=0
 
 " |hit-enter| prompt and yes/no questions
 hi Question         cterm=none      ctermbg=none ctermfg=5
@@ -179,7 +179,7 @@ hi SpellLocal       cterm=none      ctermbg=11   ctermfg=0
 hi SpellRare        cterm=none      ctermbg=11   ctermfg=0
 
 " status line of current window
-hi StatusLine       cterm=none      ctermbg=12   ctermfg=none
+hi StatusLine       cterm=none      ctermbg=117  ctermfg=none
 
 " status lines of not-current windows
 " Note: if this is equal to "StatusLine" Vim will use "^^^" in
@@ -187,7 +187,7 @@ hi StatusLine       cterm=none      ctermbg=12   ctermfg=none
 hi StatusLineNC     cterm=none      ctermbg=7    ctermfg=none
 
 " status line of current window, if it is a |terminal| window.
-hi StatusLineTerm   cterm=none      ctermbg=12   ctermfg=none
+hi StatusLineTerm   cterm=none      ctermbg=117  ctermfg=none
 
 " status lines of not-current windows that is a |terminal|
 " window.
@@ -200,26 +200,26 @@ hi TabLine          cterm=none      ctermbg=none ctermfg=0
 hi TabLineFill      cterm=none      ctermbg=none ctermfg=none
 
 " tab pages line, active tab page label
-hi TabLineSel       cterm=none      ctermbg=12   ctermfg=0
+hi TabLineSel       cterm=none      ctermbg=117  ctermfg=0
 
 " |terminal| window (see |terminal-size-color|)
-hi Terminal         cterm=none      ctermbg=12   ctermfg=0
+hi Terminal         cterm=none      ctermbg=117  ctermfg=0
 
 " titles for output from ":sel all", ":autocmd" etc.
 hi Title            cterm=none      ctermbg=none ctermfg=4
 
 " Visual mode selection
-hi Visual           cterm=none      ctermbg=12   ctermfg=0
+hi Visual           cterm=none      ctermbg=117  ctermfg=0
 
 " Visual mode selection when vim is "Not Owning the Selection".
 " Only X11 Gui's |gui-x11| and |xterm-clipboard| supports this.
-hi VisualNOS        cterm=none      ctermbg=12   ctermfg=0
+hi VisualNOS        cterm=none      ctermbg=117  ctermfg=0
 
 " warning messages
 hi WarningMsg       cterm=bold      ctermbg=11   ctermfg=0
 
 " current match in 'wildmenu' completion
-hi WildMenu         cterm=none      ctermbg=12   ctermfg=0
+hi WildMenu         cterm=none      ctermbg=117  ctermfg=0
 
 " The 'statusline' syntax allows the use of 9 different highlights in the
 " statusline and ruler (via 'rulerformat').  The names are User1 to User9.
@@ -228,15 +228,15 @@ hi WildMenu         cterm=none      ctermbg=12   ctermfg=0
 " scrollbars and tooltips.  They don't have defaults.  This doesn't work for the
 " Win32 GUI.  Only three highlight arguments have any effect here: font, guibg,
 " and guifg.
-hi User1            cterm=none      ctermbg=12   ctermfg=1
-hi User2            cterm=none      ctermbg=12   ctermfg=2
-hi User3            cterm=none      ctermbg=12   ctermfg=3
-hi User4            cterm=none      ctermbg=12   ctermfg=4
-hi User5            cterm=none      ctermbg=12   ctermfg=5
-hi User6            cterm=none      ctermbg=12   ctermfg=6
-hi User7            cterm=none      ctermbg=12   ctermfg=7
-hi User8            cterm=none      ctermbg=12   ctermfg=0
-hi User9            cterm=none      ctermbg=12   ctermfg=9
+hi User1            cterm=none      ctermbg=117  ctermfg=1
+hi User2            cterm=none      ctermbg=117  ctermfg=2
+hi User3            cterm=none      ctermbg=117  ctermfg=3
+hi User4            cterm=none      ctermbg=117  ctermfg=4
+hi User5            cterm=none      ctermbg=117  ctermfg=5
+hi User6            cterm=none      ctermbg=117  ctermfg=6
+hi User7            cterm=none      ctermbg=117  ctermfg=7
+hi User8            cterm=none      ctermbg=117  ctermfg=0
+hi User9            cterm=none      ctermbg=117  ctermfg=9
 
 " Current font, background and foreground colors of the menus.
 " Also used for the toolbar.
@@ -262,10 +262,10 @@ hi Comment          cterm=none      ctermbg=15   ctermfg=8
 hi Constant         cterm=none      ctermbg=none ctermfg=4
 
 " a string constant: "this is a string"
-hi String           cterm=none      ctermbg=14   ctermfg=4
+hi String           cterm=none      ctermbg=195  ctermfg=4
 
 " a character constant: 'c', '\n'
-hi Character        cterm=bold      ctermbg=14   ctermfg=4
+hi Character        cterm=bold      ctermbg=195  ctermfg=4
 
 " a number constant: 234, 0xff
 hi Number           cterm=none      ctermbg=none ctermfg=1
@@ -366,10 +366,10 @@ hi Todo             cterm=bold      ctermbg=7    ctermfg=9
 " :help vim-lsp-cxx-highlight
 
 " cpp enum constant
-hi LspCxxHlGroupEnumConstant cterm=none ctermbg=none ctermfg=1
+hi LspCxxHlGroupEnumConstant   cterm=none ctermbg=none ctermfg=1
 
 " cpp namespace
-hi LspCxxHlGroupNamespace cterm=bold ctermbg=none ctermfg=3
+hi LspCxxHlGroupNamespace      cterm=bold ctermbg=none ctermfg=3
 
 " cpp class members
 hi LspCxxHlGroupMemberVariable cterm=none ctermbg=none ctermfg=8
