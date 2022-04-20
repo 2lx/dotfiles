@@ -143,7 +143,7 @@ colors:
     green:     '#10a778'
     magenta:   '#7c37c4'
     red:       '#f80245'
-    white:     '#e0e0e0'
+    white:     '#c7c9cb'
     yellow:    '#b57614'
   bright:
     black:     '#828482'
