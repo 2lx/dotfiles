@@ -22,6 +22,8 @@ autocmd BufNewFile,BufRead *.xinitrc set filetype=sh
 autocmd BufNewFile,BufRead *mutt-*   set filetype=mail
 autocmd BufNewFile,BufRead *.tex     set filetype=tex
 autocmd BufNewFile,BufRead *.lalrpop set filetype=rust
+autocmd BufRead,BufNewFile * setlocal signcolumn=yes
+autocmd FileType tagbar,nerdtree setlocal signcolumn=no
 
 " reload .vimrc on save it
 " autocmd bufwritepost .vimrc source $MYVIMRC
@@ -187,6 +189,7 @@ Plug 'xolox/vim-misc'
 Plug 'godlygeek/tabular'
 Plug 'MTDL9/vim-log-highlighting'
 Plug '2lx/vim-luafmt'
+Plug 'airblade/vim-gitgutter'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
@@ -220,6 +223,14 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-lsp-cxx-highlight {{{
 let g:lsp_cxx_hl_light_bg=1
+" }}}
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN gitgutter {{{
+nmap ) <Plug>(GitGutterNextHunk)
+nmap ( <Plug>(GitGutterPrevHunk)
+let g:gitgutter_enabled = 1
+let g:gitgutter_map_keys = 0
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

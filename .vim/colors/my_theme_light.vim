@@ -374,3 +374,7 @@ hi LspCxxHlGroupNamespace      cterm=bold ctermbg=none ctermfg=3
 " cpp class members
 hi LspCxxHlGroupMemberVariable cterm=none ctermbg=none ctermfg=8
 
+" :help gitgutter-highlights
+hi GitGutterAdd     cterm=none      ctermbg=none ctermfg=2
+hi GitGutterChange  cterm=none      ctermbg=none ctermfg=3
+hi GitGutterDelete  cterm=none      ctermbg=none ctermfg=1
