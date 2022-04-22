@@ -255,6 +255,7 @@ bindsym $mod+shift+b border toggle
 exec_always --no-startup-id feh --bg-fill ~/wall.jpg
 exec --no-startup-id xset dpms 600
 exec --no-startup-id dunst
+exec --no-startup-id blueman-applet
 # exec_always compton -f
 exec_always --no-startup-id pkill picom; picom --no-use-damage --experimental-backends --config ~/.config/picom/config
 exec_always --no-startup-id pkill polybar; polybar -r main
@@ -266,8 +267,8 @@ exec_always --no-startup-id pkill polybar; polybar -r main
 exec keepassx2 #launch in scratchpad
 # exec /usr/share/simplenote/simplenote
 # exec --no-startup-id i3-msg 'workspace $ws2;  exec urxvt -e mutt;'
-exec --no-startup-id i3-msg 'workspace $ws2; exec i3-sensible-terminal;'
-# exec --no-startup-id i3-msg 'workspace $ws2; exec i3-sensible-terminal -e tmux -u new-session -A -s main;'
+# exec --no-startup-id i3-msg 'workspace $ws2; exec i3-sensible-terminal;'
+exec --no-startup-id i3-msg 'workspace $ws2; exec i3-sensible-terminal -e tmux -u new-session -A -s main;'
 # exec --no-startup-id i3-msg 'workspace $ws10; exec urxvt -e cmus;'
 # exec --no-startup-id i3-msg 'workspace $ws10; exec audacious;'
-
+exec --no-startup-id i3-msg 'workspace $ws7; exec thunderbird;'
