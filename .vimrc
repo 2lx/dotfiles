@@ -22,8 +22,8 @@ autocmd BufNewFile,BufRead *.xinitrc set filetype=sh
 autocmd BufNewFile,BufRead *mutt-*   set filetype=mail
 autocmd BufNewFile,BufRead *.tex     set filetype=tex
 autocmd BufNewFile,BufRead *.lalrpop set filetype=rust
-autocmd BufRead,BufNewFile * setlocal signcolumn=yes
-autocmd FileType tagbar,nerdtree setlocal signcolumn=no
+autocmd BufRead,BufNewFile *         set signcolumn=yes
+autocmd FileType tagbar,nerdtree     set signcolumn=no
 
 " reload .vimrc on save it
 " autocmd bufwritepost .vimrc source $MYVIMRC
@@ -73,16 +73,16 @@ match ExtraWhitespace /\s\+$\| \+\ze\t/
 " :help statusline
 set statusline=                     " %f filename
 set statusline+=%8*\ %F\            " %F full path
-set statusline+=%h%m%r%*            " %h help flag, %m modified flag, %r read-only flag
+set statusline+=%h%m%r              " %h help flag, %m modified flag, %r read-only flag
 set statusline+=%=                  " %= switch to right side
-set statusline+=%2*%y               " %y file type (:help filetype)
-set statusline+=(%{strlen(&fenc)?&fenc:'none'}, " file encoding
-set statusline+=%{&ff})%*\            " %{&ff} file format
-set statusline+=\ %8*L\=%l\/        " %l current line number
+set statusline+=%y\                 " %y file type (:help filetype)
+set statusline+=%{strlen(&fenc)?&fenc:'none'}, " file encoding
+set statusline+=%{&ff}\ \|\         " %{&ff} file format
+set statusline+=L\=%l\/             " %l current line number
 set statusline+=%L\                 " %L max line number
-set statusline+=C\=%c%*\ \          " %c current column number
-let &statusline.="%4*%2.2(%{matchstr(getline('.'), '\\%' . col('.') . 'c.')}%)"
-set statusline+=\=0x%04B(%03b)%*\   " %B character under cursor
+set statusline+=C\=%c\ \|\          " %c current column number
+let &statusline.="%2.2(%{matchstr(getline('.'), '\\%' . col('.') . 'c.')}%)"
+set statusline+=\=0x%04B(%03b)\     " %B character under cursor
 " set statusline+=%n                  "%n buffer number
 
 " set scrolljump=1                " Minimal number of lines to scroll when the cursor gets off the screen
@@ -129,7 +129,7 @@ set showmatch                   " highlight matching braces
 
 set history=128                 " history size for Ex mode (:command)
 set undolevels=512              " history size for undo command
-set undofile                    " save undo history to file
+" set undofile                    " save undo history to file
 set undodir=$HOME/.vim/undo/    " make sure to create this directory
 
 " for enabling spell checking use :set spell, for disabling :set spell!
@@ -153,6 +153,12 @@ cnoremap <c-p> <Up>
 cnoremap <c-n> <Down>
 nnoremap <leader><space> :nohlsearch<CR> " disable search results highlighting
 
+" replace the 'matze/vim-move' plugin
+" inoremap <C-j> <Esc>:m .+1<CR>==gi
+" inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
 map :Q :q
 map :W :w
 
@@ -173,50 +179,34 @@ nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS vim-plug plugin manager
 call plug#begin('~/.vim/plugged')
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ap/vim-css-color'
-Plug 'yegappan/mru'
-Plug 'yegappan/bufselect'
-Plug 'scrooloose/nerdcommenter'
 Plug 'preservim/nerdtree'
-Plug 'tpope/vim-surround'
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug 'honza/vim-snippets'
-Plug 'junegunn/goyo.vim'
-Plug 'rust-lang/rust.vim'
-Plug 'xolox/vim-lua-ftplugin'
-Plug 'xolox/vim-misc'
-Plug 'godlygeek/tabular'
-Plug 'MTDL9/vim-log-highlighting'
-Plug '2lx/vim-luafmt'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdcommenter'     " :help NERDCommenterFunctionalitySummary
+Plug 'ap/vim-css-color'
+Plug 'yegappan/mru'                 " :MRU
+Plug 'yegappan/bufselect'
+Plug 'tpope/vim-surround'           " :help surround
+Plug 'honza/vim-snippets'           " required by ultisnips
+Plug 'SirVer/ultisnips'             " use <tab> after keyword
+Plug 'godlygeek/tabular'            " :help tabular | :Tab /=
 Plug 'airblade/vim-gitgutter'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'jackguo380/vim-lsp-cxx-highlight'
-
-" ! maybe
-" Plug 'matze/vim-move'                       " !
-" Plug 'tpope/vim-unimpaired'                 " ~
-" Plug 'justmao945/vim-clang'
-" Plug 'Shougo/neocomplete.vim'
-
-" ! default disabled
-" Plug 'SirVer/ultisnips'
-" Plug 'Valloric/YouCompleteMe'             " c++ recommended
-" Plug 'easymotion/vim-easymotion'
-" fswitch                                   " c++ recommended
-" Plug 'terryma/vim-multiple-cursors'
-" Plug 'tpope/vim-commentary'
-" Plug 'vim-scripts/OmniCppComplete'
+" specific filetypes
 " Plug 'vim-syntastic/syntastic'
-" Plug 'xolox/vim-misc'
-" Plug 'xolox/vim-session'
-" Plug 'Shougo/neosnippet-snippets'
-" Plug 'Shougo/neosnippet.vim'
-" Plug 'mrtazz/simplenote.vim'              " ~
-" Plug 'tpope/vim-abolish'
-" Plug 'tmux-plugins/vim-tmux  '              " --
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'xolox/vim-misc'               " required by vim-lua-ftplugin
+Plug 'xolox/vim-lua-ftplugin'
+Plug '2lx/vim-luafmt'
+Plug 'MTDL9/vim-log-highlighting'
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'derekwyatt/vim-fswitch'       " switch cpp/hpp :FSHere
+Plug 'rust-lang/rust.vim'
+Plug 'fannheyward/coc-rust-analyzer'
+" Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
+" other
+" Plug 'easymotion/vim-easymotion'
+" Plug 'junegunn/goyo.vim'
 call plug#end()
 
 " folding keys: (zo) - open, (zc) - close
@@ -387,11 +377,6 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN tabular
-" :Tab /=
-" :help tabular
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-lua-ftplugin {{{
 " let g:lua_complete_omni = 0
 " }}}
@@ -410,28 +395,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " let g:livepreview_previewer = 'mupdf'
 " set updatetime=100000000
 " }}}
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN vim-surround
-" use ysiw] to change words qwerty   to [qwerty]
-" use cs'"  to change 'qwe rty' to "qwe rty"
-" use yss(  to change entire line state
-" use ds'   to remove the delimiters
-" use S' in visual mode to do so
-" use cs{{  to change {words w} to { words w }
-" you can use viw for current word selection
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN vim-move
-" use <C-k> to move current line/selection up
-" use <C-j> to move current line/selection up
-" {{{
-let g:move_key_modifier = 'C'               " set Control as move-modifier key
-" }}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN vim-unimpaired
-" use :help unimpaired to know hotkeys
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN nerdtree
@@ -468,22 +431,8 @@ let NERDTreeShowHidden=0                    " enable to show hidden files
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-nerdcommenter
-" use :help nerdcommenter to see help
-" use ,cc  to comment out the current line or text selected in visual mode.
-" use ,cn  same as ,cc but forces nesting.
-"!use ,c<Space> to toggle the comment state of the selected line(s).
-"       if the topmost selected line is commented, all selected lines
-"       are uncommented and vice versa.
-" use ,cm  to comment the given lines using only one set of multipart delimiters.
-" use ,ci  to toggle the comment state of the selected line(s) individually.
-"!use ,cs  to comment out the selected lines with a pretty block formatted layout.
-" use ,cy  same as cc except that the commented line(s) are yanked first.
-" use ,c$  to comment the current line from the cursor to the end of line.
-" use ,cA  to adds comment delimiters to the end of line and goes into insert mode between them.
-"!use ,ca  to switche to the alternative set of delimiters.
-" use ,cu  to uncomment the selected line(s).
+" :help nerdcommenter
 " {{{
-
 " add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 " use compact syntax for prettified multi-line comments
@@ -502,104 +451,9 @@ let g:NERDTrimTrailingWhitespace = 1
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN vim-clang
-" require install ctags(?) clang python tcl perl lua
-" use :h clang.txt for help
-" {{{
-" download vim sources
-" ./configure --with-features=huge --enable-gui=auto --enable-luainterp=yes
-"     --enable-fontset --enable-python3interp
-"     --enable-tclinterp --enable-perlinterp
-"
-" ! DO NOT USE --with-vim-name=vim-compiled - because .tmux.conf will not work
-"
-" make
-" sudo make install
-
-let g:clang_auto = 0                        " disable to complete automatically
-
-let g:clang_c_options = '-std=c11'
-let g:clang_cpp_options = '-std=c++17 -stdlib=libstdc++'
-
-let g:clang_c_completeopt = 'longest,menuone'
-let g:clang_cpp_completeopt = 'longest,menuone'
-
-let g:clang_diagsopt = 'rightbelow:6'
-let g:clang_sh_exec = 'zsh'
-let g:clang_vim_exec = '/usr/local/bin/vim'
-" }}}
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN neocomplete
-" need vim (+lua) settings (how to compile with it see above)
-" use :h neocomplete for completely help
-" {{{
-
-" let g:neocomplete#enable_at_startup = 1     " neocomplete gets started automatically
-" " the number of the input completion at the time of key input automatically
-" let g:neocomplete#auto_completion_start_length = 2
-" " set minimum syntax keyword length.
-" let g:neocomplete#sources#syntax#min_keyword_length = 3
-" " use smartcase for matching (does not ignore the capital keys)
-" let g:neocomplete#enable_smart_case = 1
-"
-" " let g:neocomplete#disable_auto_complete = 1
-" " select first candidate automatically
-" let g:neocomplete#enable_auto_select = 0
-" " insert delimiter automatically
-" let g:neocomplete#enable_auto_delimiter = 0
-" " refresh candidates automatically, but increase screen flicker
-" let g:neocomplete#enable_refresh_always = 0
-"
-" " define dictionary for vim and other apps
-" let g:neocomplete#sources#dictionary#dictionaries = {
-"             \ 'default' : '',
-"             \ 'vimshell' : $HOME.'/.vimshell_hist',
-"             \ }
-"
-" " plugin key-mappings undo complete and autocomplete
-" " inoremap <expr><C-h>     neocomplete#undo_completion()
-" " inoremap <expr><C-l>     neocomplete#complete_common_string()
-"
-" " use <Tab> for select completion
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"
-" " enable for heavy omni completion for c and cpp
-" if !exists('g:neocomplete#sources#omni#input_patterns')
-"     let g:neocomplete#sources#omni#input_patterns = {}
-" endif
-" "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-" let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-" let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-"
-" " How to setup omni for cpp see: http://vim.wikia.com/wiki/VimTip1608
-" " Enable omni completion for different file types. Its omni-completion
-" " settings (it is not plugin):
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" " autocmd FileType cpp setlocal omnifunc=syntaxcomplete#Complete
-" " autocmd FileType c setlocal omnifunc=syntaxcomplete#Complete
-" }}}
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN goyo {{{
 let g:goyo_width = 100
 nnoremap <Leader>g :Goyo<Enter>
-" }}}
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN rust-lang/rust.vim {{{
-" let g:rustfmt_autosave = 1
-" }}}
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN simplenote {{{
-" source ~/.simplenoterc
-" let g:SimplenoteSortOrder = "title"
-" nnoremap <Leader>s :SimplenoteList<Enter>
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -234,7 +234,7 @@ hi User3            cterm=none      ctermbg=117  ctermfg=3
 hi User4            cterm=none      ctermbg=117  ctermfg=4
 hi User5            cterm=none      ctermbg=117  ctermfg=5
 hi User6            cterm=none      ctermbg=117  ctermfg=6
-hi User7            cterm=none      ctermbg=117  ctermfg=7
+hi User7            cterm=none      ctermbg=117  ctermfg=15
 hi User8            cterm=none      ctermbg=117  ctermfg=0
 hi User9            cterm=none      ctermbg=117  ctermfg=9
 
