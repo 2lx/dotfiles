@@ -189,6 +189,7 @@ Plug 'tpope/vim-surround'           " :help surround
 Plug 'honza/vim-snippets'           " required by ultisnips
 Plug 'SirVer/ultisnips'             " use <tab> after keyword
 Plug 'godlygeek/tabular'            " :help tabular | :Tab /=
+Plug 'tpope/vim-fugitive'           " :Git blame
 Plug 'airblade/vim-gitgutter'
 
 " specific filetypes
