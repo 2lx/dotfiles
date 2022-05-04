@@ -99,6 +99,7 @@ set laststatus=2                " When the last window will have a status line: 
 set showcmd                     " Show (partial) command in the last line of the screen
 set cmdheight=2                 " Number of screen lines to use for the command-line, coc.nvim requires more space
 
+set shortmess-=S                " show the count of search matches in the statusline
 set shortmess+=c                " coc.nvim. Don't pass messages to |ins-completion-menu|
 " set shortmess=a                 " make vim messages shorter
 " You can replace all the tabs with spaces in the entire file with :%retab

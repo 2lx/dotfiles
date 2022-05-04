@@ -17,8 +17,8 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 # export TERMINAL=/usr/bin/urxvt
 export TERMINAL=/usr/bin/alacritty
-export VISUAL=/usr/local/bin/vim
-export EDITOR=/usr/local/bin/vim
+export VISUAL=vim
+export EDITOR=vim
 export PAGER=less
 export GDK_CORE_DEVICE_EVENTS=1
 export SHELL=/usr/bin/zsh
@@ -31,7 +31,7 @@ for i in /sys/class/hwmon/hwmon*/temp*_input; do
 done
 
 # exec i3 -l # start i3 windows manager
-exec i3 -V >> /tmp/i3log-$(date +'%F-%k-%M-%S') 2>&1
+# exec i3 -V >> /tmp/i3log-$(date +'%F-%k-%M-%S') 2>&1
 
 # setup keyboard layouts
 setxkbmap -layout "us,ru" -option "grp:caps_toggle,grp_led:scroll,ctrl:nocaps"

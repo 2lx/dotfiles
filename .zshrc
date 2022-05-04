@@ -97,7 +97,7 @@ export DEFAULT_USER=$(whoami)
 # Completion for kitty
 autoload -Uz compinit
 compinit
-kitty + complete setup zsh | source /dev/stdin
+# kitty + complete setup zsh | source /dev/stdin
 
 # source common files
 for f in ~/.shrc.d/*; do [ -f "$f" ] && source $f; done

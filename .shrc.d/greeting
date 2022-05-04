@@ -1,4 +1,5 @@
-fortune | cowsay -f /usr/share/cows/www.cow
+neofetch
+# fortune | cowsay -f /usr/share/cows/www.cow
 # fortune | cowsay -f $(ls /usr/share/cowsay/cows | shuf -n1)
 # chuck_cow
 

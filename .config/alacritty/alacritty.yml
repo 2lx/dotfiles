@@ -12,14 +12,14 @@ env:
   # available, otherwise `xterm-256color` is used.
   TERM: xterm-256color
 
-#window:
+window:
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
-  #dimensions:
-  #  columns: 0
-  #  lines: 0
+  dimensions:
+    columns: 120
+    lines: 42
 
   # Window position (changes require restart)
   #
@@ -91,22 +91,22 @@ env:
 
 font:
   normal:
-    family: BlexMono Nerd Font
+    family: BlexMono Nerd Font Mono
     style: Regular
 
   bold:
-    family: BlexMono Nerd Font
+    family: BlexMono Nerd Font Mono
     style: Bold
 
   italic:
-    family: BlexMono Nerd Font
+    family: BlexMono Nerd Font Mono
     style: Italic
 
   bold_italic:
-    family: BlexMono Nerd Font
+    family: BlexMono Nerd Font Mono
     style: Bold Italic
 
-  size: 14
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
