@@ -1,5 +1,5 @@
 #!/bin/sh
-# this script executed by startx and xinit
+# this script is executed by startx and xinit
 # also /etc/X11/xinit/xinitrc
 # and  /etc/X11/xinit/xinitrc.d/*
 
@@ -14,7 +14,12 @@ xset dpms 600                           # enable power save
 # export GNUPGHOME=$HOME/.gnupg
 # export ARCHFLAGS="-arch x86_64"
 export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+# export LC_ALL=en_US.UTF-8     # overwrites other LC_*
+LC_MEASUREMENT="ru_RU.UTF-8"
+LC_MONETARY="ru_RU.UTF-8"
+LC_NUMERIC="ru_RU.UTF-8"
+LC_PAPER="ru_RU.UTF-8"
+LC_TIME="ru_RU.UTF-8"
 # export TERMINAL=/usr/bin/urxvt
 export TERMINAL=/usr/bin/alacritty
 export VISUAL=vim
@@ -22,6 +27,7 @@ export EDITOR=vim
 export PAGER=less
 export GDK_CORE_DEVICE_EVENTS=1
 export SHELL=/usr/bin/zsh
+export TIMEFMT=$'\t%E real,\t%U user,\t%S sys'
 
 # set HWMON_PATH
 for i in /sys/class/hwmon/hwmon*/temp*_input; do
