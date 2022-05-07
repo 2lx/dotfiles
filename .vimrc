@@ -2,7 +2,6 @@
 " :h option - to show help
 
 syntax enable
-" colorscheme eclipse
 " colorscheme my_theme
 colorscheme my_theme_light
 " colorscheme cherryblossom
@@ -70,11 +69,18 @@ set numberwidth=6               " Minimal number of columns to use for the line 
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$\| \+\ze\t/
 
+" gitfugitive plugin
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
+
 " :help statusline
 set statusline=                     " %f filename
 set statusline+=%8*\ %F\            " %F full path
 set statusline+=%h%m%r              " %h help flag, %m modified flag, %r read-only flag
 set statusline+=%=                  " %= switch to right side
+set statusline+=%{GitStatus()}\ \|\ "
 set statusline+=%y\                 " %y file type (:help filetype)
 set statusline+=%{strlen(&fenc)?&fenc:'none'}, " file encoding
 set statusline+=%{&ff}\ \|\         " %{&ff} file format
@@ -83,7 +89,6 @@ set statusline+=%L\                 " %L max line number
 set statusline+=C\=%c\ \|\          " %c current column number
 let &statusline.="%2.2(%{matchstr(getline('.'), '\\%' . col('.') . 'c.')}%)"
 set statusline+=\=0x%04B(%03b)\     " %B character under cursor
-" set statusline+=%n                  "%n buffer number
 
 " set scrolljump=1                " Minimal number of lines to scroll when the cursor gets off the screen
 set scrolloff=10                " Minimal number of screen lines to keep above and below the cursor
@@ -162,6 +167,7 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 
 map :Q :q
 map :W :w
+nnoremap <Leader>q :copen<Enter>
 
 inoremap jj <Esc>
 
@@ -185,13 +191,15 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'     " :help NERDCommenterFunctionalitySummary
 Plug 'ap/vim-css-color'
 Plug 'yegappan/mru'                 " :MRU
-Plug 'yegappan/bufselect'
+Plug '2lx/bufselect'
 Plug 'tpope/vim-surround'           " :help surround
 Plug 'honza/vim-snippets'           " required by ultisnips
 Plug 'SirVer/ultisnips'             " use <tab> after keyword
 Plug 'godlygeek/tabular'            " :help tabular | :Tab /=
 Plug 'tpope/vim-fugitive'           " :Git blame
 Plug 'airblade/vim-gitgutter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " specific filetypes
 " Plug 'vim-syntastic/syntastic'
@@ -201,7 +209,8 @@ Plug 'xolox/vim-lua-ftplugin'
 Plug '2lx/vim-luafmt'
 Plug 'MTDL9/vim-log-highlighting'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
-Plug 'derekwyatt/vim-fswitch'       " switch cpp/hpp :FSHere
+" Plug 'derekwyatt/vim-fswitch'       " switch cpp/hpp :FSHere
+Plug 'preservim/tagbar'
 Plug 'rust-lang/rust.vim'
 Plug 'fannheyward/coc-rust-analyzer'
 " Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
@@ -213,14 +222,46 @@ call plug#end()
 
 " folding keys: (zo) - open, (zc) - close
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN vim-airline {{{
+" :help airline
+set noshowmode
+let g:airline_theme='base16'
+let g:airline#extensions#tabline#enabled=0
+let g:airline_powerline_fonts=0
+
+" :help airline-customization
+if !g:airline_powerline_fonts
+  if !exists('g:airline_symbols')
+      let g:airline_symbols = {}
+  endif
+  let g:airline_symbols.colnr = 'C:'
+  let g:airline_symbols.linenr = ' L:'
+  let g:airline_symbols.maxlinenr = ' '
+end
+
+" let g:airline_section_b=1
+" }}}
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-lsp-cxx-highlight {{{
 let g:lsp_cxx_hl_light_bg=1
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PLUGIN tagbar {{{
+nmap <Leader>t :TagbarToggle<CR>
+" }}}
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN gitgutter {{{
+" stage the hunk with <Leader>hs or
+" undo it with <Leader>hu.
 nmap ) <Plug>(GitGutterNextHunk)
 nmap ( <Plug>(GitGutterPrevHunk)
+nmap <Leader>hs <Plug>(GitGutterStageHunk)
+nmap <Leader>hu <Plug>(GitGutterUndoHunk)
+nmap <Leader>hp <Plug>(GitGutterPreviewHunk)
+" nnoremap <Leader>hd :GitGutterDiffOrig<Enter>
 let g:gitgutter_enabled = 1
 let g:gitgutter_map_keys = 0
 " }}}
@@ -404,14 +445,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " then use ? for help
 " {{{
 nnoremap <Leader>f :NERDTreeToggle<Enter>
-nnoremap <Leader>` :tabe ~/.vimrc<Enter>
-" Open quickfix window if there are errors, close it otherwise
-nnoremap <Leader>q :cw<Enter>
-nnoremap <Leader>n :cn<Enter>
-nnoremap <Leader>p :cp<Enter>
-
-" open NERDTree automatically when vim starts up
-" autocmd vimenter * NERDTree
 
 " open NERDTree automatically if no files were specified
 autocmd StdinReadPre * let s:std_in=1
@@ -454,8 +487,8 @@ let g:NERDTrimTrailingWhitespace = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN goyo {{{
-let g:goyo_width = 100
-nnoremap <Leader>g :Goyo<Enter>
+" let g:goyo_width = 100
+" nnoremap <Leader>g :Goyo<Enter>
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

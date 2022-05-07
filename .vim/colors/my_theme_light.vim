@@ -37,14 +37,14 @@ hi ColorColumn      cterm=none      ctermbg=7    ctermfg=0
 hi Conceal          cterm=none      ctermbg=1    ctermfg=5
 
 " the character under the cursor
-hi Cursor           cterm=bold      ctermbg=15   ctermfg=0
+hi Cursor           cterm=bold      ctermbg=255   ctermfg=0
 
 " the character under the cursor when |language-mapping|
 " is used (see 'guicursor')
-hi lCursor          cterm=bold      ctermbg=15   ctermfg=0
+hi lCursor          cterm=bold      ctermbg=255   ctermfg=0
 
 " like Cursor, but used when in IME mode |CursorIM|
-hi CursorIM         cterm=bold      ctermbg=15   ctermfg=0
+hi CursorIM         cterm=bold      ctermbg=255   ctermfg=0
 
 " the screen column that the cursor is in when 'cursorcolumn' is set
 hi CursorColumn     cterm=none      ctermbg=none ctermfg=none
@@ -78,10 +78,10 @@ hi ErrorMsg         cterm=none      ctermbg=9    ctermfg=0
 hi VertSplit        cterm=none      ctermbg=7    ctermfg=none
 
 " line used for closed folds
-hi Folded           cterm=none      ctermbg=15   ctermfg=6
+hi Folded           cterm=none      ctermbg=255   ctermfg=6
 
 " 'foldcolumn'
-hi FoldColumn       cterm=none      ctermbg=15   ctermfg=6
+hi FoldColumn       cterm=none      ctermbg=255   ctermfg=6
 
 " column where |signs| are displayed
 hi SignColumn       cterm=none      ctermbg=none ctermfg=2
@@ -104,13 +104,13 @@ hi LineNrBelow      cterm=none      ctermbg=none ctermfg=8
 
 " Like LineNr when 'cursorline' is set and 'cursorlineopt'
 " contains "number" or is "both", for the cursor line.
-hi CursorLineNr     cterm=bold      ctermbg=9    ctermfg=15
+hi CursorLineNr     cterm=bold      ctermbg=none ctermfg=0
 
 " Like SignColumn when 'cursorline' is set for the cursor line.
-hi CursorLineSign   cterm=bold      ctermbg=9    ctermfg=15
+hi CursorLineSign   cterm=bold      ctermbg=none ctermfg=0
 
 " Like FoldColumn when 'cursorline' is set for the cursor line.
-hi CursorLineFold   cterm=bold      ctermbg=9    ctermfg=15
+hi CursorLineFold   cterm=bold      ctermbg=none ctermfg=0
 
 " The character under the cursor or just before it, if it
 " is a paired bracket, and its match. |pi_paren.txt|
@@ -132,13 +132,13 @@ hi NonText          cterm=none      ctermbg=none ctermfg=none
 hi Normal           cterm=none      ctermbg=none ctermfg=0
 
 " Popup menu: normal item
-hi Pmenu            cterm=none      ctermbg=15   ctermfg=0
+hi Pmenu            cterm=none      ctermbg=255   ctermfg=0
 
 " Popup menu: selected item
 hi PmenuSel         cterm=none      ctermbg=117  ctermfg=0
 
 " Popup menu: scrollbar
-hi PmenuSbar        cterm=none      ctermbg=15   ctermfg=0
+hi PmenuSbar        cterm=none      ctermbg=255   ctermfg=0
 
 " Popup menu: thumb of the scrollbar
 hi PmenuThumb       cterm=none      ctermbg=117  ctermfg=0
@@ -256,7 +256,7 @@ hi Tooltip          cterm=none      ctermbg=13   ctermfg=8
 " :help group-name
 
 " any comment
-hi Comment          cterm=none      ctermbg=15   ctermfg=8
+hi Comment          cterm=none      ctermbg=255  ctermfg=8
 
 " any constant
 hi Constant         cterm=none      ctermbg=none ctermfg=4
@@ -343,7 +343,7 @@ hi Tag              cterm=none      ctermbg=none ctermfg=3
 hi Delimiter        cterm=none      ctermbg=none ctermfg=6
 
 " special things inside a comment
-hi SpecialComment   cterm=bold      ctermbg=15   ctermfg=8
+hi SpecialComment   cterm=bold      ctermbg=255   ctermfg=8
 
 "  debugging statements
 hi Debug            cterm=none      ctermbg=none ctermfg=0

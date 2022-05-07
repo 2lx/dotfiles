@@ -91,22 +91,25 @@ window:
 
 font:
   normal:
-    family: BlexMono Nerd Font Mono
+    # family: BlexMono Nerd Font Mono
+    family: JetBrains Mono Nerd Font
+    # family: Ubuntu Mono Nerd Font
     style: Regular
 
   bold:
-    family: BlexMono Nerd Font Mono
+    family: JetBrains Mono Nerd Font
     style: Bold
 
   italic:
-    family: BlexMono Nerd Font Mono
+    family: JetBrains Mono Nerd Font
     style: Italic
 
   bold_italic:
-    family: BlexMono Nerd Font Mono
+    family: JetBrains Mono Nerd Font
     style: Bold Italic
 
   size: 12.0
+  use_thin_strokes: true
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -132,28 +135,106 @@ font:
 
 # Colors (Tomorrow Night)
 colors:
-# Themes: Pencil Light, Atom One Light,vim-github-color
+  # atom_one_light
+  # primary:
+  #   background: '#fcfcfc'
+  #   foreground: '#2a2b33'
+  #
+  # normal:
+  #   black:   '#000000'
+  #   red:     '#de3d35'
+  #   green:   '#3e953a'
+  #   yellow:  '#d2b67b'
+  #   blue:    '#2f5af3'
+  #   magenta: '#a00095'
+  #   cyan:    '#3e953a'
+  #   white:   '#bbbbbb'
+  #
+  # bright:
+  #   black:   '#000000'
+  #   red:     '#de3d35'
+  #   green:   '#3e953a'
+  #   yellow:  '#d2b67b'
+  #   blue:    '#2f5af3'
+  #   magenta: '#a00095'
+  #   cyan:    '#3e953a'
+  #   white:   '#f8f8f8'
+
+# night owlish light
+  # bright:
+  #   black: '#7a8181'
+  #   blue: '#5ca7e4'
+  #   cyan: '#00c990'
+  #   green: '#49d0c5'
+  #   magenta: '#697098'
+  #   red: '#f76e6e'
+  #   white: '#989fb1'
+  #   yellow: '#dac26b'
+  # cursor:
+  #   cursor: '#403f53'
+  #   text: '#fbfbfb'
+  # normal:
+  #   black: '#011627'
+  #   blue: '#4876d6'
+  #   cyan: '#08916a'
+  #   green: '#2aa298'
+  #   magenta: '#403f53'
+  #   red: '#d3423e'
+  #   white: '#7a8181'
+  #   yellow: '#daaa01'
+  # primary:
+  #   background: '#ffffff'
+  #   foreground: '#403f53'
+  # selection:
+  #   background: '#f2f2f2'
+  #   text: '#403f53'
+
+# mix: Pencil Light, Atom One Light,vim-github-color
+  # primary:
+  #   background: '#ffffff'
+  #   foreground: '#011627'
+  # normal:
+  #   black:     '#1f262c'
+  #   blue:      '#005dc8'
+  #   cyan:      '#08916a'
+  #   green:     '#10a778'
+  #   magenta:   '#7c37c4'
+  #   red:       '#f80245'
+  #   white:     '#c7c9cb'
+  #   yellow:    '#b57614'
+  # bright:
+  #   black:     '#828482'
+  #   blue:      '#5ca7e4'
+  #   cyan:      '#00c990'
+  #   green:     '#49d0c5'
+  #   magenta:   '#afb0ff'
+  #   red:       '#d2384f'
+  #   white:     '#f7f9fb'
+  #   yellow:    '#d79921'
+
+# github-light.vim
   primary:
     background: '#ffffff'
-    foreground: '#011627'
+    foreground: '#24292e'
   normal:
-    black:     '#1f262c'
-    blue:      '#005dc8'
+    black:     '#24292e'
+    blue:      '#5a93ff'
     cyan:      '#08916a'
-    green:     '#10a778'
-    magenta:   '#7c37c4'
-    red:       '#f80245'
-    white:     '#c7c9cb'
-    yellow:    '#b57614'
+    green:     '#1cad3c'
+    magenta:   '#6f42c1'
+    red:       '#db524e'
+    white:     '#d0d0d0'
+    yellow:    '#c59000'
   bright:
     black:     '#828482'
     blue:      '#5ca7e4'
     cyan:      '#00c990'
-    green:     '#49d0c5'
+    green:     '#1cad3c'
     magenta:   '#afb0ff'
-    red:       '#d2384f'
-    white:     '#f7f9fb'
-    yellow:    '#d79921'
+    red:       '#c03545'
+    white:     '#f0f0f0'
+    yellow:    '#ffe914'
+
   # cursor:
   #   cursor:  '#403f53'
   #   text:    '#fbfbfb'
@@ -161,18 +242,14 @@ colors:
   #   background: '#f2f2f2'
   #   text: '#403f53'
 
-  # Default colors
-  # primary:
-  #   background: '#22272c'
-  #   foreground: '#f2f2f4'
 
-    # Bright and dim foreground colors
-    #
-    # The dimmed foreground color is calculated automatically if it is not present.
-    # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
-    # is `false`, the normal foreground color will be used.
-    #dim_foreground: '#eaeaea'
-    #bright_foreground: '#828482'
+  # Bright and dim foreground colors
+  #
+  # The dimmed foreground color is calculated automatically if it is not present.
+  # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
+  # is `false`, the normal foreground color will be used.
+  #dim_foreground: '#eaeaea'
+  #bright_foreground: '#828482'
 
   # Cursor colors
   #
@@ -287,7 +364,7 @@ bell:
 
   # Duration of the visual bell flash. A `duration` of `0` will disable the
   # visual bell animation.
-  #duration: 0
+  duration: 0
 
   # Visual bell animation color.
   #color: '#ffffff'
@@ -356,8 +433,9 @@ bell:
 #   - (Windows) powershell
 shell:
   program: /usr/bin/zsh
-#  args:
-#    - --login
+  args:
+   - -c
+   - tmux -u new-session -A -s main
 
 # Startup directory
 #
