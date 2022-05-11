@@ -60,7 +60,7 @@ set hlsearch                    " When there is a previous search pattern, highl
 set incsearch                   " While typing a search command, show where the pattern matches
 
 set number                      " precede each line with its line number
-set numberwidth=6               " Minimal number of columns to use for the line number
+set numberwidth=4               " Minimal number of columns to use for the line number
 " set cpoptions+=n                " The column used for 'number' and 'relativenumber' will also be used for text of wrapped lines
 " set relativenumber              " Show the line number relative to the line with the cursor
 " set ruler                       " Show the line and column number of the cursor position
@@ -167,7 +167,16 @@ vnoremap <C-k> :m '<-2<CR>gv=gv
 
 map :Q :q
 map :W :w
-nnoremap <Leader>q :copen<Enter>
+function! ToggleQuickFix()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        TagbarClose
+        copen
+        TagbarOpen
+    else
+        cclose
+    endif
+endfunction
+nnoremap <Leader>q :call ToggleQuickFix()<cr>
 
 inoremap jj <Esc>
 
@@ -251,6 +260,8 @@ let g:lsp_cxx_hl_light_bg=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN tagbar {{{
 nmap <Leader>t :TagbarToggle<CR>
+let g:tagbar_width = 30
+let g:tagbar_compact = 1
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -463,6 +474,7 @@ let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 0                   " set minimal NERDTree interface
 let NERDTreeDirArrows = 1
 let NERDTreeShowHidden=0                    " enable to show hidden files
+let g:NERDTreeWinSize=30
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
