@@ -433,9 +433,9 @@ bell:
 #   - (Windows) powershell
 shell:
   program: /usr/bin/zsh
-  args:
-   - -c
-   - tmux -u new-session -A -s main
+  # args:
+  #  - -c
+  #  - tmux -u new-session -A -s main
 
 # Startup directory
 #
