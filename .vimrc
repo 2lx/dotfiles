@@ -178,7 +178,11 @@ function! ToggleQuickFix()
 endfunction
 nnoremap <Leader>q :call ToggleQuickFix()<cr>
 
-inoremap jj <Esc>
+" inoremap jj <Esc>
+
+" json format
+vnoremap <leader>jf :!python -m json.tool<CR>
+nnoremap <leader>jf :%!python -m json.tool<CR>
 
 " fast replace
 nmap \ :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
