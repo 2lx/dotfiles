@@ -97,3 +97,4 @@ compinit
 # source common files
 for f in ~/.shrc.d/*; do [ -f "$f" ] && source $f; done
 for f in ~/.shrc.d/zsh/*; do [ -f "$f" ] && source $f; done
+tmuxsession

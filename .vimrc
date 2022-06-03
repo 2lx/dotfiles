@@ -460,7 +460,8 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " use <leader>f to open the tree buffer
 " then use ? for help
 " {{{
-nnoremap <Leader>f :NERDTreeToggle<Enter>
+nnoremap <Leader>f :NERDTreeToggle <bar> if &filetype ==# 'nerdtree' <bar> wincmd p <bar> endif<CR>
+ "nnoremap <Leader>f :NERDTreeToggle<CR>
 
 " open NERDTree automatically if no files were specified
 autocmd StdinReadPre * let s:std_in=1
