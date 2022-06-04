@@ -1,7 +1,25 @@
-tmuxsession() {
-    local sessname="main"
-    [ ! -z $1 ] && sessname=$1
-    tmux -u new-session -A -s $sessname
+function tmuxsession {
+    local session_name="main"
+
+    # check if got a specific session name
+    if [ ! -z "$1" ]; then
+        session_name="${1}"
+    fi
+
+    # check if a tmux session exists with a given name
+    tmux has-session -t="$session_name" 2> /dev/null
+
+    # create the session if it doesn't exist
+    if [[ $? -ne 0 ]]; then
+        TMUX='' tmux new-session -d -s "$session_name"
+    fi
+
+    # attach if outside of tmux, switch if you're in tmux
+    if [[ -z "$TMUX" ]]; then
+        tmux attach -t "$session_name"
+    else
+        tmux switch-client -t "$session_name"
+    fi
 }
 
 swapfiles() {
