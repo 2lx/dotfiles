@@ -1,3 +1,27 @@
+[animation-tweaks]
+application-list=@as []
+combo-open=['|', 'T', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+current-profile-modified=true
+current-version=16.0
+dashappiconpopupmenu-open=['|', 'F', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+defocussing-effect=false
+desktoppopupmenu-open=['|', 'F', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+dialog-focus=['|', 'T', 'Inflate', '2', '0.5', '0.5', '0.0', '0.0', '0.0', '25', '255', '1.02', '1.02', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.5', '0.5', '0.0', '0.0', '0.0', '25', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_IN_CUBIC']
+dropdownmenu-open=['|', 'T', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+endsessiondialog-open=['|', 'F', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+focussing-effect=false
+name-list=@as []
+normal-focus=['|', 'T', 'Inflate', '2', '0.5', '0.5', '0.0', '0.0', '0.0', '25', '255', '1.02', '1.02', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.5', '0.5', '0.0', '0.0', '0.0', '25', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_IN_CUBIC']
+overrideother-open=['|', 'T', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+padosd-open=['|', 'F', 'Slide Up', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '1.0', '0.0', '0.1', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '300', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+popupmenu-open=['|', 'T', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+reload-profiles-signal=true
+reload-signal=true
+splashscreen-open=['|', 'T', 'Zoom In', '2', '0.5', '0.5', '0.0', '0.0', '0.0', '1', '0', '0.8', '0.8', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.5', '0.5', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+tooltip-open=['|', 'T', 'Slide Up', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '1.0', '0.0', '0.1', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '300', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+toppanelpopupmenu-open=['|', 'F', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+windowmenu-open=['|', 'F', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+
 [appindicator]
 icon-brightness=2.7755575615628914e-17
 icon-opacity=255
@@ -6,7 +30,29 @@ icon-size=32
 tray-pos='right'
 
 [auto-move-windows]
-application-list=['audacious.desktop:3', 'obsidian.desktop:2', 'opera.desktop:1', 'telegramdesktop.desktop:3', 'org.gnome.Lollypop.desktop:3']
+application-list=['obsidian.desktop:2', 'opera.desktop:1', 'telegramdesktop.desktop:3', 'org.gnome.Lollypop.desktop:3', 'todoist.desktop:2']
+
+[blur-my-shell]
+color-and-noise=true
+sigma=20
+
+[burn-my-windows]
+apparition-open-effect=true
+broken-glass-animation-time=600
+broken-glass-close-effect=true
+broken-glass-open-effect=false
+destroy-dialogs=true
+fire-animation-time=600
+fire-close-effect=true
+hexagon-animation-time=518
+hexagon-open-effect=true
+matrix-animation-time=704
+matrix-close-effect=false
+matrix-open-effect=false
+snap-open-effect=false
+trex-close-effect=false
+tv-open-effect=true
+wisps-open-effect=false
 
 [dash-to-dock]
 animation-time=0.39999999999999997
@@ -120,6 +166,9 @@ show-rotationrate-unit=true
 show-temperature-unit=true
 use-drive-smartctl=false
 use-generic-liquidctl=false
+
+[lockkeys]
+style='capslock'
 
 [user-theme]
 name='default-pure'
