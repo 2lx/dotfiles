@@ -30,7 +30,7 @@ icon-size=32
 tray-pos='right'
 
 [auto-move-windows]
-application-list=['obsidian.desktop:2', 'opera.desktop:1', 'telegramdesktop.desktop:3', 'org.gnome.Lollypop.desktop:3', 'todoist.desktop:2']
+application-list=['obsidian.desktop:2', 'opera.desktop:1', 'telegramdesktop.desktop:2', 'org.gnome.Lollypop.desktop:2', 'todoist.desktop:2']
 
 [blur-my-shell]
 color-and-noise=true
@@ -114,7 +114,7 @@ middle-click-action='LAUNCH'
 overview-click-to-exit=true
 panel-anchors='{"0":"MIDDLE"}'
 panel-element-positions='{"0":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'
-panel-lengths='{"0":80}'
+panel-lengths='{"0":100}'
 panel-positions='{"0":"BOTTOM"}'
 panel-sizes='{"0":48}'
 peek-mode=true
