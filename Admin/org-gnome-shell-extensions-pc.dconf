@@ -166,6 +166,8 @@ show-rotationrate-unit=true
 show-temperature-unit=true
 use-drive-smartctl=false
 use-generic-liquidctl=false
+use-gpu-bumblebeenvidia=false
+use-gpu-nvidia=true
 
 [lockkeys]
 style='capslock'

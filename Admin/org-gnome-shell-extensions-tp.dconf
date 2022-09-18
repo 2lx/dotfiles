@@ -1,0 +1,176 @@
+[animation-tweaks]
+application-list=@as []
+combo-open=['|', 'T', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+current-profile-modified=true
+current-version=16.0
+dashappiconpopupmenu-open=['|', 'F', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+defocussing-effect=false
+desktoppopupmenu-open=['|', 'F', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+dialog-focus=['|', 'T', 'Inflate', '2', '0.5', '0.5', '0.0', '0.0', '0.0', '25', '255', '1.02', '1.02', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.5', '0.5', '0.0', '0.0', '0.0', '25', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_IN_CUBIC']
+dropdownmenu-open=['|', 'T', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+endsessiondialog-open=['|', 'F', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+focussing-effect=false
+name-list=@as []
+normal-focus=['|', 'T', 'Inflate', '2', '0.5', '0.5', '0.0', '0.0', '0.0', '25', '255', '1.02', '1.02', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.5', '0.5', '0.0', '0.0', '0.0', '25', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_IN_CUBIC']
+overrideother-open=['|', 'T', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+padosd-open=['|', 'F', 'Slide Up', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '1.0', '0.0', '0.1', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '300', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+popupmenu-open=['|', 'T', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+reload-profiles-signal=true
+reload-signal=true
+splashscreen-open=['|', 'T', 'Zoom In', '2', '0.5', '0.5', '0.0', '0.0', '0.0', '1', '0', '0.8', '0.8', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.5', '0.5', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+tooltip-open=['|', 'T', 'Slide Up', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '1.0', '0.0', '0.1', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '300', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+toppanelpopupmenu-open=['|', 'F', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+windowmenu-open=['|', 'F', 'Scale Down', '2', '0.0', '0.0', '0.0', '0.0', '0.0', '1', '0', '1.0', '0.7', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC', '0.0', '0.0', '0.0', '0.0', '0.0', '250', '255', '1.0', '1.0', '0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'EASE_OUT_CUBIC']
+
+[appindicator]
+icon-brightness=2.7755575615628914e-17
+icon-opacity=255
+icon-saturation=2.7755575615628914e-17
+icon-size=32
+tray-pos='right'
+
+[auto-move-windows]
+application-list=['obsidian.desktop:2', 'opera.desktop:1', 'telegramdesktop.desktop:2', 'org.gnome.Lollypop.desktop:2', 'todoist.desktop:2']
+
+[blur-my-shell]
+color-and-noise=true
+sigma=20
+
+[burn-my-windows]
+apparition-open-effect=true
+broken-glass-animation-time=600
+broken-glass-close-effect=true
+broken-glass-open-effect=false
+destroy-dialogs=true
+fire-animation-time=600
+fire-close-effect=true
+hexagon-animation-time=518
+hexagon-open-effect=true
+matrix-animation-time=704
+matrix-close-effect=false
+matrix-open-effect=false
+snap-open-effect=false
+trex-close-effect=false
+tv-open-effect=true
+wisps-open-effect=false
+
+[dash-to-dock]
+animation-time=0.39999999999999997
+autohide-in-fullscreen=true
+background-opacity=0.80000000000000004
+dash-max-icon-size=48
+dock-fixed=true
+dock-position='LEFT'
+extend-height=true
+height-fraction=0.90000000000000002
+hide-delay=0.39999999999999997
+icon-size-fixed=true
+intellihide-mode='FOCUS_APPLICATION_WINDOWS'
+multi-monitor=false
+preferred-monitor=-2
+preferred-monitor-by-connector='HDMI2'
+
+[dash-to-panel]
+animate-app-switch=true
+animate-appicon-hover=true
+animate-appicon-hover-animation-convexity={'RIPPLE': 2.0, 'PLANK': 1.0, 'SIMPLE': 0.0}
+animate-appicon-hover-animation-duration={'SIMPLE': uint32 160, 'RIPPLE': 130, 'PLANK': 100}
+animate-appicon-hover-animation-extent={'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}
+animate-appicon-hover-animation-rotation={'SIMPLE': 0, 'RIPPLE': 10, 'PLANK': 0}
+animate-appicon-hover-animation-travel={'SIMPLE': 0.059999999999999998, 'RIPPLE': 0.40000000000000002, 'PLANK': 0.0}
+animate-appicon-hover-animation-type='SIMPLE'
+animate-appicon-hover-animation-zoom={'SIMPLE': 1.45, 'RIPPLE': 1.25, 'PLANK': 1.3700000000000001}
+animate-window-launch=true
+appicon-margin=8
+appicon-padding=2
+available-monitors=[0]
+click-action='CYCLE'
+desktop-line-custom-color='rgb(143,240,164)'
+desktop-line-use-custom-color=false
+dot-color-dominant=false
+dot-color-override=false
+dot-position='BOTTOM'
+dot-size=5
+dot-style-focused='DASHES'
+dot-style-unfocused='DASHES'
+focus-highlight=true
+focus-highlight-color='#000000'
+focus-highlight-dominant=true
+focus-highlight-opacity=30
+group-apps=true
+hide-overview-on-startup=true
+hot-keys=true
+hotkeys-overlay-combo='TEMPORARILY'
+intellihide=false
+intellihide-animation-time=200
+intellihide-behaviour='FOCUSED_WINDOWS'
+intellihide-close-delay=800
+intellihide-hide-from-windows=false
+intellihide-show-in-fullscreen=false
+leave-timeout=0
+leftbox-padding=-1
+leftbox-size=22
+middle-click-action='LAUNCH'
+overview-click-to-exit=true
+panel-anchors='{"0":"MIDDLE"}'
+panel-element-positions='{"0":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centered"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'
+panel-lengths='{"0":100}'
+panel-positions='{"0":"BOTTOM"}'
+panel-sizes='{"0":48}'
+peek-mode=true
+preview-custom-opacity=40
+primary-monitor=0
+progress-show-count=true
+scroll-icon-action='PASS_THROUGH'
+scroll-panel-action='CHANGE_VOLUME'
+secondarymenu-contains-appmenu=true
+secondarymenu-contains-showdetails=false
+shift-click-action='MINIMIZE'
+shift-middle-click-action='LAUNCH'
+show-appmenu=false
+show-apps-icon-file=''
+show-apps-icon-side-padding=8
+show-favorites=true
+show-favorites-all-monitors=true
+show-running-apps=true
+show-showdesktop-hover=false
+show-window-previews-timeout=0
+showdesktop-button-width=16
+status-icon-padding=-1
+stockgs-force-hotcorner=false
+stockgs-keep-dash=false
+stockgs-keep-top-panel=false
+stockgs-panelbtn-click-only=false
+taskbar-locked=true
+trans-gradient-bottom-color='#000000'
+trans-gradient-bottom-opacity=0.20000000000000001
+trans-gradient-top-color='#5e5c64'
+trans-gradient-top-opacity=0.20000000000000001
+trans-panel-opacity=0.0
+trans-use-custom-bg=false
+trans-use-custom-gradient=false
+trans-use-custom-opacity=true
+tray-padding=-1
+tray-size=22
+window-preview-aspect-ratio-y=9
+window-preview-show-title=false
+window-preview-size=280
+window-preview-title-position='TOP'
+
+[freon]
+hot-sensors=['__max__']
+panel-box-index=9
+position-in-panel='right'
+show-decimal-value=false
+show-rotationrate-unit=true
+show-temperature-unit=true
+use-drive-smartctl=false
+use-generic-liquidctl=false
+use-gpu-bumblebeenvidia=false
+use-gpu-nvidia=true
+
+[lockkeys]
+style='capslock'
+
+[user-theme]
+name='default-pure'
