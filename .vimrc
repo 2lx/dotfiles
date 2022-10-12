@@ -196,6 +196,8 @@ vmap <F3> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call 
 " bind F4 to paste from X clipboard
 nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 
+nnoremap <leader>gb :G blame<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS vim-plug plugin manager
 call plug#begin('~/.vim/plugged')
