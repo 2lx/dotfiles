@@ -197,6 +197,7 @@ vmap <F3> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call 
 nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 
 nnoremap <leader>gb :G blame<CR>
+nnoremap <leader>F :Files<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS vim-plug plugin manager
@@ -234,6 +235,8 @@ Plug 'fannheyward/coc-rust-analyzer'
 " other
 " Plug 'easymotion/vim-easymotion'
 " Plug 'junegunn/goyo.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " folding keys: (zo) - open, (zc) - close
