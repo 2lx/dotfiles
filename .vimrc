@@ -198,6 +198,7 @@ nmap <F4> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
 
 nnoremap <leader>gb :G blame<CR>
 nnoremap <leader>F :Files<CR>
+nnoremap <Leader>b :Buffers<Enter>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS vim-plug plugin manager
@@ -207,7 +208,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'     " :help NERDCommenterFunctionalitySummary
 Plug 'ap/vim-css-color'
 Plug 'yegappan/mru'                 " :MRU
-Plug '2lx/bufselect'
+" Plug '2lx/bufselect'
 Plug 'tpope/vim-surround'           " :help surround
 Plug 'honza/vim-snippets'           " required by ultisnips
 Plug 'SirVer/ultisnips'             " use <tab> after keyword
@@ -240,6 +241,10 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " folding keys: (zo) - open, (zc) - close
+" PLUGIN fzf {{{
+let g:fzf_preview_window = []
+" }}}
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-airline {{{
 " :help airline
@@ -512,11 +517,6 @@ let g:NERDTrimTrailingWhitespace = 1
 " PLUGIN goyo {{{
 " let g:goyo_width = 100
 " nnoremap <Leader>g :Goyo<Enter>
-" }}}
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN bufselect {{{
-nnoremap <Leader>b :Bufselect<Enter>
 " }}}
 
 " vim: set fdm=marker fmr={{{,}}} fdl=0 :
