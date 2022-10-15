@@ -6,6 +6,8 @@ runtime macros/matchit.vim      " Enable if-else matching with % (:h matchit)
 set listchars=eol:↵,trail:~,tab:>-,nbsp:␣
 let mapleader=","               " Set prefix key
 set fileformat=unix             " This gives the <EOL> of the current buffer: <NL>
+autocmd BufRead,BufNewFile *         set signcolumn=yes
+autocmd FileType tagbar,nerdtree     set signcolumn=no
 
 set number                      " precede each line with its line number
 set numberwidth=4               " Minimal number of columns to use for the line number
@@ -190,6 +192,9 @@ let g:gitgutter_map_keys = 0
 " PLUGIN nvim-tree
 " {{{
 let g:nvim_tree_auto_close=1
+
+" close nvim-tree automatically, if it is the last buffer
+autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 " }}}
 
 " vim: set fdm=marker fmr={{{,}}} fdl=0 :
