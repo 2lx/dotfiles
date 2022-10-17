@@ -93,7 +93,7 @@ call plug#end()
 " setup lua plugins
 lua require('nvim_tree')
 lua require('telescope')
-lua require('lualine')
+lua require('lualine').setup()
 
 " enable true 24bit colors
 if exists('+termguicolors')
@@ -107,10 +107,11 @@ colorscheme onehalflight
 let g:lightline = { 'colorscheme': 'onehalflight' }
 
 " mapping
-nnoremap <Leader>f <cmd>NvimTreeFindFile<CR>
+nnoremap <leader>f <cmd>NvimTreeFindFile<cr>
 nnoremap <leader>F <cmd>Telescope find_files<cr>
-nnoremap <leader>b <cmd>Telescope buffers<cr>
-nnoremap <leader>gb :G blame<CR>
+" nnoremap <leader>b <cmd>Telescope buffers<cr>
+nnoremap <leader>b <cmd>lua require'telescope.builtin'.buffers(require('telescope.themes').get_dropdown({ on_complete = { function() vim.cmd"stopinsert" end }, layout_config = { width = 0.5, height = 0.5 }, previewer = false, sort_lastused = true }))<CR>
+nnoremap <leader>gb :G blame<cr>
 cnoremap <c-p> <Up>
 cnoremap <c-n> <Down>
 nnoremap <leader><space> :nohlsearch<CR> " disable search results highlighting
@@ -276,7 +277,7 @@ nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+vmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!

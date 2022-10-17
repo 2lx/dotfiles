@@ -1,15 +1,19 @@
+local actions = require("telescope.actions")
+local actions_layout = require("telescope.actions.layout")
+
 require('telescope').setup{
     defaults = {
-        -- Default configuration for telescope goes here:
-        -- config_key = value,
         mappings = {
             n = {
-                ['<c-d>'] = require('telescope.actions').delete_buffer
+                ['<c-d>'] = actions.delete_buffer,
+                -- ["<c-p>"] = actions_layout.toggle_preview,
             },
             i = {
-                ["<C-h>"] = "which_key",
-                ['<c-d>'] = require('telescope.actions').delete_buffer
+                ["<esc>"] = actions.close,
+                ["<c-h>"] = "which_key",
+                ["<c-d>"] = actions.delete_buffer,
+                -- ["<c-p>"] = actions_layout.toggle_preview,
             }
-        } -- mappings
-    }, -- defaults
-} -- telescope setup
+        }
+    },
+}

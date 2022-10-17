@@ -1,6 +1,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# ZSH uses the KEYTIMEOUT parameter to determine how long to wait (in hundredths of a second)
+# for additional characters in sequence. Default is 0.4 seconds.
+export KEYTIMEOUT=1
+
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="agnoster"
 ZSH_THEME="fishy"
