@@ -1,0 +1,51 @@
+{
+   "languageserver":{
+      "ccls":{
+         "command":"ccls",
+         "filetypes":[ "c", "cc", "cpp" ],
+         "rootPatterns":[
+            ".ccls",
+            "compile_commands.json",
+            ".git/",
+            ".hg/"
+         ],
+         "initializationOptions":{
+            "cache":{
+               "directory":"/tmp/ccls"
+            },
+            "cacheFormat": "json",
+            "highlight":{
+               "lsRanges":true
+            }
+         }
+      },
+      "lua":{
+         "command":"lua-language-server",
+         "filetypes":[
+            "lua"
+         ],
+         "rootPatterns":[
+            ".git/"
+         ],
+         "settings":{
+            "Lua":{
+               "workspace":{
+                  "maxPreload":2000,
+                  "preloadFileSize":1000,
+                  "checkThirdParty":false
+               },
+               "runtime":{
+                  "version":"5.1.4"
+               },
+               "diagnostics":{
+                  "enable":true,
+                  "globals":[ "times" ],
+                  "disable":[
+                     "lowercase-global"
+                  ]
+               }
+            }
+         }
+      }
+   }
+}
