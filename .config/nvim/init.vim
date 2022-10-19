@@ -93,7 +93,7 @@ call plug#end()
 " setup lua plugins
 lua require('nvim_tree')
 lua require('telescope')
-lua require('lualine').setup()
+lua local cfg = require('lualine').get_config(); cfg.sections.lualine_c = { { "filename", path = 1 } }; require('lualine').setup(cfg)
 
 " enable true 24bit colors
 if exists('+termguicolors')
