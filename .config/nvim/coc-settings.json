@@ -39,7 +39,7 @@
                },
                "diagnostics":{
                   "enable":true,
-                  "globals":[ "times" ],
+                  "globals":[ "times", "vim" ],
                   "disable":[
                      "lowercase-global"
                   ]

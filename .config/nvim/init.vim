@@ -67,8 +67,11 @@ set spelllang=en
 set spellfile=$HOME/.vim/spell/en.utf-8.add
 
 call plug#begin('~/.vim/plugged')
-Plug 'sonph/onehalf', { 'rtp': 'vim' } " colortheme
+" colorschemes
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
+" Plug 'ayu-theme/ayu-vim'
 Plug 'kyazdani42/nvim-web-devicons' " required by nvim-tree, lualine
+
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-lua/plenary.nvim'        " required by telescope
 Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
@@ -91,26 +94,25 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'
 call plug#end()
 
 " setup lua plugins
-lua require('nvim_tree')
-lua require('telescope')
-lua local cfg = require('lualine').get_config(); cfg.sections.lualine_c = { { "filename", path = 1 } }; require('lualine').setup(cfg)
+lua require('nvim_tree_setup')
+lua require('telescope_setup')
+lua require('lualine_setup')
 
 " enable true 24bit colors
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
+  set termguicolors  " enable true colors support
 endif
 
-" colorscheme
-colorscheme onehalflight
-let g:lightline = { 'colorscheme': 'onehalflight' }
+" colorscheme ayu
+" colorscheme onehalflight
+colorscheme my_theme_light
 
 " mapping
 nnoremap <leader>f <cmd>NvimTreeFindFile<cr>
 nnoremap <leader>F <cmd>Telescope find_files<cr>
-" nnoremap <leader>b <cmd>Telescope buffers<cr>
-nnoremap <leader>b <cmd>lua require'telescope.builtin'.buffers(require('telescope.themes').get_dropdown({ on_complete = { function() vim.cmd"stopinsert" end }, layout_config = { width = 0.5, height = 0.5 }, previewer = false, sort_lastused = true }))<CR>
+nnoremap <leader>b <cmd>lua require('telescope_buffers')()<CR>
 nnoremap <leader>gb :G blame<cr>
 cnoremap <c-p> <Up>
 cnoremap <c-n> <Down>
