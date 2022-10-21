@@ -68,8 +68,9 @@ set spellfile=$HOME/.vim/spell/en.utf-8.add
 
 call plug#begin('~/.vim/plugged')
 " colorschemes
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
+" Plug 'sonph/onehalf', { 'rtp': 'vim' }
 " Plug 'ayu-theme/ayu-vim'
+Plug '2lx/lazylight'
 Plug 'kyazdani42/nvim-web-devicons' " required by nvim-tree, lualine
 
 Plug 'nvim-tree/nvim-tree.lua'
@@ -107,7 +108,7 @@ endif
 
 " colorscheme ayu
 " colorscheme onehalflight
-colorscheme my_theme_light
+colorscheme lazylight
 
 " mapping
 nnoremap <leader>f <cmd>NvimTreeFindFile<cr>
@@ -120,6 +121,10 @@ nnoremap <leader><space> :nohlsearch<CR> " disable search results highlighting
 map :Q :q
 map :W :w
 map :wQ :wq
+
+" json format
+vnoremap <leader>jf :!python -m json.tool<CR>
+nnoremap <leader>jf :%!python -m json.tool<CR>
 
 " fast replace
 nmap \ :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
