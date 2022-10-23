@@ -2,10 +2,6 @@
 " :h option - to show help
 
 syntax enable
-" colorscheme my_theme
-colorscheme my_theme_light
-" colorscheme cherryblossom
-" colorscheme monokai
 
 set nocompatible                " Vi defaults are not used for the Vim options. It should be placed before other settings
 set backspace=indent,eol,start  " to fix some devel-version bugs
@@ -209,6 +205,7 @@ Plug 'scrooloose/nerdcommenter'     " :help NERDCommenterFunctionalitySummary
 Plug 'ap/vim-css-color'
 Plug 'yegappan/mru'                 " :MRU
 " Plug '2lx/bufselect'
+Plug '2lx/lazylight'
 Plug 'tpope/vim-surround'           " :help surround
 Plug 'honza/vim-snippets'           " required by ultisnips
 Plug 'SirVer/ultisnips'             " use <tab> after keyword
@@ -239,6 +236,11 @@ Plug 'fannheyward/coc-rust-analyzer'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 call plug#end()
+
+" colorscheme my_theme
+" colorscheme cherryblossom
+" colorscheme monokai
+colorscheme lazylight
 
 " folding keys: (zo) - open, (zc) - close
 " PLUGIN fzf {{{
