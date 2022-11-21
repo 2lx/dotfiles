@@ -6,7 +6,8 @@ local fn_popup_buffers = function()
         on_complete = { function() vim.cmd "stopinsert" end },
         layout_config = { width = 0.5, height = 0.5 },
         previewer = false,
-        sort_lastused = true
+        sort_lastused = true,
+        ignore_current_buffer = true,
     }))
 end
 

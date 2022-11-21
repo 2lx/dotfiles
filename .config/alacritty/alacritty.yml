@@ -232,7 +232,7 @@ colors:
     green:     '#1cad3c'
     magenta:   '#afb0ff'
     red:       '#c03545'
-    white:     '#f0f0f0'
+    white:     '#b0b0b0'
     yellow:    '#ffe914'
 
   # cursor:
