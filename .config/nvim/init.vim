@@ -92,6 +92,8 @@ Plug 'xolox/vim-lua-ftplugin'
 Plug '2lx/vim-luafmt'
 Plug 'MTDL9/vim-log-highlighting'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'qnighy/lalrpop.vim'
+Plug 'clangd/coc-clangd'
 call plug#end()
 
 " setup lua plugins

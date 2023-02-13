@@ -2,6 +2,7 @@
     "diagnostic.checkCurrentLine": true,
     "languageserver": {
         "ccls": {
+            "enabled": false,
             "command": "ccls",
             "filetypes": [
                 "c",
@@ -23,6 +24,27 @@
                     "lsRanges": true
                 }
             }
+        },
+        "coc-clangd": {
+            "enabled": true,
+            "command": "clangd",
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/clangd"
+                }
+            },
+            "filetypes": [
+                "c",
+                "cc",
+                "cpp",
+                "c++",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                "compile_flags.txt",
+                "compile_commands.json"
+            ]
         },
         "lua": {
             "command": "lua-language-server",
