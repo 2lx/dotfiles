@@ -8,6 +8,7 @@ let mapleader=","               " Set prefix key
 set fileformat=unix             " This gives the <EOL> of the current buffer: <NL>
 autocmd BufRead,BufNewFile *         set signcolumn=yes
 autocmd FileType tagbar,nerdtree     set signcolumn=no
+autocmd FileType markdown            set spelllang=ru_yo spell
 
 set number                      " precede each line with its line number
 set numberwidth=4               " Minimal number of columns to use for the line number
@@ -63,8 +64,8 @@ set undodir=$HOME/.vim/undo/    " undofile. make sure to create this directory
 " to move cursor to the previous misspelled word, enter [s
 " to add word in spell file, enter zg
 " to show spelling suggestions, enter z=
-set spelllang=en
-set spellfile=$HOME/.vim/spell/en.utf-8.add
+" set spelllang=en
+" set spellfile=$HOME/.vim/spell/en.utf-8.add
 
 call plug#begin('~/.vim/plugged')
 " colorschemes
