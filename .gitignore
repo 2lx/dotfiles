@@ -13,7 +13,6 @@
 !.config/picom
 !.config/polybar
 !.config/rofi
-!.config/nvim
 
 !/.fonts
 /.fonts/*
