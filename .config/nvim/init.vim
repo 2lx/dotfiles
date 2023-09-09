@@ -72,9 +72,10 @@ call plug#begin('~/.vim/plugged')
 " Plug 'sonph/onehalf', { 'rtp': 'vim' }
 " Plug 'ayu-theme/ayu-vim'
 Plug '2lx/lazylight'
-Plug 'kyazdani42/nvim-web-devicons' " required by nvim-tree, lualine
 
 Plug 'nvim-tree/nvim-tree.lua'
+Plug 'kyazdani42/nvim-web-devicons' " required by nvim-tree, lualine
+
 Plug 'nvim-lua/plenary.nvim'        " required by telescope
 Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 Plug 'nvim-lualine/lualine.nvim'
@@ -115,17 +116,25 @@ colorscheme lazylight
 
 " mapping
 nnoremap <leader>f <cmd>NvimTreeFindFile<cr>
-nnoremap <leader>F <cmd>Telescope find_files<cr>
-nnoremap <leader>b <cmd>lua require('telescope_buffers')()<CR>
+nnoremap <leader>B <cmd>Telescope find_files<cr>
+nnoremap <leader>b <cmd>Telescope buffers<CR>
+nnoremap <leader>gs <cmd>Telescope git_status<CR>
+nnoremap <leader>? <cmd>Telescope keymaps<CR>
+nnoremap <leader>m <cmd>Telescope man_pages<CR>
+nnoremap <leader>r <cmd>Telescope registers<CR>
 nnoremap <leader>gb :G blame<cr>
 cnoremap <c-p> <Up>
 cnoremap <c-n> <Down>
 nnoremap <leader><space> :nohlsearch<CR> " disable search results highlighting
 nnoremap <leader>s <cmd>lua require('switch_source_header')()<CR>
 
+" typos
 map :Q :q
 map :W :w
 map :wQ :wq
+map :wA :wa
+map :waq :wa
+map :wqa :wa
 
 " json format
 vnoremap <leader>jf :!python -m json.tool<CR>
