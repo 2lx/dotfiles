@@ -45,17 +45,23 @@ autocmd("BufNewFile", {
 
 -- do cd on reading first file
 local ft_to_cd = {
-    cpp = "src",
-    lua = "misc/scripts",
+    cpp = { "src", "source" },
+    lua = { "misc/scripts", ".config/nvim" },
+    vim = { ".config/nvim" },
 }
 
 local first_file_open = true
 autocmd("BufRead", {
     pattern = { "*" },
     callback = function()
-        local path = ft_to_cd[string.lower(vim.bo.filetype)]
-        if first_file_open and path then
-            vim.loop.chdir(path)
+        local paths = ft_to_cd[string.lower(vim.bo.filetype)]
+        if first_file_open and paths then
+            for _, path in ipairs(paths) do
+                if vim.fn.isdirectory(path) ~= 0 then
+                    vim.loop.chdir(path)
+                    break
+                end
+            end
         end
         first_file_open = false
     end,
