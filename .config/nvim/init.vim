@@ -3,7 +3,6 @@ set runtimepath+=~/.vim/after
 let &packpath=&runtimepath
 
 runtime macros/matchit.vim      " Enable if-else matching with % (:h matchit)
-let mapleader=","               " Set prefix key
 
 call plug#begin('~/.vim/plugged')
 " colorschemes
@@ -38,6 +37,7 @@ call plug#end()
 
 " setup lua plugins
 lua require('autocmds')
+lua require('keymaps')
 lua require('nvim_tree_setup')
 lua require('telescope_setup')
 lua require('lualine_setup')
@@ -53,47 +53,6 @@ endif
 " colorscheme ayu
 " colorscheme onehalflight
 colorscheme lazylight
-
-" mapping
-nnoremap <leader>f <cmd>NvimTreeFindFile<cr>
-nnoremap <leader>B <cmd>Telescope find_files<cr>
-nnoremap <leader>b <cmd>Telescope buffers<CR>
-nnoremap <leader>gs <cmd>Telescope git_status<CR>
-nnoremap <leader>? <cmd>Telescope keymaps<CR>
-nnoremap <leader>m <cmd>Telescope man_pages<CR>
-nnoremap <leader>r <cmd>Telescope registers<CR>
-nnoremap <leader>gb :G blame<cr>
-cnoremap <c-p> <Up>
-cnoremap <c-n> <Down>
-nnoremap <leader><space> :nohlsearch<CR> " disable search results highlighting
-nnoremap <leader>s <cmd>lua require('switch_source_header')()<CR>
-
-" typos
-map :Q :q
-map :W :w
-map :wQ :wq
-map :wA :wa
-map :waq :wa
-map :wqa :wa
-
-" json format
-vnoremap <leader>jf :!python -m json.tool<CR>
-nnoremap <leader>jf :%!python -m json.tool<CR>
-
-" fast replace
-nmap \ :%s/\<<c-r>=expand("<cword>")<cr>\>/<c-r>=expand("<cword>")<cr>
-set pastetoggle=<F2> " to paste text unmodified
-
-function! ToggleQuickFix()
-    if empty(filter(getwininfo(), 'v:val.quickfix'))
-        TagbarClose
-        copen
-        TagbarOpen
-    else
-        cclose
-    endif
-endfunction
-nnoremap <Leader>q :call ToggleQuickFix()<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGIN vim-better-whitespace
