@@ -23,20 +23,37 @@ map("", ":wA", ":wa")
 map("", ":waq", ":wa")
 map("", ":wqa", ":wa")
 
+-- fast replace
+map("n", "<Bslash>", ':%s/<Bslash><<C-r>=expand("<cword>")<CR><Bslash>>/<C-r>=expand("<cword>")<CR>')
+
 -- leader
-map("v", "<leader>jf", ":!python -m json.tool<CR>")
-map("n", "<leader>jf", ":%!python -m json.tool<CR>")
 map("n", "<leader>f", "<cmd>NvimTreeFindFile<CR>")
 map("n", "<leader>B", "<cmd>Telescope find_files<CR>")
 map("n", "<leader>b", "<cmd>Telescope buffers<CR>")
 map("n", "<leader>gs", "<cmd>Telescope git_status<CR>")
 map("n", "<leader>?", "<cmd>Telescope keymaps<CR>")
 map("n", "<leader>m", "<cmd>Telescope man_pages<CR>")
+
+-- registers
 map("n", "<leader>r", "<cmd>Telescope registers<CR>")
+for c in string.gmatch("abcdefghijklmnopqrstuvwxyz0123456789%.:+*:=#-\"", ".") do
+    map("n", "<leader>r" .. c, "\"" .. c .. "p<CR>")
+end
+
+-- quickfix
 map("n", "<leader>q", "<cmd>Telescope quickfix<CR>")
+map("n", "<leader>qn", ":cnext<CR>")
+map("n", "<leader>qp", ":cprev<CR>")
+
+-- git
 map("n", "<leader>gb", ":G blame<CR>")
-map("n", "<leader><space>", ":nohlsearch<CR>") -- disable search results highlighting
+
+-- disable search results highlighting
+map("n", "<leader><space>", ":nohlsearch<CR>")
+
+-- switch source/header
 map("n", "<leader>s", "<cmd>lua require('switch_source_header')()<CR>")
 
--- replace
-map("n", "<Bslash>", ':%s/<Bslash><<C-r>=expand("<cword>")<CR><Bslash>>/<C-r>=expand("<cword>")<CR>')
+--json
+map("v", "<leader>jf", ":!python -m json.tool<CR>")
+map("n", "<leader>jf", ":%!python -m json.tool<CR>")
