@@ -6,9 +6,6 @@ runtime macros/matchit.vim      " Enable if-else matching with % (:h matchit)
 set listchars=eol:↵,trail:~,tab:>-,nbsp:␣
 let mapleader=","               " Set prefix key
 set fileformat=unix             " This gives the <EOL> of the current buffer: <NL>
-autocmd BufRead,BufNewFile *         set signcolumn=yes
-autocmd FileType tagbar,nerdtree     set signcolumn=no
-autocmd FileType markdown            set spelllang=ru_yo spell
 
 set number                      " precede each line with its line number
 set numberwidth=4               " Minimal number of columns to use for the line number
@@ -37,9 +34,6 @@ set shortmess+=c                " coc.nvim. Don't pass messages to |ins-completi
 set timeoutlen=500              " set mapping delay in ms
 set ttimeoutlen=0               " set key code delay in ms
 set updatetime=300              " coc.nvim param
-
-" disable auto commenting when you insert blank line after a comment line
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " how vim represent characters internally
 set encoding=UTF-8
@@ -99,6 +93,7 @@ Plug 'clangd/coc-clangd'
 call plug#end()
 
 " setup lua plugins
+lua require('autocmds')
 lua require('nvim_tree_setup')
 lua require('telescope_setup')
 lua require('lualine_setup')
@@ -230,19 +225,10 @@ autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tab
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN coc.nvim {{{
+" PLUGIN coc.nvim
+" {{{
 " https://codevion.github.io/#!vim/coc.md
 " https://www.youtube.com/watch?v=ViHgyApE9zM
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
-
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -381,6 +367,5 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " }}}
-
 
 " vim: set fdm=marker fmr={{{,}}} fdl=0 :

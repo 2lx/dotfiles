@@ -41,5 +41,6 @@ nvim_tree.setup({
         adaptive_size = true,
         centralize_selection = false,
         cursorline = true,
+        signcolumn = "no",
     },
 })
