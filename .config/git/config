@@ -1,0 +1,25 @@
+[user]
+	name = Alexey Minchakov
+	email = lexaaim@gmail.com
+[alias]
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%G? %C(red)%h%C(reset) - %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)%C(yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold blue)- %an%C(reset)' --all
+	lg1 = log --color --graph --pretty=format:'%G? %C(red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lg = !"git lg1"
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	df = difftool --tool=vimdiff -y
+	dif = diff
+[core]
+	autocrlf = input
+	editor = vim
+	whitespace = trailing-space,space-before-tab
+	quotePath = false
+[pull]
+	ff = only
+[filter "space-removal-at-eol"]
+	clean = sed -e \"s/ \\+$//\"
+
