@@ -26,6 +26,7 @@ alias lt='du -sh * | sort -h'
 alias gh='history | grep'
 
 alias vimrc="vim ~/.vimrc"
+alias info="info --vi-keys"
 
 alias cl++14="clang++ --std=c++14 -pthread -Wall -Wextra -O2"
 alias cl++17="clang++ --std=c++17 -pthread -Wall -Wextra -O2"
